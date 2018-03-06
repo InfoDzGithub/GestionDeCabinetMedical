@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.GlyphsStack?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.DoctorPortalController">
+     <children>
+      <ImageView fitHeight="500.0" fitWidth="750.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/top.jpg" />
+         </image>
+      </ImageView>
+   
+         <Label layoutX="90.0" layoutY="25.0" maxHeight="50.0" maxWidth="660.0" minHeight="50.0" minWidth="660.0" prefHeight="50.0" prefWidth="660.0" style="-fx-background-color: #64b5f6" text="   Doctor Panel" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="35.0" />
+         </font>
+      </Label>
+      <JFXTextField focusColor="#64b5f6" layoutX="119.0" layoutY="107.0" maxWidth="209.0" minWidth="178.0" prefHeight="31.0" prefWidth="209.0" />
+      <Text fill="#64b5f6" layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" wrappingWidth="99.99998474121094">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font></Text>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/doc.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="450.0" layoutY="440.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Print" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <GlyphsStack layoutX="435.0" layoutY="90.0" />
+      <JFXButton layoutX="250.0" layoutY="440.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="14.0" layoutY="154.0" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #EEEEEE;">
+         <children>
+            <JFXTextField focusColor="#64b5f6" layoutX="66.0" layoutY="13.0" maxWidth="283.0" minWidth="178.0" prefHeight="31.0" prefWidth="283.0" />
+            <Text fill="#64b5f6" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Age" wrappingWidth="77.99998474121094">
+               <font>
+                  <Font name="Bell MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <JFXTextArea focusColor="#64b5f6" layoutX="140.0" layoutY="116.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
+            <JFXTextArea focusColor="#64b5f6" layoutX="140.0" layoutY="193.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
+            <JFXTextField focusColor="#64b5f6" layoutX="178.0" layoutY="62.0" maxWidth="283.0" minWidth="171.0" prefHeight="31.0" prefWidth="178.0" />
+            <Text fill="#64b5f6" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Family Situation" wrappingWidth="178.00000263378024">
+               <font>
+                  <Font name="Bell MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#64b5f6" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Treatment" wrappingWidth="144.00000125169754">
+               <font>
+                  <Font name="Bell MT Bold" size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#64b5f6" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Diagnostics" wrappingWidth="144.00000263378024">
+               <font>
+                  <Font name="Bell MT Bold" size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#64b5f6" layoutX="407.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Treatment" wrappingWidth="110.99998474121094">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Text>
+      <JFXTextArea focusColor="#64b5f6" layoutX="534.0" layoutY="170.0" maxWidth="273.0" minWidth="178.0" prefHeight="100.0" prefWidth="209.0" />
+      <JFXButton layoutX="636.0" layoutY="37.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" onAction="#log_out" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: white;" text="Logout" textFill="#2196F3">
+         <font>
+            <Font name="Bell MT" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXTextArea focusColor="#64b5f6" layoutX="534.0" layoutY="304.0" maxWidth="273.0" minWidth="178.0" prefHeight="100.0" prefWidth="209.0" />
+      <Text fill="#64b5f6" layoutX="404.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diagnostics" wrappingWidth="117.99998474121094">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="291.0" layoutY="100.0">
+         <graphic>
+            <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutY="90.0" size="18" />
+         </graphic>
+      </JFXButton>
+      </children>
+</AnchorPane>

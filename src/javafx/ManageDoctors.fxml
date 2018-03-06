@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.GlyphsStack?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="850.0" minHeight="600.0" minWidth="850.0" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ManageDoctorsController">
+     <children>
+   
+         <Label layoutX="83.0" layoutY="24.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Doctors" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="35.0" />
+         </font>
+      </Label>
+      <JFXTextField focusColor="#2196f3" layoutX="127.0" layoutY="145.0" maxWidth="187.0" minWidth="178.0" prefHeight="31.0" prefWidth="187.0" />
+      <JFXTextField focusColor="#2196f3" layoutX="119.0" layoutY="107.0" maxWidth="178.0" minWidth="178.0" prefHeight="31.0" prefWidth="178.0" />
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's ID">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font></Text>
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font></Text>
+      <JFXTextField focusColor="#2196f3" layoutX="583.0" layoutY="148.0" maxWidth="178.0" minWidth="162.0" prefHeight="31.0" prefWidth="178.0" />
+      <Text fill="#64b5f6" layoutX="450.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <JFXTextField focusColor="#2196f3" layoutX="92.0" layoutY="188.0" maxWidth="584.0" minWidth="531.0" prefHeight="31.0" prefWidth="584.0" />
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/med.png" />
+         </image>
+      </ImageView>
+      <JFXTextField focusColor="#2196f3" layoutX="165.0" layoutY="229.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone_Number">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#64b5f6" layoutX="450.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <SplitMenuButton layoutX="564.0" layoutY="232.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="Select">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Male" />
+          <MenuItem mnemonicParsing="false" text="Female" />
+        </items>
+         <font>
+            <Font name="Arial Italic" size="14.0" />
+         </font>
+      </SplitMenuButton>
+      <JFXTextField focusColor="#2196f3" layoutX="127.0" layoutY="268.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <JFXTextField focusColor="#2196f3" layoutX="546.0" layoutY="268.0" maxWidth="227.0" minWidth="178.0" prefHeight="31.0" prefWidth="227.0" />
+      <Text fill="#64b5f6" layoutX="450.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="738.0" layoutY="493.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="738.0" layoutY="404.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <GlyphsStack layoutX="435.0" layoutY="90.0" />
+      <JFXButton layoutX="736.0" layoutY="85.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <TableView layoutX="10.0" layoutY="336.0" prefHeight="270.0" prefWidth="720.0">
+        <columns>
+          <TableColumn prefWidth="39.0" text="ID" />
+          <TableColumn prefWidth="77.0" text="first_name" />
+            <TableColumn prefWidth="102.0" text="family_name" />
+            <TableColumn prefWidth="100.0" text="Phone_Number" />
+            <TableColumn prefWidth="75.0" text="Gender" />
+            <TableColumn prefWidth="86.0" text="Password" />
+            <TableColumn prefWidth="94.0" text="User_Name" />
+            <TableColumn prefWidth="146.0" text="Address" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" text="" />
+         </graphic>
+         <font>
+            <Font name="Bell MT" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="765.0" layoutY="29.0" onAction="#Sign_Out" text="Logout" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="30" />
+         </graphic>
+          <font>
+            <Font name="Bell MT" size="12.0" />
+         </font>
+      </JFXButton>
+      </children>
+</AnchorPane>
