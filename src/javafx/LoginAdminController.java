@@ -60,7 +60,7 @@ public void exitApplication(ActionEvent event) {
          
          if(user.isEmpty() || pass.isEmpty())  
      {
-      infoBox("Please enter your username or your password", null, "Form Error!");   
+      infoBox2("Please enter your username or your password", null, "Form Error!");   
          
      }
          else{

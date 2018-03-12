@@ -98,16 +98,15 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="8.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
+      <TableView fx:id="tableView" layoutX="8.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
         <columns>
-          <TableColumn prefWidth="40.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="first_name" />
-            <TableColumn prefWidth="84.0" text="family_name" />
-            <TableColumn prefWidth="104.0" text="Phone_Number" />
-            <TableColumn prefWidth="75.0" text="Gender" />
-            <TableColumn prefWidth="76.0" text="User_Name" />
-            <TableColumn prefWidth="90.0" text="Password" />
-            <TableColumn prefWidth="175.0" text="Address" />
+          <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="first_name" />
+            <TableColumn fx:id="familyNameColumn" prefWidth="84.0" text="family_name" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="104.0" text="Phone_Number" />
+            <TableColumn fx:id="userNameColumn" prefWidth="76.0" text="User_Name" />
+            <TableColumn fx:id="passwordColumn" prefWidth="90.0" text="Password" />
+            <TableColumn fx:id="addressColumn" prefWidth="175.0" text="Address" />
         </columns>
       </TableView>
       <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
@@ -132,7 +131,15 @@
           <MenuItem mnemonicParsing="false" text="Female" />
         </items>
       </SplitMenuButton>
-      <JFXButton layoutX="738.0" layoutY="330.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Load" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="330.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Load" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="736.0" layoutY="155.0" onAction="#cancel" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Cancel" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
