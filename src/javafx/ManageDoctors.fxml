@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -100,14 +101,15 @@
       </JFXButton>
       <TableView fx:id="tab" layoutX="10.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
         <columns>
-            <TableColumn fx:id="id_col" prefWidth="46.0" text="ID" />
-            <TableColumn fx:id="cni_col" prefWidth="69.0" text="Num_CNI" />
-          <TableColumn fx:id="firstName_col" prefWidth="85.0" text="first_name" />
-            <TableColumn fx:id="familyName_col" prefWidth="102.0" text="family_name" />
-            <TableColumn fx:id="phoneNumber_col" prefWidth="121.0" text="Phone_Number" />
-            <TableColumn fx:id="password_col" prefWidth="91.0" text="Password" />
-            <TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="82.0" text="User_Name" />
-            <TableColumn fx:id="address_col" prefWidth="123.0" text="Address" />
+            <TableColumn fx:id="id_col" prefWidth="34.0" text="ID" />
+            <TableColumn fx:id="cni_col" prefWidth="68.0" text="Num_CNI" />
+          <TableColumn fx:id="firstName_col" prefWidth="78.0" text="first_name" />
+            <TableColumn fx:id="familyName_col" prefWidth="81.0" text="family_name" />
+            <TableColumn fx:id="gender_col" prefWidth="78.0" text="Gender" />
+            <TableColumn fx:id="phoneNumber_col" prefWidth="104.0" text="Phone_Number" />
+            <TableColumn fx:id="address_col" prefWidth="114.0" text="Address" />
+            <TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="86.0" text="User_Name" />
+            <TableColumn fx:id="password_col" prefWidth="76.0" text="Password" />
         </columns>
       </TableView>
       <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
@@ -126,12 +128,15 @@
             <Font name="Bell MT" size="12.0" />
          </font>
       </JFXButton>
-      <JFXRadioButton layoutX="550.0" layoutY="235.0" text="Male">
+      <JFXRadioButton fx:id="rdb_male" layoutX="550.0" layoutY="235.0" selected="true" text="Male">
          <font>
             <Font size="14.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="myGroup" />
+         </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton layoutX="634.0" layoutY="235.0" text="Female">
+      <JFXRadioButton fx:id="rdb_female" layoutX="634.0" layoutY="235.0" text="Female" toggleGroup="$myGroup">
          <font>
             <Font size="14.0" />
          </font>

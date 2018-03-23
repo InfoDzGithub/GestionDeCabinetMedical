@@ -6,6 +6,7 @@
 package javafx;
 
 
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -54,6 +56,13 @@ public class ManageDoctorsController implements Initializable {
     private JFXTextField userName_box;
     @FXML
     private JFXTextField address_box;
+     @FXML
+    private JFXRadioButton rdb_male;
+    @FXML
+    private ToggleGroup myGroup;
+    @FXML
+    private JFXRadioButton rdb_female;
+    
     
      @FXML
     private TableColumn<Doc,Integer> id_col;
@@ -65,7 +74,8 @@ public class ManageDoctorsController implements Initializable {
     private TableColumn<Doc, String> familyName_col;
     @FXML
     private TableColumn<Doc, String> phoneNumber_col;
-   
+    @FXML
+    private TableColumn<Doc, String> gender_col;
     @FXML
     private TableColumn<Doc, String> password_col;
     @FXML
@@ -77,7 +87,8 @@ public class ManageDoctorsController implements Initializable {
     ObservableList<Doc> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Doc> tab;
-    
+   
+   
    
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,19 +107,24 @@ public class ManageDoctorsController implements Initializable {
         String address= address_box.getText();
         String phoneNumber= phoneNumber_box.getText();
         String cni= cni_box.getText();
-        //String gender=gender_box.getTypeSelector();
+        String gender="";
+         
         String user= userName_box.getText();
         String pass= password_box.getText();
+        if(rdb_male.isSelected())
+            gender=rdb_male.getText();
+        else if(rdb_female.isSelected())
+            gender=rdb_female.getText();
        
       if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
-           || phoneNumber.isEmpty()|| user.isEmpty() || pass.isEmpty())  
+          || gender.isEmpty() || phoneNumber.isEmpty()|| user.isEmpty() || pass.isEmpty())  
      {
       infoBox2("Please Fill Out The Form ", null, "Form Error!");   
          
      }
        
           
-  String sql="INSERT INTO medecin(num_cni,nom_med,prenom_med,adress_med,num_tel_med,username_med,password_med) VALUES(?,?,?,?,?,?,?)";
+  String sql="INSERT INTO medecin(num_cni,nom_med,prenom_med,sexe_med,adress_med,num_tel_med,username_med,password_med) VALUES(?,?,?,?,?,?,?,?)";
        Connection conn;
                    try {
                   conn=Connexion.ConnecrDB();
@@ -117,10 +133,11 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(1, cni);
                   preparedSt.setString(2, familyName);
                   preparedSt.setString(3, firstName);
-                  preparedSt.setString(4, address);
-                  preparedSt.setString(5, phoneNumber);
-                  preparedSt.setString(6, user);
-                  preparedSt.setString(7, pass);
+                   preparedSt.setString(4, gender);
+                  preparedSt.setString(5, address);
+                  preparedSt.setString(6, phoneNumber);
+                  preparedSt.setString(7, user);
+                  preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Doctor Added Successfully", null, "Success");
                  
@@ -131,6 +148,7 @@ public class ManageDoctorsController implements Initializable {
                    phoneNumber_box.clear();
                    userName_box.clear();
                    password_box.clear();
+                   
                     } 
                    catch (Exception e)
                         {
@@ -153,7 +171,7 @@ public class ManageDoctorsController implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM medecin");
             while (rs.next()) {
                 //get string from db,whichever way 
-                list.add(new Doc(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) ));
+                list.add(new Doc(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) ));
             }
 
         } catch (SQLException ex) {
@@ -164,7 +182,7 @@ public class ManageDoctorsController implements Initializable {
     cni_col.setCellValueFactory(new PropertyValueFactory<Doc,Integer>("CNI"));
       familyName_col.setCellValueFactory(new PropertyValueFactory<Doc,String>("nom"));
         firstName_col.setCellValueFactory(new PropertyValueFactory<Doc,String>("prenom"));
-         // gender_col.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+         gender_col.setCellValueFactory(new PropertyValueFactory<>("sexe"));
           address_col.setCellValueFactory(new PropertyValueFactory<Doc,String>("adresse"));
       phoneNumber_col.setCellValueFactory(new PropertyValueFactory<Doc,String>("ntel"));
         userName_col.setCellValueFactory(new PropertyValueFactory<Doc,String>("username"));
@@ -177,17 +195,17 @@ public class ManageDoctorsController implements Initializable {
     //Class Doctor
        public static class Doc {
     
-     private final SimpleStringProperty  ID,CNI, nom, prenom, adresse, ntel, username, password;
+     private final SimpleStringProperty  ID,CNI, nom, prenom,sexe, adresse, ntel, username, password;
      //private final SimpleStringProperty sexe;
    
     //constructeur
-    public Doc(String ID,String CNI,String nom,String prenom,String adresse,String ntel,String username,String password)
+    public Doc(String ID,String CNI,String nom,String prenom,String sexe,String adresse,String ntel,String username,String password)
     {
       this.ID = new SimpleStringProperty(ID);
       this.CNI = new SimpleStringProperty(CNI);
         this.nom = new SimpleStringProperty(nom);
         this.prenom = new SimpleStringProperty(prenom);
-       // this.sexe= new SimpleStringProperty(sexe);
+       this.sexe= new SimpleStringProperty(sexe);
          this.adresse= new SimpleStringProperty(adresse);
           this.ntel= new SimpleStringProperty(ntel);
            this.username= new SimpleStringProperty(username);
@@ -211,9 +229,9 @@ public class ManageDoctorsController implements Initializable {
             return prenom.get();
         }
 
-//        public  String  getSexe() {
-//            return sexe.get();
-//        }
+       public  String  getSexe() {
+            return sexe.get();
+       }
 
         public  String  getAdresse() {
             return adresse.get();

@@ -6,6 +6,7 @@
 package javafx;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.stage.Stage;
@@ -56,8 +58,13 @@ public class ManageRecepController implements Initializable {
     private JFXTextField username_box;
     @FXML
     private JFXTextField password_box;
+  
     @FXML
-    private SplitMenuButton gender_box;
+    private JFXRadioButton rdb_male;
+    @FXML
+    private ToggleGroup Group1;
+    @FXML
+    private JFXRadioButton rdb_female;
    
     private Connexion connexion;
     @FXML
@@ -70,6 +77,8 @@ public class ManageRecepController implements Initializable {
     private TableColumn<Receptioniste,String> firstNameColumn;
     @FXML
     private TableColumn<Receptioniste, String> familyNameColumn;
+      @FXML
+    private TableColumn<Receptioniste, String> gender_col;
     @FXML
     private TableColumn<Receptioniste, String> phoneNumberColumn;
     @FXML
@@ -81,11 +90,7 @@ public class ManageRecepController implements Initializable {
     
     ObservableList<Receptioniste>data = FXCollections.observableArrayList();
  
-//     public ManageRecepController(){
-//       
-//       conn=Connexion.ConnecrDB();
-//       }   
-   
+
     
       
     @Override
@@ -117,20 +122,23 @@ public class ManageRecepController implements Initializable {
         String address= address_box.getText();
         String phoneNumber= phoneNumber_box.getText();
         String cni= cni_box.getText();
-        
+         String gender="";
         String user= username_box.getText();
         String pass= password_box.getText();
          
-         
+        if(rdb_male.isSelected())
+            gender=rdb_male.getText();
+        else if(rdb_female.isSelected())
+            gender=rdb_female.getText();  
        if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
-           || phoneNumber.isEmpty()|| user.isEmpty() || pass.isEmpty())  
+          || gender.isEmpty() || phoneNumber.isEmpty()|| user.isEmpty() || pass.isEmpty())  
      {
       infoBox2("Please Fill out The Form", null, "Form Error!");   
          
      }
        
           
-  String sql="INSERT INTO receptioniste(num_cni,nom_recep,prenom_recep,adresse_recep,num_tel_recep,username_recep,password_recep) VALUES(?,?,?,?,?,?,?)";
+  String sql="INSERT INTO receptioniste(num_cni,nom_recep,prenom_recep,sexe_recep,adresse_recep,num_tel_recep,username_recep,password_recep) VALUES(?,?,?,?,?,?,?,?)";
        Connection conn;
                    try {
                   conn=Connexion.ConnecrDB();
@@ -138,10 +146,11 @@ public class ManageRecepController implements Initializable {
                   preparedSt.setString(1, cni);
                   preparedSt.setString(2, familyName);
                   preparedSt.setString(3, firstName);
-                  preparedSt.setString(4, address);
-                  preparedSt.setString(5, phoneNumber);
-                  preparedSt.setString(6, user);
-                  preparedSt.setString(7, pass);
+                  preparedSt.setString(4, gender);
+                  preparedSt.setString(5, address);
+                  preparedSt.setString(6, phoneNumber);
+                  preparedSt.setString(7, user);
+                  preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Receptionist Add Successfully", null, "Succes");
                   cni_box.clear();
@@ -171,7 +180,7 @@ public class ManageRecepController implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM receptioniste");
             while (rs.next()) {
                 //get string from db,whichever way 
-                data.add(new Receptioniste(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8) ));
+                data.add(new Receptioniste(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) ));
             }
 
         } catch (SQLException ex) {
@@ -182,6 +191,7 @@ public class ManageRecepController implements Initializable {
        cni_Column.setCellValueFactory(new PropertyValueFactory<Receptioniste, Integer>("CNI"));
      firstNameColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("first_name"));
      familyNameColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("family_name"));
+     gender_col.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("sexe"));
      phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("Phone_Number"));
      userNameColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("User_Name"));
      passwordColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("Password"));
@@ -194,13 +204,14 @@ public class ManageRecepController implements Initializable {
 
 
 public class Receptioniste {
-    private SimpleStringProperty ID,CNI ,first_name,family_name,Phone_Number,User_Name,Password,Address;
-   // private SimpleIntegerProperty ID;
-    public Receptioniste(String ID,String CNI, String first_name, String family_name, String Phone_Number, String User_Name, String Password, String Address) {
+    private SimpleStringProperty ID,CNI ,first_name,family_name,sexe,Phone_Number,User_Name,Password,Address;
+  
+    public Receptioniste(String ID,String CNI, String first_name, String family_name,String sexe, String Phone_Number, String User_Name, String Password, String Address) {
         this.ID = new SimpleStringProperty(ID);
          this.CNI = new SimpleStringProperty(CNI);
         this.first_name = new SimpleStringProperty(first_name);
         this.family_name = new SimpleStringProperty(family_name);
+         this.sexe= new SimpleStringProperty(sexe);
         this.Phone_Number = new SimpleStringProperty(Phone_Number);
         this.User_Name = new SimpleStringProperty(User_Name);
         this.Password = new SimpleStringProperty(Password);
@@ -233,6 +244,9 @@ public class Receptioniste {
         this.family_name = family_name;
     }
 
+     public  String  getSexe() {
+            return sexe.get();
+       }
     public String getPhone_Number() {
         return Phone_Number.get();
     }
