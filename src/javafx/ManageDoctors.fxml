@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.GlyphsStack?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Reflection?>
@@ -24,9 +23,9 @@
             <Font name="System Italic" size="35.0" />
          </font>
       </Label>
-      <JFXTextField focusColor="#2196f3" layoutX="127.0" layoutY="145.0" maxWidth="187.0" minWidth="178.0" prefHeight="31.0" prefWidth="187.0" />
-      <JFXTextField focusColor="#2196f3" layoutX="119.0" layoutY="107.0" maxWidth="178.0" minWidth="178.0" prefHeight="31.0" prefWidth="178.0" />
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's ID">
+      <JFXTextField fx:id="firstName_box" focusColor="#2196f3" layoutX="127.0" layoutY="145.0" maxWidth="187.0" minWidth="178.0" prefHeight="31.0" prefWidth="187.0" />
+      <JFXTextField fx:id="cni_box" focusColor="#2196f3" layoutX="119.0" layoutY="107.0" maxWidth="178.0" minWidth="178.0" prefHeight="31.0" prefWidth="178.0" />
+      <Text fill="#64b5f6" layoutX="10.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's CNI">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font></Text>
@@ -34,13 +33,13 @@
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font></Text>
-      <JFXTextField focusColor="#2196f3" layoutX="583.0" layoutY="148.0" maxWidth="178.0" minWidth="162.0" prefHeight="31.0" prefWidth="178.0" />
+      <JFXTextField fx:id="familyName_box" focusColor="#2196f3" layoutX="583.0" layoutY="148.0" maxWidth="178.0" minWidth="162.0" prefHeight="31.0" prefWidth="178.0" />
       <Text fill="#64b5f6" layoutX="450.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Text>
-      <JFXTextField focusColor="#2196f3" layoutX="92.0" layoutY="188.0" maxWidth="584.0" minWidth="531.0" prefHeight="31.0" prefWidth="584.0" />
+      <JFXTextField fx:id="address_box" focusColor="#2196f3" layoutX="92.0" layoutY="188.0" maxWidth="584.0" minWidth="531.0" prefHeight="31.0" prefWidth="584.0" />
       <Text fill="#64b5f6" layoutX="10.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
             <Font name="Arial Italic" size="18.0" />
@@ -51,7 +50,7 @@
             <Image url="@images/med.png" />
          </image>
       </ImageView>
-      <JFXTextField focusColor="#2196f3" layoutX="165.0" layoutY="229.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
+      <JFXTextField fx:id="phoneNumber_box" focusColor="#2196f3" layoutX="165.0" layoutY="229.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
       <Text fill="#64b5f6" layoutX="10.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone_Number">
          <font>
             <Font name="Arial Italic" size="18.0" />
@@ -62,22 +61,13 @@
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Text>
-      <SplitMenuButton layoutX="564.0" layoutY="232.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="Select">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Male" />
-          <MenuItem mnemonicParsing="false" text="Female" />
-        </items>
-         <font>
-            <Font name="Arial Italic" size="14.0" />
-         </font>
-      </SplitMenuButton>
-      <JFXTextField focusColor="#2196f3" layoutX="127.0" layoutY="268.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
+      <JFXTextField fx:id="userName_box" focusColor="#2196f3" layoutX="127.0" layoutY="268.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
       <Text fill="#64b5f6" layoutX="10.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Text>
-      <JFXTextField focusColor="#2196f3" layoutX="546.0" layoutY="268.0" maxWidth="227.0" minWidth="178.0" prefHeight="31.0" prefWidth="227.0" />
+      <JFXTextField fx:id="password_box" focusColor="#2196f3" layoutX="546.0" layoutY="268.0" maxWidth="227.0" minWidth="178.0" prefHeight="31.0" prefWidth="227.0" />
       <Text fill="#64b5f6" layoutX="450.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="Arial Italic" size="18.0" />
@@ -91,7 +81,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="738.0" layoutY="404.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="404.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -100,7 +90,7 @@
          </font>
       </JFXButton>
       <GlyphsStack layoutX="435.0" layoutY="90.0" />
-      <JFXButton layoutX="736.0" layoutY="85.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
+      <JFXButton layoutX="736.0" layoutY="85.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -108,16 +98,16 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="10.0" layoutY="336.0" prefHeight="270.0" prefWidth="720.0">
+      <TableView fx:id="tab" layoutX="10.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
         <columns>
-          <TableColumn prefWidth="39.0" text="ID" />
-          <TableColumn prefWidth="77.0" text="first_name" />
-            <TableColumn prefWidth="102.0" text="family_name" />
-            <TableColumn prefWidth="100.0" text="Phone_Number" />
-            <TableColumn prefWidth="75.0" text="Gender" />
-            <TableColumn prefWidth="86.0" text="Password" />
-            <TableColumn prefWidth="94.0" text="User_Name" />
-            <TableColumn prefWidth="146.0" text="Address" />
+            <TableColumn fx:id="id_col" prefWidth="46.0" text="ID" />
+            <TableColumn fx:id="cni_col" prefWidth="69.0" text="Num_CNI" />
+          <TableColumn fx:id="firstName_col" prefWidth="85.0" text="first_name" />
+            <TableColumn fx:id="familyName_col" prefWidth="102.0" text="family_name" />
+            <TableColumn fx:id="phoneNumber_col" prefWidth="121.0" text="Phone_Number" />
+            <TableColumn fx:id="password_col" prefWidth="91.0" text="Password" />
+            <TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="82.0" text="User_Name" />
+            <TableColumn fx:id="address_col" prefWidth="123.0" text="Address" />
         </columns>
       </TableView>
       <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
@@ -136,5 +126,15 @@
             <Font name="Bell MT" size="12.0" />
          </font>
       </JFXButton>
+      <JFXRadioButton layoutX="550.0" layoutY="235.0" text="Male">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton layoutX="634.0" layoutY="235.0" text="Female">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXRadioButton>
       </children>
 </AnchorPane>
