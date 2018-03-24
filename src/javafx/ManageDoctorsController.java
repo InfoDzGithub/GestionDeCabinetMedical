@@ -94,7 +94,7 @@ public class ManageDoctorsController implements Initializable {
     @FXML
     private TableView<Doc> tab;
    
-   
+  /***************************************************************************************************************/ 
    
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,7 +103,7 @@ public class ManageDoctorsController implements Initializable {
          loadData();
 
     } 
-    
+ /****************************************************************************************************************/   
     //ADD data
     @FXML
     public void insertData(ActionEvent event) throws IOException {
@@ -166,7 +166,7 @@ public class ManageDoctorsController implements Initializable {
     
     
     
-    
+  /******************************************************************************************************************/  
     //Loat Data
     public void loadData(){
        list.clear();
@@ -196,7 +196,8 @@ public class ManageDoctorsController implements Initializable {
      tab.setItems(list);
   
 }
- 
+   /**************************************************************************************************************/
+ //Cette fonction permet de transformer une ligne from TableView to fields correspandant
     @FXML
     private void TableMouseClick(MouseEvent event) {
        
@@ -216,7 +217,10 @@ public class ManageDoctorsController implements Initializable {
                    phoneNumber_box.setText(result.getString("num_tel_med"));
                    userName_box.setText(result.getString("username_med"));
                    password_box.setText(result.getString("password_med"));
-                   
+                  /* if(result.getString("sexe_med").equals(rdb_male.selectedProperty()))
+                   rdb_male.setText(result.getString("sexe_med"));
+                   else  if(result.getString("sexe_med").equals(rdb_female.selectedProperty()))
+                   rdb_female.setText(result.getString("sexe_med"));*/
                  
                }
                    
@@ -227,12 +231,12 @@ public class ManageDoctorsController implements Initializable {
   //
     
     }
-
+/******************************************************************************************************************/
     @FXML
     private void UpdateData(ActionEvent event) throws SQLException {
         int myIndex =tab.getSelectionModel().getSelectedIndex();
          String id=tab.getItems().get(myIndex).getID();
-         String req="Update medecin set num_cni = ? , prenom_med = ? , nom_med = ? , adress_med = ? ,num_tel_med = ? , username_med = ? , password_med = ? where id_med ='" +id+"'";
+         String req="Update medecin set num_cni = ? , prenom_med = ? , nom_med = ? , adress_med = ? ,num_tel_med = ? , username_med = ? , password_med = ? ,sexe_med = ?  where id_med ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
          try{
           PreparedStatement preparedSt=conn.prepareStatement(req);
@@ -244,6 +248,13 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(5, phoneNumber_box.getText().toString());
                   preparedSt.setString(6, userName_box.getText().toString());
                   preparedSt.setString(7,  password_box.getText().toString());
+                  
+                  
+                  if(rdb_male.isSelected())
+                   preparedSt.setString(8, rdb_male.getText().toString());
+                  else if(rdb_female.isSelected())
+                 
+                  preparedSt.setString(8, rdb_female.getText().toString());
                 
                   preparedSt.execute();
                   
@@ -255,6 +266,7 @@ public class ManageDoctorsController implements Initializable {
                    phoneNumber_box.clear();
                    userName_box.clear();
                    password_box.clear();
+                   rdb_male.setSelected(true);
                    
          }
          catch(Exception e)
@@ -264,7 +276,7 @@ public class ManageDoctorsController implements Initializable {
     
     }
     
-
+/****************************************************************************************************************/
    
    
    
@@ -329,20 +341,8 @@ public class ManageDoctorsController implements Initializable {
         }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**********************************************************************************************************/
+      
     @FXML
     public void Home(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("AdminPortal.fxml"));
