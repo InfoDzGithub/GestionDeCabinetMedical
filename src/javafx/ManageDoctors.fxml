@@ -82,7 +82,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="738.0" layoutY="404.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="404.0" onAction="#UpdateData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -99,7 +99,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tab" layoutX="10.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
+      <TableView fx:id="tab" layoutX="10.0" layoutY="330.0" onMouseClicked="#TableMouseClick" prefHeight="270.0" prefWidth="720.0">
         <columns>
             <TableColumn fx:id="id_col" prefWidth="34.0" text="ID" />
             <TableColumn fx:id="cni_col" prefWidth="68.0" text="Num_CNI" />
@@ -141,5 +141,13 @@
             <Font size="14.0" />
          </font>
       </JFXRadioButton>
+      <JFXButton layoutX="738.0" layoutY="309.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Load" textFill="WHITE">
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
       </children>
 </AnchorPane>

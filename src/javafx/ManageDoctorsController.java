@@ -8,18 +8,20 @@ package javafx;
 
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.util.Collections.list;
+
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +34,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 
 /**
  * FXML Controller class
@@ -162,7 +168,6 @@ public class ManageDoctorsController implements Initializable {
     
     
     //Loat Data
-    @FXML
     public void loadData(){
        list.clear();
          try {
@@ -191,7 +196,78 @@ public class ManageDoctorsController implements Initializable {
      tab.setItems(list);
   
 }
+ 
+    @FXML
+    private void TableMouseClick(MouseEvent event) {
+       
+   int myIndex =tab.getSelectionModel().getSelectedIndex();
+   String id=tab.getItems().get(myIndex).getID();
+   String sqls="Select * from medecin where id_med ='" +id+"'";
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery();
+               
+               if(result.next())
+               { cni_box.setText(result.getString("num_cni"));
+                   firstName_box.setText(result.getString("prenom_med"));
+                   familyName_box.setText(result.getString("nom_med"));
+                   address_box.setText(result.getString("adress_med"));
+                   phoneNumber_box.setText(result.getString("num_tel_med"));
+                   userName_box.setText(result.getString("username_med"));
+                   password_box.setText(result.getString("password_med"));
+                   
+                 
+               }
+                   
+   }
+   catch(Exception e){
+       
+   }
+  //
     
+    }
+
+    @FXML
+    private void UpdateData(ActionEvent event) throws SQLException {
+        int myIndex =tab.getSelectionModel().getSelectedIndex();
+         String id=tab.getItems().get(myIndex).getID();
+         String req="Update medecin set num_cni = ? , prenom_med = ? , nom_med = ? , adress_med = ? ,num_tel_med = ? , username_med = ? , password_med = ? where id_med ='" +id+"'";
+          Connection conn=Connexion.ConnecrDB();
+         try{
+          PreparedStatement preparedSt=conn.prepareStatement(req);
+          
+                  preparedSt.setString(1, cni_box.getText().toString());
+                  preparedSt.setString(2,firstName_box.getText().toString() );
+                  preparedSt.setString(3, familyName_box.getText().toString());
+                  preparedSt.setString(4,address_box.getText().toString());
+                  preparedSt.setString(5, phoneNumber_box.getText().toString());
+                  preparedSt.setString(6, userName_box.getText().toString());
+                  preparedSt.setString(7,  password_box.getText().toString());
+                
+                  preparedSt.execute();
+                  
+                 JOptionPane.showMessageDialog(null, "Doctor Modify Successfully");
+                  cni_box.clear();
+                   firstName_box.clear();
+                   familyName_box.clear();
+                   address_box.clear();
+                   phoneNumber_box.clear();
+                   userName_box.clear();
+                   password_box.clear();
+                   
+         }
+         catch(Exception e)
+         {
+             
+         }
+    
+    }
+    
+
+   
+   
+   
     //Class Doctor
        public static class Doc {
     
