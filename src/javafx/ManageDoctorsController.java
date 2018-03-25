@@ -146,6 +146,7 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Doctor Added Successfully", null, "Success");
+                   loadData();
                  
                    cni_box.clear();
                    firstName_box.clear();
@@ -168,6 +169,7 @@ public class ManageDoctorsController implements Initializable {
     
   /******************************************************************************************************************/  
     //Loat Data
+    @FXML
     public void loadData(){
        list.clear();
          try {
@@ -257,8 +259,9 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(8, rdb_female.getText().toString());
                 
                   preparedSt.execute();
-                  
-                 JOptionPane.showMessageDialog(null, "Doctor Modify Successfully");
+                   infoBox("Doctor Modify Successfully", null, "Success");
+                 
+                  loadData();
                   cni_box.clear();
                    firstName_box.clear();
                    familyName_box.clear();
@@ -274,6 +277,50 @@ public class ManageDoctorsController implements Initializable {
              
          }
     
+    }
+    /**************************************************************************************************/
+     @FXML
+    public void CancelData(ActionEvent event) throws IOException
+    {
+       infoBox("Doctor Canceled Successfully", null, "Success");
+                  cni_box.clear();
+                  userName_box.clear();
+                   password_box.clear();
+                   firstName_box.clear();
+                   familyName_box.clear();
+                   address_box.clear();
+                   phoneNumber_box.clear();
+    }
+/****************************************************************************************************************/
+    @FXML
+    private void DeleteData(ActionEvent event) {
+        
+        int myIndex =tab.getSelectionModel().getSelectedIndex();
+        String id=tab.getItems().get(myIndex).getID();
+        String requette="Delete from medecin where id_med ='" +id+"'";
+         try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(requette);
+               preparedSt.execute();
+               infoBox("Doctor Deletted Successfully", null, "Success");
+               
+               loadData();
+                cni_box.clear();
+                   firstName_box.clear();
+                   familyName_box.clear();
+                   address_box.clear();
+                   phoneNumber_box.clear();
+                   userName_box.clear();
+                   password_box.clear();
+                   rdb_male.setSelected(true);
+               
+         }
+         catch(Exception e)
+         {
+             
+         }
+        
+        
     }
     
 /****************************************************************************************************************/

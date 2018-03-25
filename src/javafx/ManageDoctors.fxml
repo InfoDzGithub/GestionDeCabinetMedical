@@ -74,7 +74,7 @@
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Text>
-      <JFXButton layoutX="738.0" layoutY="493.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="493.0" onAction="#DeleteData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -141,7 +141,7 @@
             <Font size="14.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton layoutX="738.0" layoutY="309.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Load" textFill="WHITE">
+      <JFXButton layoutX="736.0" layoutY="330.0" onAction="#CancelData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Cancel" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
