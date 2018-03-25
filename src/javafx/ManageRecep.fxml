@@ -73,7 +73,7 @@
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Text>
-      <JFXButton layoutX="738.0" layoutY="493.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="493.0" onAction="#DeleteDataR" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -81,7 +81,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="738.0" layoutY="404.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="404.0" onAction="#UpdateRData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -98,7 +98,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tableView" layoutX="8.0" layoutY="330.0" prefHeight="270.0" prefWidth="720.0">
+      <TableView fx:id="tab" layoutX="8.0" layoutY="330.0" onMouseClicked="#TableMouseClick" prefHeight="270.0" prefWidth="720.0">
         <columns>
             <TableColumn fx:id="id_Column" prefWidth="42.0" text="ID" />
           <TableColumn fx:id="cni_Column" prefWidth="74.0" text="Num_CNI" />
@@ -127,15 +127,7 @@
             <Font name="Bell MT" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="738.0" layoutY="330.0" onAction="#loadData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Load" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="736.0" layoutY="155.0" onAction="#cancel" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Cancel" textFill="WHITE">
+      <JFXButton layoutX="738.0" layoutY="330.0" onAction="#cancel" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Cancel" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>

@@ -35,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Stage;
 
@@ -67,8 +68,7 @@ public class ManageRecepController implements Initializable {
     private JFXRadioButton rdb_female;
    
     private Connexion connexion;
-    @FXML
-    private TableView<Receptioniste> tableView;
+  
     @FXML
     private TableColumn<Receptioniste,Integer> id_Column;
      @FXML
@@ -89,9 +89,11 @@ public class ManageRecepController implements Initializable {
     private TableColumn<Receptioniste, String> addressColumn;
     
     ObservableList<Receptioniste>data = FXCollections.observableArrayList();
+    @FXML
+    private TableView<Receptioniste> tab;
  
 
-    
+ /**************************************************************************************************************/   
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,10 +101,9 @@ public class ManageRecepController implements Initializable {
      connexion=new Connexion();
        
         loadData();
-   
-      
-    
     } 
+ /***************************************************************************************************************/     
+  
     @FXML
     public void cancel(ActionEvent event) throws IOException
     {
@@ -115,6 +116,7 @@ public class ManageRecepController implements Initializable {
                    address_box.clear();
                    phoneNumber_box.clear();
     }
+    /**********************************************************************************************************/
     @FXML
     public void insertData(ActionEvent event) throws IOException {
         String firstName= firstName_box.getText();
@@ -153,6 +155,7 @@ public class ManageRecepController implements Initializable {
                   preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Receptionist Add Successfully", null, "Succes");
+                  loadData();
                   cni_box.clear();
                   username_box.clear();
                    password_box.clear();
@@ -168,8 +171,8 @@ public class ManageRecepController implements Initializable {
                         }   
         
          }  
+   /**********************************************************************************************************/
     //ActionEvent event
-  @FXML
  public void loadData() //throws IOException, SQLException
 {
      data.clear();
@@ -197,16 +200,129 @@ public class ManageRecepController implements Initializable {
      passwordColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("Password"));
      addressColumn.setCellValueFactory(new PropertyValueFactory<Receptioniste, String>("Address"));
      
-     tableView.setItems(data);
+     tab.setItems(data);
   
 }
+/***********************************************************************************************************/   
+
    
-
-
+ 
+ 
+ /**********************************************************************************************************/
+  @FXML
+    private void DeleteDataR(ActionEvent event) {
+        
+        int myIndex =tab.getSelectionModel().getSelectedIndex();
+        String id=tab.getItems().get(myIndex).getID();
+        String requette="Delete from receptioniste where id_recep ='" +id+"'";
+         try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(requette);
+               preparedSt.execute();
+               infoBox("Receptioniste Deletted Successfully", null, "Success");
+               
+               loadData();
+                cni_box.clear();
+                   firstName_box.clear();
+                   familyName_box.clear();
+                   address_box.clear();
+                   phoneNumber_box.clear();
+                   username_box.clear();
+                   password_box.clear();
+                   rdb_male.setSelected(true);
+               
+         }
+         catch(Exception e)
+         {
+             
+         }
+        
+        
+    }
+ 
+ 
+ /***********************************************************************************************************/
+ //Cette fonction permet de transformer une ligne from TableView to fields correspandant
+    @FXML
+    private void TableMouseClick(MouseEvent event) {
+       
+   int myIndex =tab.getSelectionModel().getSelectedIndex();
+   String id=tab.getItems().get(myIndex).getID();
+   String sqls="Select * from receptioniste where id_recep ='" +id+"'";
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery();
+               
+               if(result.next())
+               { cni_box.setText(result.getString("num_cni"));
+                   firstName_box.setText(result.getString("prenom_recep"));
+                   familyName_box.setText(result.getString("nom_recep"));
+                   address_box.setText(result.getString("adresse_recep"));
+                   phoneNumber_box.setText(result.getString("num_tel_recep"));
+                   username_box.setText(result.getString("username_recep"));
+                   password_box.setText(result.getString("password_recep"));
+                  /* if(result.getString("sexe_med").equals(rdb_male.selectedProperty()))
+                   rdb_male.setText(result.getString("sexe_med"));
+                   else  if(result.getString("sexe_med").equals(rdb_female.selectedProperty()))
+                   rdb_female.setText(result.getString("sexe_med"));*/
+                 
+               }
+                   
+   }
+   catch(Exception e){
+       
+   }
+    }
+/**************************************************************************************************************/
+    @FXML
+    private void UpdateRData(ActionEvent event) {
+          int myIndex =tab.getSelectionModel().getSelectedIndex();
+         String id=tab.getItems().get(myIndex).getID();
+         String req="Update receptioniste set num_cni = ? , prenom_recep = ? , nom_recep = ? , adresse_recep = ? ,num_tel_recep = ? , username_recep = ? , password_recep = ? ,sexe_recep = ?  where id_recep ='" +id+"'";
+          Connection conn=Connexion.ConnecrDB();
+         try{
+          PreparedStatement preparedSt=conn.prepareStatement(req);
+          
+                  preparedSt.setString(1, cni_box.getText().toString());
+                  preparedSt.setString(2,firstName_box.getText().toString() );
+                  preparedSt.setString(3, familyName_box.getText().toString());
+                  preparedSt.setString(4,address_box.getText().toString());
+                  preparedSt.setString(5, phoneNumber_box.getText().toString());
+                  preparedSt.setString(6, username_box.getText().toString());
+                  preparedSt.setString(7,  password_box.getText().toString());
+                  
+                  
+                  if(rdb_male.isSelected())
+                   preparedSt.setString(8, rdb_male.getText().toString());
+                  else if(rdb_female.isSelected())
+                 
+                  preparedSt.setString(8, rdb_female.getText().toString());
+                
+                  preparedSt.execute();
+                   infoBox("Receptioniste Modify Successfully", null, "Success");
+                 
+                  loadData();
+                  cni_box.clear();
+                   firstName_box.clear();
+                   familyName_box.clear();
+                   address_box.clear();
+                   phoneNumber_box.clear();
+                   username_box.clear();
+                   password_box.clear();
+                   rdb_male.setSelected(true);
+                   
+         }
+         catch(Exception e)
+         {
+             
+         }
+    }
+/******************************************************************************************************************/
 public class Receptioniste {
     private SimpleStringProperty ID,CNI ,first_name,family_name,sexe,Phone_Number,User_Name,Password,Address;
   
-    public Receptioniste(String ID,String CNI, String first_name, String family_name,String sexe, String Phone_Number, String User_Name, String Password, String Address) {
+    public Receptioniste(String ID,String CNI, String family_name, String first_name,String sexe, String Address, String Phone_Number, String User_Name, String Password) {
         this.ID = new SimpleStringProperty(ID);
          this.CNI = new SimpleStringProperty(CNI);
         this.first_name = new SimpleStringProperty(first_name);
@@ -280,60 +396,8 @@ public class Receptioniste {
     }
 
    
-    //Property values
-    public StringProperty IDProperty() {
-        return ID;
-    }
-    public StringProperty nomProperty() {
-        return family_name;
-    }
-
-    public StringProperty prenomProperty() {
-        return first_name;
-    }
-
-   
-    public StringProperty adresseProperty() {
-        return Address;
-    }
-
-    public StringProperty ntelProperty() {
-        return Phone_Number;
-    }
-
-    public StringProperty usernameProperty() {
-        return User_Name;
-    }
-     public StringProperty passwordProperty() {
-        return Password;
-    }
-    
-   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+/******************************************************************************************************************/
  @FXML
     public void Home(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("AdminPortal.fxml"));
@@ -341,6 +405,7 @@ public class Receptioniste {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+    /****************************************************************************************************************/
 @FXML
     public void Sign_Out(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginAdmin.fxml"));
@@ -349,7 +414,7 @@ public class Receptioniste {
             window.setScene(ab);
             window.show(); } 
     
-  
+/*******************************************************************************************************************/  
     public static void infoBox(String infoMsg,String headerText,String title)         
        {
            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
@@ -359,7 +424,7 @@ public class Receptioniste {
            alert.showAndWait();
            
        }    
-    
+  /******************************************************************************************************************/  
      public static void infoBox2(String infoMsg,String headerText,String title)         
        {
            Alert alert=new Alert(Alert.AlertType.ERROR);

@@ -230,8 +230,7 @@ public class ManageDoctorsController implements Initializable {
    catch(Exception e){
        
    }
-  //
-    
+  
     }
 /******************************************************************************************************************/
     @FXML
