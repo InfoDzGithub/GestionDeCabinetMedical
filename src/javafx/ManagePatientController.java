@@ -236,6 +236,7 @@ public class ManagePatientController implements Initializable {
        
    }
     }
+   
   /**********************************************************************************************************/ 
      @FXML
     private void UpdateData(ActionEvent event)  {
@@ -288,8 +289,14 @@ public class ManagePatientController implements Initializable {
      @FXML
     private void DeleteData(ActionEvent event) {
         
-        int myIndex =tab.getSelectionModel().getSelectedIndex();
+        
+       int myIndex=tab.getSelectionModel().getSelectedIndex();
         String id=tab.getItems().get(myIndex).getID();
+        
+//       if(myIndex == -1)
+//        {
+//          infoBox2("You shoud select ligne", null, "Failed");  
+//        }
         String requette="Delete from patient where id_pat ='" +id+"'";
          try{
                Connection conn=Connexion.ConnecrDB();

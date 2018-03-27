@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -56,12 +56,6 @@
          </effect>
       </JFXButton>
       <JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="538.0" layoutY="195.0" prefHeight="31.0" prefWidth="155.0" showTime="true" />
-      <Label layoutX="10.0" layoutY="115.0" prefHeight="19.0" prefWidth="96.0" text="Patient's ID" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField focusColor="#64b5f6" layoutX="116.0" layoutY="110.0" maxWidth="193.0" minWidth="144.0" prefHeight="31.0" prefWidth="193.0" />
        <JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
@@ -93,31 +87,22 @@
       </JFXButton>
       <AnchorPane layoutY="150.0" prefHeight="39.0" prefWidth="700.0" style="-fx-background-color: #EEEEEE;">
          <children>
-            <Label layoutX="10.0" layoutY="7.5" prefHeight="21.0" prefWidth="126.0" text="Patient's name" textFill="#64b5f6">
+            <Label layoutX="13.0" layoutY="9.0" prefHeight="21.0" prefWidth="140.0" text="Search patient" textFill="#64b5f6">
                <font>
                   <Font name="Arial Italic" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="390.0" layoutY="7.5" prefHeight="21.0" prefWidth="96.0" text="First name" textFill="#64b5f6">
-               <font>
-                  <Font name="Arial Italic" size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField focusColor="#64b5f6" layoutX="140.0" layoutY="4.0" prefHeight="31.0" prefWidth="209.0" />
-            <JFXTextField focusColor="#64b5f6" layoutX="490.0" layoutY="4.0" maxWidth="209.0" minWidth="209.0" prefHeight="31.0" prefWidth="209.0" />
+            <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutX="401.0" layoutY="26.0" size="18" />
+            <JFXComboBox fx:id="combobox" layoutX="143.0" layoutY="7.0" onMouseClicked="#ComboboxSelect" prefHeight="25.0" prefWidth="243.0" promptText="       Select the patient" />
          </children>
       </AnchorPane>
-       <JFXButton layoutX="272.0" layoutY="110.0">
-         <graphic>
-            <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutY="90.0" size="18" />
-         </graphic>
-      </JFXButton>
+       <JFXButton layoutX="332.0" layoutY="102.0" textFill="WHITE" />
       <TableView layoutX="29.0" layoutY="360.0" prefHeight="200.0" prefWidth="654.0">
         <columns>
-          <TableColumn prefWidth="88.0" text="AppId" />
-          <TableColumn prefWidth="113.0" text="PatientID" />
-            <TableColumn prefWidth="102.0" text="AppDate" />
-            <TableColumn prefWidth="119.0" text="AppTime" />
+          <TableColumn prefWidth="88.0" text="ID" />
+          <TableColumn prefWidth="113.0" text="Num_CNI_Patient" />
+            <TableColumn prefWidth="102.0" text="Date" />
+            <TableColumn prefWidth="119.0" text="Time" />
             <TableColumn prefWidth="244.0" text="Comment" />
         </columns>
       </TableView>
