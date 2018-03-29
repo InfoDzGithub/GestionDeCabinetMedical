@@ -78,7 +78,7 @@ public class ManageAppointmentController implements Initializable {
     private TableColumn<Rdv, Time> time_col;
     @FXML
     private TableColumn<Rdv, String> comment_col;
-    
+   
  /*************************************************************************************************************/ 
     @FXML
     public void insertData(ActionEvent event) { 
@@ -123,12 +123,11 @@ public class ManageAppointmentController implements Initializable {
                     } 
                    catch (Exception e)
                         {
-                            
+                        //infoBox2("You should select a row", null, "Failed");     
                         }     
+   }
+ /*************************************************************************************************************/
   
-        
-         }
-    
     
  /**************************************************************************************************************/
     
@@ -160,12 +159,91 @@ public class ManageAppointmentController implements Initializable {
 }
   
  /**************************************************************************************************************/
+  @FXML
+    private void TableMouseClick(MouseEvent event) {
+        
+        int myIndex =tab.getSelectionModel().getSelectedIndex();
+   String id=tab.getItems().get(myIndex).getID();
+   String sqls="Select * from rdv where id_rdv ='" +id+"'";
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery();
+               
+               if(result.next())
+               { 
+                   comment_box.setText(result.getString("commentaire"));
+               
+               }
+                   
+   }
+   catch(Exception e){
+      
+       
+   }
+    }
+    /*************************************************************************************************************/
+    @FXML
+    private void UpdateDataR(ActionEvent event) {
+          int myIndex =tab.getSelectionModel().getSelectedIndex();
+         String id=tab.getItems().get(myIndex).getID();
+      
+String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentaire = ?  where id_rdv ='" +id+"' ";
+         //
+          Connection conn=Connexion.ConnecrDB();
+         try{
+          PreparedStatement preparedSt=conn.prepareStatement(req);
+          
+                  preparedSt.setString(1, dateSelector.getValue().toString());
+                  preparedSt.setString(2,SelectTimer.getTime().toString() );
+                  preparedSt.setString(3, combobox.selectionModelProperty().getValue().getSelectedItem());
+                  preparedSt.setString(4, comment_box.getText().toString());
+                 
+                  preparedSt.execute();
+                   infoBox("RDV Modify Successfully", null, "Success");
+                 
+                  loadData();
+                  comment_box.clear();
+             //     SelectTimer.setTime(LocalTime.now() );
+              //    dateSelector.setValue(LocalDate.now());
+                   
+                   
+         }
+         catch(Exception e)
+         {
+             
+         }
     
-    
-    
-    
-    
-    
+    }
+
+  /***************************************************************************************************************/
+     @FXML
+    private void DeleteData(ActionEvent event) {
+        
+        
+       int myIndex=tab.getSelectionModel().getSelectedIndex();
+        String id=tab.getItems().get(myIndex).getID();
+        
+
+        String requette="Delete from rdv where id_rdv ='" +id+"'";
+         try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(requette);
+               preparedSt.execute();
+               infoBox("RDV Deletted Successfully", null, "Success");
+               
+               loadData();
+                comment_box.clear();
+                  
+               
+         }
+         catch(Exception e)
+         {
+             
+         }
+        
+        
+    }
  /*****************************************************************************************************************/
      @FXML
     public void Home(ActionEvent event) throws IOException {
@@ -188,7 +266,7 @@ public class ManageAppointmentController implements Initializable {
          try {
              Connection con=Connexion.ConnecrDB();
            
-            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(nom_pat,' '),concat(prenom_pat,' '),nic_pat) FROM patient");
+            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(nom_pat,' '),concat(prenom_pat,' '),nic_pat) FROM patient order by nom_pat asc");
             while (rs.next()) {
                 //get string from db,whichever way 
                 list2.add(new String(rs.getString(1)));
@@ -208,7 +286,8 @@ public class ManageAppointmentController implements Initializable {
      //SelectTimer.setTime(LocalTime.of(14, 0));
      //dateSelector.setValue(LocalDate.of(2018, 03, 28));
       loadData();
-    
+     db = new Connexion();
+        
     
  }
 /******************************************************************************************************************/
@@ -235,7 +314,7 @@ public class ManageAppointmentController implements Initializable {
    }
    */
     }  
-        
+     
  /******************************************************************************************************************/   
 
  public static class Rdv{

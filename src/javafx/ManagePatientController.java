@@ -8,6 +8,7 @@ package javafx;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import static java.lang.System.exit;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,8 +81,8 @@ public class ManagePatientController implements Initializable {
     private TableColumn<Pat, String> situationF_col;
     @FXML
     private TableColumn<Pat, String> address_col;
-    
-     private Connexion db;
+    private Connexion db;
+     
     ObservableList<Pat> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Pat> tab;
@@ -131,14 +132,15 @@ public class ManagePatientController implements Initializable {
         if(rdb_signal.isSelected())
             sitFam=rdb_signal.getText();
         else if(rdb_married.isSelected())
-            gender=rdb_married.getText();
+            sitFam=rdb_married.getText();
       if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
-          || gender.isEmpty() || phoneNumber.isEmpty()|| age.isEmpty() || sitFam.isEmpty())  
+          || phoneNumber.isEmpty()|| age.isEmpty() )  
      {
       infoBox2("Please Fill Out The Form ", null, "Form Error!");   
+      
          
      }
-       
+      else{  
           
   String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam) VALUES(?,?,?,?,?,?,?,?)";
        Connection conn;
@@ -174,7 +176,7 @@ public class ManagePatientController implements Initializable {
                             
                         }   
         
-         }
+      } }
     /**********************************************************************************************************/
     public void loadData(){
        list.clear();

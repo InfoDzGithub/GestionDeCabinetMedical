@@ -47,7 +47,7 @@
             <Reflection />
          </effect>
       </JFXButton>
-      <JFXButton layoutX="712.0" layoutY="474.0" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Delete" textFill="#f8f6f6">
+      <JFXButton layoutX="712.0" layoutY="474.0" onAction="#DeleteData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Delete" textFill="#f8f6f6">
          <font>
             <Font name="Bell MT Bold" size="18.0" />
          </font>
@@ -77,7 +77,7 @@
             <Image url="@images/rdv.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="712.0" layoutY="405.0" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Update" textFill="#fffbfb">
+      <JFXButton layoutX="712.0" layoutY="405.0" onAction="#UpdateDataR" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Update" textFill="#fffbfb">
          <font>
             <Font name="Bell MT Bold" size="18.0" />
          </font>
@@ -97,7 +97,7 @@
          </children>
       </AnchorPane>
        <JFXButton layoutX="332.0" layoutY="102.0" textFill="WHITE" />
-      <TableView fx:id="tab" layoutX="29.0" layoutY="360.0" prefHeight="200.0" prefWidth="654.0">
+      <TableView fx:id="tab" layoutX="29.0" layoutY="360.0" onMouseClicked="#TableMouseClick" prefHeight="200.0" prefWidth="654.0">
         <columns>
           <TableColumn fx:id="id_col" prefWidth="114.0" text="N° Fiche  Patient" />
           <TableColumn fx:id="pat_inf_col" prefWidth="194.0" text="Patient" />
