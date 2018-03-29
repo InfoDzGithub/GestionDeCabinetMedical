@@ -45,7 +45,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton layoutY="5.0" onAction="#changeScreen7">
+      <JFXButton layoutY="5.0" onAction="#changeScreen7" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="#64b5f6" glyphName="REPLY" size="25" />
          </graphic>
