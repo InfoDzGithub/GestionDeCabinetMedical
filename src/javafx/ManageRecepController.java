@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import static javafx.LoginAdminController.infoBox;
@@ -138,7 +139,7 @@ public class ManageRecepController implements Initializable {
       infoBox2("Please Fill out The Form", null, "Form Error!");   
          
      }
-       
+       else{  
           
   String sql="INSERT INTO receptioniste(num_cni,nom_recep,prenom_recep,sexe_recep,adresse_recep,num_tel_recep,username_recep,password_recep) VALUES(?,?,?,?,?,?,?,?)";
        Connection conn;
@@ -155,6 +156,11 @@ public class ManageRecepController implements Initializable {
                   preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Receptionist Add Successfully", null, "Succes");
+                  
+                  Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  receptioniste  set id_recep = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE receptioniste  auto_increment = 1");
                   loadData();
                   cni_box.clear();
                   username_box.clear();
@@ -170,7 +176,7 @@ public class ManageRecepController implements Initializable {
                             
                         }   
         
-         }  
+         }  }
    /**********************************************************************************************************/
     //ActionEvent event
  public void loadData() //throws IOException, SQLException
@@ -210,7 +216,7 @@ public class ManageRecepController implements Initializable {
  
  /**********************************************************************************************************/
   @FXML
-    private void DeleteDataR(ActionEvent event) {
+    private void DeleteDataR(ActionEvent event) throws SQLException {
         
         int myIndex =tab.getSelectionModel().getSelectedIndex();
         String id=tab.getItems().get(myIndex).getID();
@@ -237,7 +243,9 @@ public class ManageRecepController implements Initializable {
              
          }
         
-        
+         Connection conn=Connexion.ConnecrDB();
+         Statement s = conn.createStatement();
+         s.execute("ALTER TABLE receptioniste auto_increment = 1");
     }
  
  
@@ -262,10 +270,11 @@ public class ManageRecepController implements Initializable {
                    phoneNumber_box.setText(result.getString("num_tel_recep"));
                    username_box.setText(result.getString("username_recep"));
                    password_box.setText(result.getString("password_recep"));
-                  /* if(result.getString("sexe_med").equals(rdb_male.selectedProperty()))
-                   rdb_male.setText(result.getString("sexe_med"));
-                   else  if(result.getString("sexe_med").equals(rdb_female.selectedProperty()))
-                   rdb_female.setText(result.getString("sexe_med"));*/
+                  
+                   if("Male".equals(result.getString("sexe_recep")))
+                   {rdb_male.setSelected(true);}
+                   else  if("Female".equals(result.getString("sexe_recep")))
+                   {rdb_female.setSelected(true);}
                  
                }
                    

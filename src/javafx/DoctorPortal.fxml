@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.DoctorPortalController">
+<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.DoctorPortalController">
      <children>
       <ImageView fitHeight="500.0" fitWidth="750.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -55,15 +55,15 @@
       </JFXButton>
       <AnchorPane layoutX="14.0" layoutY="154.0" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #EEEEEE;">
          <children>
-            <JFXTextField focusColor="#64b5f6" layoutX="66.0" layoutY="13.0" maxWidth="283.0" minWidth="178.0" prefHeight="31.0" prefWidth="283.0" />
+            <JFXTextField editable="false" focusColor="#64b5f6" layoutX="66.0" layoutY="13.0" maxWidth="283.0" minWidth="178.0" prefHeight="31.0" prefWidth="283.0" />
             <Text fill="#64b5f6" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Age" wrappingWidth="77.99998474121094">
                <font>
                   <Font name="Bell MT Bold" size="22.0" />
                </font>
             </Text>
-            <JFXTextArea focusColor="#64b5f6" layoutX="140.0" layoutY="116.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
-            <JFXTextArea focusColor="#64b5f6" layoutX="140.0" layoutY="193.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
-            <JFXTextField focusColor="#64b5f6" layoutX="178.0" layoutY="62.0" maxWidth="283.0" minWidth="171.0" prefHeight="31.0" prefWidth="178.0" />
+            <JFXTextArea editable="false" focusColor="#64b5f6" layoutX="140.0" layoutY="116.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
+            <JFXTextArea editable="false" focusColor="#64b5f6" layoutX="140.0" layoutY="193.0" maxWidth="273.0" minWidth="178.0" prefHeight="67.0" prefWidth="209.0" />
+            <JFXTextField editable="false" focusColor="#64b5f6" layoutX="178.0" layoutY="62.0" maxWidth="283.0" minWidth="171.0" prefHeight="31.0" prefWidth="178.0" />
             <Text fill="#64b5f6" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Family Situation" wrappingWidth="178.00000263378024">
                <font>
                   <Font name="Bell MT Bold" size="22.0" />

@@ -125,7 +125,7 @@
             <TableColumn fx:id="address_col" prefWidth="104.0" text="Address" />
         </columns>
       </TableView>
-      <JFXRadioButton fx:id="rdb_male" layoutX="98.0" layoutY="256.0" selected="true" text="Male">
+      <JFXRadioButton fx:id="rdb_male" layoutX="98.0" layoutY="256.0" text="Male">
          <font>
             <Font size="14.0" />
          </font>
@@ -146,7 +146,7 @@
             <ToggleGroup fx:id="GroupS1" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="rdb_signal" layoutX="454.0" layoutY="256.0" selected="true" text="Signal" toggleGroup="$GroupS1">
+      <JFXRadioButton fx:id="rdb_signal" layoutX="454.0" layoutY="256.0" text="Signal" toggleGroup="$GroupS1">
          <font>
             <Font size="14.0" />
          </font>

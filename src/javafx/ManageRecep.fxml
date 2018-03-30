@@ -135,7 +135,7 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXRadioButton fx:id="rdb_male" layoutX="529.0" layoutY="235.0" selected="true" text="Male">
+      <JFXRadioButton fx:id="rdb_male" layoutX="529.0" layoutY="235.0" text="Male">
          <font>
             <Font size="14.0" />
          </font>

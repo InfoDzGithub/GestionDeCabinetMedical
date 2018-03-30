@@ -106,5 +106,13 @@
             <TableColumn fx:id="comment_col" prefWidth="125.0" text="Comment" />
         </columns>
       </TableView>
+      <JFXButton layoutX="709.0" layoutY="333.0" onAction="#CancelData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Cancel" textFill="#fffbfb">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect>
+      </JFXButton>
    </children>
 </AnchorPane>

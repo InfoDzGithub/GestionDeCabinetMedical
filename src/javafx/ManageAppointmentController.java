@@ -13,6 +13,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -110,15 +112,17 @@ public class ManageAppointmentController implements Initializable {
                   
                   preparedSt.execute();
                   infoBox("RDV Added Successfully", null, "Success");
+                  
+                   Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE rdv  auto_increment = 1");
+                  
                    loadData();
                  
-                  SelectTimer.setTime(LocalTime.of(14, 0));
-                  dateSelector.setValue(LocalDate.of(2018, Month.MARCH, 29));
-                  comment_box.clear();
-                  combobox.getSelectionModel().clearSelection();
+                   CancelData(event);
                    
-                 // dateSelector.getEditor().clear();
-                  
+                
                    
                     } 
                    catch (Exception e)
@@ -135,7 +139,7 @@ public class ManageAppointmentController implements Initializable {
        list.clear();
          try {
              Connection con=Connexion.ConnecrDB();
-           
+            
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM rdv");
             while (rs.next()) {
                 //get string from db,whichever way 
@@ -146,8 +150,7 @@ public class ManageAppointmentController implements Initializable {
             System.err.println("Error"+ex);
         }
    
-        id_col.setCellValueFactory(new PropertyValueFactory<Rdv,Integer>("ID"));
-   
+      id_col.setCellValueFactory(new PropertyValueFactory<Rdv,Integer>("ID"));
       pat_inf_col.setCellValueFactory(new PropertyValueFactory<Rdv,String>("infP"));
       comment_col.setCellValueFactory(new PropertyValueFactory<Rdv,String>("comment"));
       date_col.setCellValueFactory(new PropertyValueFactory<Rdv,Date>("date"));
@@ -173,6 +176,10 @@ public class ManageAppointmentController implements Initializable {
                if(result.next())
                { 
                    comment_box.setText(result.getString("commentaire"));
+                   /*
+                   
+                   */
+                  
                
                }
                    
@@ -203,9 +210,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                    infoBox("RDV Modify Successfully", null, "Success");
                  
                   loadData();
-                  comment_box.clear();
-             //     SelectTimer.setTime(LocalTime.now() );
-              //    dateSelector.setValue(LocalDate.now());
+                 CancelData(event);
                    
                    
          }
@@ -218,7 +223,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
 
   /***************************************************************************************************************/
      @FXML
-    private void DeleteData(ActionEvent event) {
+    private void DeleteData(ActionEvent event) throws SQLException {
         
         
        int myIndex=tab.getSelectionModel().getSelectedIndex();
@@ -233,7 +238,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                infoBox("RDV Deletted Successfully", null, "Success");
                
                loadData();
-                comment_box.clear();
+               CancelData(event);
                   
                
          }
@@ -241,7 +246,9 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          {
              
          }
-        
+         Connection conn=Connexion.ConnecrDB();
+         Statement s = conn.createStatement();
+         s.execute("ALTER TABLE rdv auto_increment = 1");
         
     }
  /*****************************************************************************************************************/
@@ -314,6 +321,8 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
    }
    */
     }  
+
+   
      
  /******************************************************************************************************************/   
 
@@ -382,7 +391,14 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     
  /******************************************************************************************************************/  
        
+     @FXML
+    private void CancelData(ActionEvent event) {
+        comment_box.clear();
+        dateSelector.setValue(null);
+        SelectTimer.setTime(null);
+        combobox.selectionModelProperty().getValue().clearSelection();
         
+    }    
     
-
+/********************************************************************************************************************/
 }

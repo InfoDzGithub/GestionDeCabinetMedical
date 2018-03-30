@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -129,7 +130,7 @@ public class ManageDoctorsController implements Initializable {
          
      }
        
-          
+      else{    
   String sql="INSERT INTO medecin(num_cni,nom_med,prenom_med,sexe_med,adress_med,num_tel_med,username_med,password_med) VALUES(?,?,?,?,?,?,?,?)";
        Connection conn;
                    try {
@@ -146,6 +147,12 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(8, pass);
                   preparedSt.execute();
                   infoBox("Doctor Added Successfully", null, "Success");
+                  
+                  Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  medecin  set id_med = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE medecin auto_increment = 1");
+                  
                    loadData();
                  
                    cni_box.clear();
@@ -162,7 +169,7 @@ public class ManageDoctorsController implements Initializable {
                             
                         }   
         
-         }
+         }}
    
     
     
@@ -184,6 +191,7 @@ public class ManageDoctorsController implements Initializable {
         } catch (SQLException ex) {
             System.err.println("Error"+ex);
         }
+         
    
         id_col.setCellValueFactory(new PropertyValueFactory<Doc,Integer>("ID"));
     cni_col.setCellValueFactory(new PropertyValueFactory<Doc,Integer>("CNI"));
@@ -219,10 +227,12 @@ public class ManageDoctorsController implements Initializable {
                    phoneNumber_box.setText(result.getString("num_tel_med"));
                    userName_box.setText(result.getString("username_med"));
                    password_box.setText(result.getString("password_med"));
-                  /* if(result.getString("sexe_med").equals(rdb_male.selectedProperty()))
-                   rdb_male.setText(result.getString("sexe_med"));
-                   else  if(result.getString("sexe_med").equals(rdb_female.selectedProperty()))
-                   rdb_female.setText(result.getString("sexe_med"));*/
+                 
+                   
+                   if("Male".equals(result.getString("sexe_med")))
+                   {rdb_male.setSelected(true);}
+                   else  if("Female".equals(result.getString("sexe_med")))
+                   {rdb_female.setSelected(true);}
                  
                }
                    
@@ -292,7 +302,7 @@ public class ManageDoctorsController implements Initializable {
     }
 /****************************************************************************************************************/
     @FXML
-    private void DeleteData(ActionEvent event) {
+    private void DeleteData(ActionEvent event) throws SQLException {
         
         int myIndex =tab.getSelectionModel().getSelectedIndex();
         String id=tab.getItems().get(myIndex).getID();
@@ -318,7 +328,11 @@ public class ManageDoctorsController implements Initializable {
          {
              
          }
-        
+       
+         
+         Connection conn=Connexion.ConnecrDB();
+         Statement s = conn.createStatement();
+         s.execute("ALTER TABLE medecin auto_increment = 1");
         
     }
     

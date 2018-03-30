@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -134,7 +135,7 @@ public class ManagePatientController implements Initializable {
         else if(rdb_married.isSelected())
             sitFam=rdb_married.getText();
       if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
-          || phoneNumber.isEmpty()|| age.isEmpty() )  
+       || gender.isEmpty()||sitFam.isEmpty()  || phoneNumber.isEmpty()|| age.isEmpty() )  
      {
       infoBox2("Please Fill Out The Form ", null, "Form Error!");   
       
@@ -159,6 +160,11 @@ public class ManagePatientController implements Initializable {
                   
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
+                  
+                   Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  patient  set id_recep = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE patient  auto_increment = 1");
                    loadData();
                  
                    cni_box.clear();
@@ -226,10 +232,14 @@ public class ManagePatientController implements Initializable {
                    age_box.setText(result.getString("age_pat"));
                   
                    
-                  /* if(result.getString("sexe_med").equals(rdb_male.selectedProperty()))
-                   rdb_male.setText(result.getString("sexe_med"));
-                   else  if(result.getString("sexe_med").equals(rdb_female.selectedProperty()))
-                   rdb_female.setText(result.getString("sexe_med"));*/
+                  if("Male".equals(result.getString("sexe_pat")))
+                   {rdb_male.setSelected(true);}
+                   else  if("Female".equals(result.getString("sexe_pat")))
+                   {rdb_female.setSelected(true);}
+                      if("Single".equals(result.getString("situation_fam")))
+                   {rdb_signal.setSelected(true);}
+                   else  if("Married".equals(result.getString("situation_fam")))
+                   {rdb_married.setSelected(true);}
                  
                }
                    
@@ -289,7 +299,7 @@ public class ManagePatientController implements Initializable {
     } 
   /***********************************************************************************************************/
      @FXML
-    private void DeleteData(ActionEvent event) {
+    private void DeleteData(ActionEvent event) throws SQLException {
         
         
        int myIndex=tab.getSelectionModel().getSelectedIndex();
@@ -321,7 +331,9 @@ public class ManagePatientController implements Initializable {
          {
              
          }
-        
+         Connection conn=Connexion.ConnecrDB();
+         Statement s = conn.createStatement();
+         s.execute("ALTER TABLE patient auto_increment = 1");
         
     }
     
