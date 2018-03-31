@@ -5,9 +5,16 @@
  */
 package javafx;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +22,45 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author User
- */
+/*******************************************************************************************************************/
 public class DoctorPortalController implements Initializable {
+
+    @FXML
+    private JFXComboBox<String> combobox;
+    @FXML
+    private JFXTextField search_box;
+    @FXML
+    private JFXButton search_B;
+     ObservableList<String> list2 = FXCollections.observableArrayList();
+     private Connexion db;
+ /*************************************************************************************************************/
+      @FXML
+    private void combobox_MouseClicke(MouseEvent event) {
+       
+    }
+ /************************************************************************************************************/
+     public void loadData2(){
+       list2.clear();
+         try {
+             Connection con=Connexion.ConnecrDB();
+           
+            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv ");
+            while (rs.next()) {
+                //get string from db,whichever way 
+                list2.add(new String(rs.getString(1)));
+            }
+
+        } catch (Exception ex) {
+            System.err.println("Error"+ex);
+        }
+   }
+ 
+     
+     
+ /***************************************************************************************************************/
     @FXML
     public void log_out(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginDoc.fxml"));
@@ -31,12 +69,15 @@ public class DoctorPortalController implements Initializable {
             window.setScene(ab);
             window.show(); }   
 
-    /**
-     * Initializes the controller class.
-     */
+/******************************************************************************************************************/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        loadData2();
+     combobox.setItems(list2);
+     db = new Connexion();
+    }  
+
+   
+/*****************************************************************************************************************/    
     
 }

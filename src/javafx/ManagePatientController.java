@@ -161,20 +161,23 @@ public class ManagePatientController implements Initializable {
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
                   
-                   Statement m = conn.createStatement();
+                  Statement m = conn.createStatement();
                   m.execute("set @autoid :=0");
-                  m.execute("UPDATE  patient  set id_recep = @autoid := (@autoid+1)");
+                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
                   m.execute("ALTER TABLE patient  auto_increment = 1");
-                   loadData();
+                  
+                  loadData();
                  
-                   cni_box.clear();
+                  cni_box.clear();
+                  age_box.clear();
+                 rdb_signal.setSelected(false);
+                 rdb_married.setSelected(false);
                    firstName_box.clear();
                    familyName_box.clear();
                    address_box.clear();
                    phoneNumber_box.clear();
-                   age_box.clear();
-                   rdb_male.setSelected(true);
-                   rdb_signal.setSelected(true);
+                   rdb_male.setSelected(false);
+                   rdb_female.setSelected(false);
                    
                     } 
                    catch (Exception e)
@@ -196,7 +199,7 @@ public class ManagePatientController implements Initializable {
             }
 
         } catch (SQLException ex) {
-            System.err.println("Error"+ex);
+          
         }
    
         id_col.setCellValueFactory(new PropertyValueFactory<Pat,Integer>("ID"));
@@ -279,16 +282,20 @@ public class ManagePatientController implements Initializable {
                   preparedSt.execute();
                    infoBox("Patient Modify Successfully", null, "Success");
                  
+                  
+                  
+                  
                   loadData();
-                  cni_box.clear();
+                 cni_box.clear();
+                  age_box.clear();
+                 rdb_signal.setSelected(false);
+                 rdb_married.setSelected(false);
                    firstName_box.clear();
                    familyName_box.clear();
                    address_box.clear();
                    phoneNumber_box.clear();
-                   age_box.clear();
-                  
-                   rdb_male.setSelected(true);
-                    rdb_signal.setSelected(true);
+                   rdb_male.setSelected(false);
+                   rdb_female.setSelected(false);
                    
          }
          catch(Exception e)
@@ -316,15 +323,22 @@ public class ManagePatientController implements Initializable {
                preparedSt.execute();
                infoBox("Patient Deletted Successfully", null, "Success");
                
+               Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE patient  auto_increment = 1");
+                  
                loadData();
-                cni_box.clear();
+              cni_box.clear();
+                  age_box.clear();
+                 rdb_signal.setSelected(false);
+                 rdb_married.setSelected(false);
                    firstName_box.clear();
                    familyName_box.clear();
                    address_box.clear();
                    phoneNumber_box.clear();
-                   age_box.clear();
-                   rdb_signal.setSelected(true);
-                   rdb_male.setSelected(true);
+                   rdb_male.setSelected(false);
+                   rdb_female.setSelected(false);
                
          }
          catch(Exception e)
@@ -344,12 +358,14 @@ public class ManagePatientController implements Initializable {
        infoBox("Doctor Canceled Successfully", null, "Success");
                   cni_box.clear();
                   age_box.clear();
-                  rdb_male.setSelected(true);
-                   rdb_signal.setSelected(true);
+                 rdb_signal.setSelected(false);
+                 rdb_married.setSelected(false);
                    firstName_box.clear();
                    familyName_box.clear();
                    address_box.clear();
                    phoneNumber_box.clear();
+                   rdb_male.setSelected(false);
+                   rdb_female.setSelected(false);
     }
 
     

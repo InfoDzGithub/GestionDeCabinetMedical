@@ -227,6 +227,11 @@ public class ManageRecepController implements Initializable {
                preparedSt.execute();
                infoBox("Receptioniste Deletted Successfully", null, "Success");
                
+               Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  receptioniste  set id_recep = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE receptioniste  auto_increment = 1");
+                  
                loadData();
                 cni_box.clear();
                    firstName_box.clear();

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.GlyphsStack?>
@@ -26,8 +27,7 @@
             <Font name="System Italic" size="35.0" />
          </font>
       </Label>
-      <JFXTextField focusColor="#64b5f6" layoutX="119.0" layoutY="107.0" maxWidth="209.0" minWidth="178.0" prefHeight="31.0" prefWidth="209.0" />
-      <Text fill="#64b5f6" layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" wrappingWidth="99.99998474121094">
+      <Text fill="#64b5f6" layoutX="32.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search patient" wrappingWidth="144.00000125169754">
          <font>
             <Font name="Bell MT Bold" size="22.0" />
          </font></Text>
@@ -98,10 +98,15 @@
             <Font name="Bell MT Bold" size="22.0" />
          </font>
       </Text>
-      <JFXButton layoutX="291.0" layoutY="100.0">
-         <graphic>
-            <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutY="90.0" size="18" />
-         </graphic>
-      </JFXButton>
+      <JFXButton layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="21.0" textFill="#f8f7f7" />
+      <JFXComboBox fx:id="combobox" layoutX="176.0" layoutY="115.0" onMouseClicked="#combobox_MouseClicke" prefHeight="25.0" prefWidth="178.0" />
+      <JFXTextField fx:id="search_box" layoutX="572.0" layoutY="112.0" maxWidth="90.0" minWidth="90.0" prefHeight="31.0" prefWidth="90.0" />
+      <Text fill="#64b5f6" layoutX="445.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N° Dossier" wrappingWidth="110.99998466670513">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Text>
+      <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutX="678.0" layoutY="134.0" size="18" text="" />
+      <JFXButton fx:id="search_B" layoutX="662.0" layoutY="106.0" prefHeight="43.0" prefWidth="49.0" text="         i" textFill="#fffbfb" />
       </children>
 </AnchorPane>

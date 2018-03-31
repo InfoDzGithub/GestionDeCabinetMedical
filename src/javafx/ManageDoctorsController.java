@@ -313,6 +313,11 @@ public class ManageDoctorsController implements Initializable {
                preparedSt.execute();
                infoBox("Doctor Deletted Successfully", null, "Success");
                
+                Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  medecin  set id_med = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE medecin auto_increment = 1");
+                  
                loadData();
                 cni_box.clear();
                    firstName_box.clear();

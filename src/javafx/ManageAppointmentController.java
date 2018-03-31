@@ -92,13 +92,13 @@ public class ManageAppointmentController implements Initializable {
      String text =comment_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
     
-         if(date.isEmpty() || time.isEmpty() || text.isEmpty() || patient_inf.isEmpty())
+         if(date.isEmpty() || time.isEmpty() || text.isEmpty())
          
          {
              infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
-       
-        String sql="INSERT INTO Rdv(date_rdv,heure_rdv,info_P,commentaire) VALUES(?,?,?,?)";
+         else{
+        String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire) VALUES(?,?,?,?) ";
        Connection conn;
                    try {
                   conn=Connexion.ConnecrDB();
@@ -113,14 +113,17 @@ public class ManageAppointmentController implements Initializable {
                   preparedSt.execute();
                   infoBox("RDV Added Successfully", null, "Success");
                   
-                   Statement m = conn.createStatement();
+                  Statement m = conn.createStatement();
                   m.execute("set @autoid :=0");
                   m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
                   m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                    loadData();
                  
-                   CancelData(event);
+         comment_box.clear();
+        dateSelector.setValue(null);
+        SelectTimer.setTime(null);
+        combobox.selectionModelProperty().getValue().clearSelection();
                    
                 
                    
@@ -129,7 +132,7 @@ public class ManageAppointmentController implements Initializable {
                         {
                         //infoBox2("You should select a row", null, "Failed");     
                         }     
-   }
+   }}
  /*************************************************************************************************************/
   
     
@@ -147,7 +150,7 @@ public class ManageAppointmentController implements Initializable {
             }
 
         } catch (Exception ex) {
-            System.err.println("Error"+ex);
+            
         }
    
       id_col.setCellValueFactory(new PropertyValueFactory<Rdv,Integer>("ID"));
@@ -210,7 +213,10 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                    infoBox("RDV Modify Successfully", null, "Success");
                  
                   loadData();
-                 CancelData(event);
+                 comment_box.clear();
+        dateSelector.setValue(null);
+        SelectTimer.setTime(null);
+        combobox.selectionModelProperty().getValue().clearSelection();
                    
                    
          }
@@ -237,8 +243,16 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                preparedSt.execute();
                infoBox("RDV Deletted Successfully", null, "Success");
                
+               Statement m = conn.createStatement();
+                  m.execute("set @autoid :=0");
+                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
+                  m.execute("ALTER TABLE rdv  auto_increment = 1");
+                  
                loadData();
-               CancelData(event);
+               comment_box.clear();
+        dateSelector.setValue(null);
+        SelectTimer.setTime(null);
+        combobox.selectionModelProperty().getValue().clearSelection();
                   
                
          }
@@ -264,7 +278,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     public void Sign_Out(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginRecep.fxml"));
            Scene ab = new Scene(loginAdmin);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+           Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
  /******************************************************************************************************************/   
@@ -273,14 +287,14 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          try {
              Connection con=Connexion.ConnecrDB();
            
-            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(nom_pat,' '),concat(prenom_pat,' '),nic_pat) FROM patient order by nom_pat asc");
+            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(id_pat,' '),concat(nom_pat,' '),concat(prenom_pat,' '),nic_pat) FROM patient ");// order by id_pat asc
             while (rs.next()) {
                 //get string from db,whichever way 
                 list2.add(new String(rs.getString(1)));
             }
 
         } catch (Exception ex) {
-            System.err.println("Error"+ex);
+            
         }
    }
  
@@ -301,8 +315,9 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     @FXML
     private void ComboboxSelect(MouseEvent event) {
        
-    /*    String id=combobox.getSelectionModel().getSelectedItem();
-       String red="SELECT * from patient where concat(concat(nom_pat,'  '),concat(prenom_pat,'   '),nic_pat)='" +id+"'";
+    /*  
+    String id=combobox.getSelectionModel().getSelectedItem();
+    String red="SELECT * from patient where concat(concat(nom_pat,'  '),concat(prenom_pat,'   '),nic_pat)='" +id+"'";
     try{
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(red);
