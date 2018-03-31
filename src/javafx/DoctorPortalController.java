@@ -12,7 +12,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
+import static javafx.LoginAdminController.infoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,10 +48,17 @@ public class DoctorPortalController implements Initializable {
  /************************************************************************************************************/
      public void loadData2(){
        list2.clear();
+      
+      Date date=new Date();
+      String dateJour= new SimpleDateFormat("yyyy-MM-dd").format(date);
+     
+     
+     
+      
          try {
              Connection con=Connexion.ConnecrDB();
-           
-            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv ");
+         
+            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv where date_rdv='" +dateJour+"' ");//
             while (rs.next()) {
                 //get string from db,whichever way 
                 list2.add(new String(rs.getString(1)));

@@ -134,6 +134,9 @@ public class ManagePatientController implements Initializable {
             sitFam=rdb_signal.getText();
         else if(rdb_married.isSelected())
             sitFam=rdb_married.getText();
+        
+        
+        
       if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
        || gender.isEmpty()||sitFam.isEmpty()  || phoneNumber.isEmpty()|| age.isEmpty() )  
      {
@@ -142,12 +145,24 @@ public class ManagePatientController implements Initializable {
          
      }
       else{  
-          
-  String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam) VALUES(?,?,?,?,?,?,?,?)";
-       Connection conn;
+          String req="SELECT nic_pat FROM patient WHERE nic_pat='"+cni+"'";
+         
+          try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(req);
+               ResultSet result=preparedSt.executeQuery();
+               
+               if(result.next())
+               { 
+                 infoBox("Patient already exist ", null, "Alert"); 
+               }
+               else
+               {
+                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam) VALUES(?,?,?,?,?,?,?,?)";
+                 
                    try {
                   conn=Connexion.ConnecrDB();
-                  PreparedStatement preparedSt=conn.prepareStatement(sql);
+                 preparedSt=conn.prepareStatement(sql);
                  
                   preparedSt.setString(1, cni);
                   preparedSt.setString(2, familyName);
@@ -184,7 +199,16 @@ public class ManagePatientController implements Initializable {
                         {
                             
                         }   
-        
+           
+               }
+                   
+   }
+   catch(Exception e){
+       
+   }
+          
+  
+  
       } }
     /**********************************************************************************************************/
     public void loadData(){

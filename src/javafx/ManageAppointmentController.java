@@ -18,7 +18,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -122,7 +121,7 @@ public class ManageAppointmentController implements Initializable {
                  
          comment_box.clear();
         dateSelector.setValue(null);
-        SelectTimer.setTime(null);
+        SelectTimer.setValue(null);
         combobox.selectionModelProperty().getValue().clearSelection();
                    
                 
