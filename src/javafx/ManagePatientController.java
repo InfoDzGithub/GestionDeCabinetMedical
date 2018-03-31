@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -87,7 +89,12 @@ public class ManagePatientController implements Initializable {
     ObservableList<Pat> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Pat> tab;
-   
+ /*************************************************************************************************************/
+   @FXML
+           public static String currentDay()
+           { Date date=new Date();
+               return new SimpleDateFormat("yyyy-MM-dd").format(date);
+           }
     
     /**********************************************************************************************************/
      @FXML
@@ -158,7 +165,7 @@ public class ManagePatientController implements Initializable {
                }
                else
                {
-                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam) VALUES(?,?,?,?,?,?,?,?)";
+                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat) VALUES(?,?,?,?,?,?,?,?,?)";
                  
                    try {
                   conn=Connexion.ConnecrDB();
@@ -172,6 +179,7 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(6, address);
                   preparedSt.setString(7, phoneNumber);
                   preparedSt.setString(8,sitFam);
+                  preparedSt.setString(9,currentDay());
                   
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
@@ -216,7 +224,7 @@ public class ManagePatientController implements Initializable {
          try {
              Connection con=Connexion.ConnecrDB();
            
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM patient");
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM patient  where crdt_Pat='"+currentDay()+"'");
             while (rs.next()) {
                 //get string from db,whichever way 
                 list.add(new Pat(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) ));

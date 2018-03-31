@@ -48,17 +48,11 @@ public class DoctorPortalController implements Initializable {
  /************************************************************************************************************/
      public void loadData2(){
        list2.clear();
-      
-      Date date=new Date();
-      String dateJour= new SimpleDateFormat("yyyy-MM-dd").format(date);
-     
-     
-     
-      
+    
          try {
              Connection con=Connexion.ConnecrDB();
          
-            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv where date_rdv='" +dateJour+"' ");//
+            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv where date_rdv='" +ManagePatientController.currentDay()+"' ");//
             while (rs.next()) {
                 //get string from db,whichever way 
                 list2.add(new String(rs.getString(1)));

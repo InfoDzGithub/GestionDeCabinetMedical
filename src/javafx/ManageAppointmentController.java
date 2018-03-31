@@ -142,7 +142,7 @@ public class ManageAppointmentController implements Initializable {
          try {
              Connection con=Connexion.ConnecrDB();
             
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM rdv");
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM rdv where date_rdv>='"+ManagePatientController.currentDay()+"'");
             while (rs.next()) {
                 //get string from db,whichever way 
                 list.add(new Rdv(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ));
