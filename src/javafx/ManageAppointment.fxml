@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -22,23 +22,23 @@
             <Font name="System Italic" size="35.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="200.0" prefHeight="21.0" prefWidth="167.0" text="Date of appointment" textFill="#64b5f6">
+      <Label layoutX="7.0" layoutY="216.0" prefHeight="21.0" prefWidth="167.0" text="Date of appointment" textFill="#64b5f6">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="348.0" layoutY="200.0" prefHeight="21.0" prefWidth="155.0" text="Appointment time" textFill="#64b5f6">
+      <Label layoutX="348.0" layoutY="216.0" prefHeight="21.0" prefWidth="155.0" text="Appointment time" textFill="#64b5f6">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="247.0" prefHeight="19.0" prefWidth="96.0" text="Comment" textFill="#64b5f6">
+      <Label layoutX="7.0" layoutY="273.0" prefHeight="19.0" prefWidth="96.0" text="Comment" textFill="#64b5f6">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Label>
-      <JFXDatePicker fx:id="dateSelector" defaultColor="#64b5f6" layoutX="177.0" layoutY="195.0" prefHeight="31.0" prefWidth="155.0" showWeekNumbers="true" />
-      <JFXTextArea fx:id="comment_box" focusColor="#64b5f6" layoutX="103.0" layoutY="232.0" maxWidth="219.0" minWidth="135.0" prefHeight="51.0" prefWidth="219.0" style="-fx-background-color: #EEEEEE;" wrapText="true" />
+      <JFXDatePicker fx:id="dateSelector" defaultColor="#64b5f6" layoutX="174.0" layoutY="211.0" prefHeight="31.0" prefWidth="155.0" showWeekNumbers="true" />
+      <JFXTextArea fx:id="comment_box" focusColor="#64b5f6" layoutX="106.0" layoutY="258.0" maxWidth="219.0" minWidth="135.0" prefHeight="51.0" prefWidth="219.0" style="-fx-background-color: #EEEEEE;" wrapText="true" />
       <JFXButton layoutX="712.0" layoutY="98.0" onAction="#insertData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Add" textFill="#fffbfb">
          <font>
             <Font name="Bell MT Bold" size="18.0" />
@@ -55,7 +55,7 @@
             <Reflection />
          </effect>
       </JFXButton>
-      <JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="496.0" layoutY="195.0" prefHeight="31.0" prefWidth="155.0" showTime="true" />
+      <JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="503.0" layoutY="211.0" prefHeight="31.0" prefWidth="155.0" showTime="true" />
        <JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
@@ -85,15 +85,14 @@
             <Reflection />
          </effect>
       </JFXButton>
-      <AnchorPane layoutY="150.0" prefHeight="39.0" prefWidth="700.0" style="-fx-background-color: #EEEEEE;">
+      <AnchorPane layoutX="-4.0" layoutY="149.0" prefHeight="62.0" prefWidth="858.0" style="-fx-background-color: #dae1e7;">
          <children>
-            <Label layoutX="13.0" layoutY="9.0" prefHeight="21.0" prefWidth="140.0" text="Search patient" textFill="#64b5f6">
+            <Label layoutX="136.0" layoutY="22.0" prefHeight="21.0" prefWidth="167.0" text="Patient information" textFill="#64b5f6">
                <font>
                   <Font name="Arial Italic" size="18.0" />
                </font>
             </Label>
-            <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutX="401.0" layoutY="26.0" size="18" />
-            <JFXComboBox fx:id="combobox" layoutX="143.0" layoutY="7.0" onMouseClicked="#ComboboxSelect" prefHeight="25.0" prefWidth="243.0" promptText="                   Select the patient" />
+            <JFXTextField fx:id="name_box" editable="false" layoutX="296.0" layoutY="17.0" maxWidth="293.0" minWidth="84.0" prefHeight="31.0" prefWidth="180.0" />
          </children>
       </AnchorPane>
        <JFXButton layoutX="332.0" layoutY="102.0" textFill="WHITE" />
@@ -114,5 +113,18 @@
             <Reflection />
          </effect>
       </JFXButton>
+      <Label layoutX="192.0" layoutY="105.0" prefHeight="21.0" prefWidth="130.0" text="Search patient" textFill="#64b5f6">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" layoutX="417.0" layoutY="122.0" size="18" text="" />
+      <JFXTextField fx:id="search_box" layoutX="317.0" layoutY="99.0" maxWidth="84.0" minWidth="78.0" prefHeight="31.0" prefWidth="78.0" />
+      <Label fx:id="label_box" layoutX="451.0" layoutY="102.0" prefHeight="25.0" prefWidth="219.0" textFill="#dd4848">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="404.0" layoutY="96.0" onAction="#search_Patient" prefHeight="39.0" prefWidth="44.0" text="i" textFill="#fffcfc" />
    </children>
 </AnchorPane>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javafx;
 
 import com.jfoenix.controls.JFXRadioButton;
@@ -79,7 +74,7 @@ public class ManagePatientController implements Initializable {
     @FXML
     private TableColumn<Pat, String> gender_col;
     @FXML
-    private TableColumn<Pat, Integer> age_col;
+    private TableColumn<Pat, Date> age_col;
     @FXML
     private TableColumn<Pat, String> situationF_col;
     @FXML
@@ -165,7 +160,7 @@ public class ManagePatientController implements Initializable {
                }
                else
                {
-                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,age_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat) VALUES(?,?,?,?,?,?,?,?,?)";
+                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,dateN_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat) VALUES(?,?,?,?,?,?,?,?,?)";
                  
                    try {
                   conn=Connexion.ConnecrDB();
@@ -184,10 +179,10 @@ public class ManagePatientController implements Initializable {
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
                   
-                  Statement m = conn.createStatement();
-                  m.execute("set @autoid :=0");
-                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
-                  m.execute("ALTER TABLE patient  auto_increment = 1");
+//                  Statement m = conn.createStatement();
+//                  m.execute("set @autoid :=0");
+//                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
+//                  m.execute("ALTER TABLE patient  auto_increment = 1");
                   
                   loadData();
                  
@@ -241,7 +236,7 @@ public class ManagePatientController implements Initializable {
          gender_col.setCellValueFactory(new PropertyValueFactory<>("sexe"));
           address_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("adresse"));
       phoneNumber_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("ntel"));
-        age_col.setCellValueFactory(new PropertyValueFactory<Pat,Integer>("age"));
+        age_col.setCellValueFactory(new PropertyValueFactory<Pat,Date>("age"));
           situationF_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("sitF"));
      
      tab.setItems(list);
@@ -264,14 +259,14 @@ public class ManagePatientController implements Initializable {
                    familyName_box.setText(result.getString("nom_pat"));
                    address_box.setText(result.getString("adresse_pat"));
                    phoneNumber_box.setText(result.getString("num_tel_pat"));
-                   age_box.setText(result.getString("age_pat"));
+                   age_box.setText(result.getString("dateN_pat"));
                   
                    
                   if("Male".equals(result.getString("sexe_pat")))
                    {rdb_male.setSelected(true);}
                    else  if("Female".equals(result.getString("sexe_pat")))
                    {rdb_female.setSelected(true);}
-                      if("Single".equals(result.getString("situation_fam")))
+                      if("Signal".equals(result.getString("situation_fam")))
                    {rdb_signal.setSelected(true);}
                    else  if("Married".equals(result.getString("situation_fam")))
                    {rdb_married.setSelected(true);}
@@ -289,7 +284,7 @@ public class ManagePatientController implements Initializable {
     private void UpdateData(ActionEvent event)  {
         int myIndex =tab.getSelectionModel().getSelectedIndex();
          String id=tab.getItems().get(myIndex).getID();
-         String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , age_pat = ? , situation_fam = ? ,sexe_pat = ?  where id_pat ='" +id+"'";
+         String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , dateN_pat = ? , situation_fam = ? ,sexe_pat = ?  where id_pat ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
          try{
           PreparedStatement preparedSt=conn.prepareStatement(req);
@@ -355,10 +350,10 @@ public class ManagePatientController implements Initializable {
                preparedSt.execute();
                infoBox("Patient Deletted Successfully", null, "Success");
                
-               Statement m = conn.createStatement();
-                  m.execute("set @autoid :=0");
-                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
-                  m.execute("ALTER TABLE patient  auto_increment = 1");
+//               Statement m = conn.createStatement();
+//                  m.execute("set @autoid :=0");
+//                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
+//                  m.execute("ALTER TABLE patient  auto_increment = 1");
                   
                loadData();
               cni_box.clear();
@@ -377,9 +372,9 @@ public class ManagePatientController implements Initializable {
          {
              
          }
-         Connection conn=Connexion.ConnecrDB();
-         Statement s = conn.createStatement();
-         s.execute("ALTER TABLE patient auto_increment = 1");
+//         Connection conn=Connexion.ConnecrDB();
+//         Statement s = conn.createStatement();
+//         s.execute("ALTER TABLE patient auto_increment = 1");
         
     }
     

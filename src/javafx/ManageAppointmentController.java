@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javafx;
 
 import com.jfoenix.controls.JFXDatePicker;
@@ -36,6 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -57,15 +53,13 @@ public class ManageAppointmentController implements Initializable {
     @FXML
     private JFXDatePicker SelectTimer;
     @FXML
-    private ComboBox<String> combobox;
-    @FXML
     private JFXTextArea comment_box;
-    
-    
-    
+    @FXML
+    private JFXTextField name_box;
    
-    ObservableList<String> list2 = FXCollections.observableArrayList();
-     private Connexion db;
+    @FXML
+    private JFXTextField search_box;
+   private Connexion db;
     ObservableList<Rdv> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Rdv> tab;
@@ -79,24 +73,78 @@ public class ManageAppointmentController implements Initializable {
     private TableColumn<Rdv, Time> time_col;
     @FXML
     private TableColumn<Rdv, String> comment_col;
+    @FXML
+    private Label label_box;
+    String inf_patient=" ",cni="";
+    /********************************************************************************************************/
+  
+    @FXML
+    private void search_Patient(ActionEvent event) {
+        
+       cni=search_box.getText();
+      if(cni.isEmpty())
+        {
+          label_box.setText(" Please Fill Out The CNI Patient");   
+        }
+      else{
+      String req="Select concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) from patient where nic_pat ='" +cni+"'";
+                try{
+                            Connection conn=Connexion.ConnecrDB();
+                            PreparedStatement preparedSt=conn.prepareStatement(req);
+                            ResultSet result=preparedSt.executeQuery();
+
+                            if(result.next())
+                            { 
+                               
+                                name_box.setText(result.getString(1));
+                              
+
+                                
+                            }
+
+                }
+                catch(Exception e){}  
+        
+    }}
    
  /*************************************************************************************************************/ 
     @FXML
     public void insertData(ActionEvent event) { 
-        
+        cni=search_box.getText();
+//      String maReq="Select id_pat from patient where nic_pat ='" +cni+"'";
+//       try{
+//                            Connection conn=Connexion.ConnecrDB();
+//                            PreparedStatement preparedSt=conn.prepareStatement(maReq);
+//                            ResultSet result=preparedSt.executeQuery();
+//
+//                            if(result.next())
+//                            { 
+//                             identPatient=result.getString(1);
+//                            }
+//
+//                }
+//                catch(Exception e){} 
        
+      inf_patient=name_box.getText();
       String date=dateSelector.getValue().toString();
       String time=SelectTimer.getTime().toString();
      // String commT =comment_box.getText().replaceAll("\n", System.getProperty("line.separator"));
      String text =comment_box.getText();
-     String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
-    
+     
+      
          if(date.isEmpty() || time.isEmpty() || text.isEmpty())
          
          {
              infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
          else{
+             
+             
+             
+             
+             
+             
+             
         String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire) VALUES(?,?,?,?) ";
        Connection conn;
                    try {
@@ -105,36 +153,34 @@ public class ManageAppointmentController implements Initializable {
                  
                   preparedSt.setString(1,date);
                   preparedSt.setString(2, time);
-                  preparedSt.setString(3, patient_inf);
+                  preparedSt.setString(3, inf_patient);
                   preparedSt.setString(4, text);
                    
                   
                   preparedSt.execute();
                   infoBox("RDV Added Successfully", null, "Success");
-                  
-                  Statement m = conn.createStatement();
-                  m.execute("set @autoid :=0");
-                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
-                  m.execute("ALTER TABLE rdv  auto_increment = 1");
+//                  
+//                  Statement m = conn.createStatement();
+//                  m.execute("set @autoid :=0");
+//                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
+//                  m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                    loadData();
                  
-         comment_box.clear();
+        comment_box.clear();
         dateSelector.setValue(null);
         SelectTimer.setValue(null);
-        combobox.selectionModelProperty().getValue().clearSelection();
-                   
-                
+        name_box.clear();         
+        search_box.clear();
                    
                     } 
                    catch (Exception e)
                         {
                         //infoBox2("You should select a row", null, "Failed");     
-                        }     
+                        } 
+                   
    }}
- /*************************************************************************************************************/
-  
-    
+ 
  /**************************************************************************************************************/
     
      public void loadData(){
@@ -178,8 +224,13 @@ public class ManageAppointmentController implements Initializable {
                if(result.next())
                { 
                    comment_box.setText(result.getString("commentaire"));
-                   /*
                    
+                   name_box.setText( result.getString("info_P"));
+                  
+                   search_box.setText(cni);
+                   /*
+                   *recupérer la date et la afficher
+                   *
                    */
                   
                
@@ -205,17 +256,18 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
           
                   preparedSt.setString(1, dateSelector.getValue().toString());
                   preparedSt.setString(2,SelectTimer.getTime().toString() );
-                  preparedSt.setString(3, combobox.selectionModelProperty().getValue().getSelectedItem());
+                  preparedSt.setString(3, name_box.getText().toString());
                   preparedSt.setString(4, comment_box.getText().toString());
                  
                   preparedSt.execute();
                    infoBox("RDV Modify Successfully", null, "Success");
                  
                   loadData();
-                 comment_box.clear();
+        comment_box.clear();
         dateSelector.setValue(null);
         SelectTimer.setTime(null);
-        combobox.selectionModelProperty().getValue().clearSelection();
+        name_box.clear();
+       
                    
                    
          }
@@ -242,26 +294,25 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                preparedSt.execute();
                infoBox("RDV Deletted Successfully", null, "Success");
                
-               Statement m = conn.createStatement();
-                  m.execute("set @autoid :=0");
-                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
-                  m.execute("ALTER TABLE rdv  auto_increment = 1");
+ //                  Statement m = conn.createStatement();
+//                  m.execute("set @autoid :=0");
+//                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
+//                  m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                loadData();
-               comment_box.clear();
+        comment_box.clear();
         dateSelector.setValue(null);
         SelectTimer.setTime(null);
-        combobox.selectionModelProperty().getValue().clearSelection();
-                  
+        name_box.clear();
                
          }
          catch(Exception e)
          {
              
          }
-         Connection conn=Connexion.ConnecrDB();
-         Statement s = conn.createStatement();
-         s.execute("ALTER TABLE rdv auto_increment = 1");
+//         Connection conn=Connexion.ConnecrDB();
+//         Statement s = conn.createStatement();
+//         s.execute("ALTER TABLE rdv auto_increment = 1");
         
     }
  /*****************************************************************************************************************/
@@ -281,63 +332,18 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
             window.setScene(ab);
             window.show(); } 
  /******************************************************************************************************************/   
- public void loadData2(){
-       list2.clear();
-         try {
-             Connection con=Connexion.ConnecrDB();
-           
-            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(id_pat,' '),concat(nom_pat,' '),concat(prenom_pat,' '),nic_pat) FROM patient ");// order by id_pat asc
-            while (rs.next()) {
-                //get string from db,whichever way 
-                list2.add(new String(rs.getString(1)));
-            }
 
-        } catch (Exception ex) {
-            
-        }
-   }
- 
- 
  /*****************************************************************************************************************/   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     loadData2();
-     combobox.setItems(list2);
-     //SelectTimer.setTime(LocalTime.of(14, 0));
-     //dateSelector.setValue(LocalDate.of(2018, 03, 28));
+     
+     // Par défaut la date resoit la date du RDV
       loadData();
      db = new Connexion();
         
     
  }
-/******************************************************************************************************************/
-    @FXML
-    private void ComboboxSelect(MouseEvent event) {
-       
-    /*  
-    String id=combobox.getSelectionModel().getSelectedItem();
-    String red="SELECT * from patient where concat(concat(nom_pat,'  '),concat(prenom_pat,'   '),nic_pat)='" +id+"'";
-    try{
-               Connection conn=Connexion.ConnecrDB();
-               PreparedStatement preparedSt=conn.prepareStatement(red);
-               ResultSet result=preparedSt.executeQuery();
-               
-               if(result.next())
-               { 
-                   firstName_box.setText(result.getString("prenom_pat"));
-                   familyName_box.setText(result.getString("nom_pat"));
-               
-               }
-                   
-   }
-   catch(Exception e){
-       
-   }
-   */
-    }  
 
-   
-     
  /******************************************************************************************************************/   
 
  public static class Rdv{
@@ -410,7 +416,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
         comment_box.clear();
         dateSelector.setValue(null);
         SelectTimer.setTime(null);
-        combobox.selectionModelProperty().getValue().clearSelection();
+        name_box.clear();
         
     }    
     
