@@ -11,12 +11,14 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import static javafx.LoginAdminController.infoBox;
+import static javafx.ManageAppointmentController.infoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import static javax.swing.UIManager.getString;
 
 /*******************************************************************************************************************/
 public class DoctorPortalController implements Initializable {
@@ -62,8 +65,27 @@ public class DoctorPortalController implements Initializable {
             System.err.println("Error"+ex);
         }
    }
- 
-     
+ /****************************************************************************************************************/
+     public int age_patient()
+     {
+        String id= search_box.getText();
+         int age=0;String date_naiss="";
+         String req="Select dateN_pat from patient where id_pat='" +id+"' ";
+          try{
+                            Connection conn=Connexion.ConnecrDB();
+                            PreparedStatement preparedSt=conn.prepareStatement(req);
+                            ResultSet result=preparedSt.executeQuery();
+
+                            if(result.next())    date_naiss=result.getString(1);
+                             
+             }
+          catch(Exception e){}  
+        
+          char c=date_naiss.charAt(4);
+          String mano = date_naiss.substring(0,4); 
+        int year = Integer.parseInt(mano); 
+         return age=2018-year;
+     }
      
  /***************************************************************************************************************/
     @FXML
@@ -80,9 +102,11 @@ public class DoctorPortalController implements Initializable {
         loadData2();
      combobox.setItems(list2);
      db = new Connexion();
+    // ManageAppointmentController. infoBox(age_patient()+"", null, "Success");
+     
     }  
 
-   
-/*****************************************************************************************************************/    
+  /***************************************************************************************************************/
+       
     
 }

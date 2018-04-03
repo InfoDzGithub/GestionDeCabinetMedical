@@ -382,7 +382,7 @@ public class ManagePatientController implements Initializable {
     @FXML
     public void CancelData(ActionEvent event) throws IOException
     {
-       infoBox("Doctor Canceled Successfully", null, "Success");
+       infoBox("Patient Canceled Successfully", null, "Success");
                   cni_box.clear();
                   age_box.clear();
                  rdb_signal.setSelected(false);
@@ -477,5 +477,6 @@ public class ManagePatientController implements Initializable {
        }    
     
     
- /******************************************************************************************************************/   
+ /****************************************************************************************************************/ 
+    
 }

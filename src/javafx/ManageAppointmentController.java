@@ -75,8 +75,9 @@ public class ManageAppointmentController implements Initializable {
     private TableColumn<Rdv, String> comment_col;
     @FXML
     private Label label_box;
-    String inf_patient=" ",cni="";
-    /********************************************************************************************************/
+    String inf_patient=" ", cni="";
+  
+    /***************************************************************************************************************/
   
     @FXML
     private void search_Patient(ActionEvent event) {
@@ -111,20 +112,6 @@ public class ManageAppointmentController implements Initializable {
     @FXML
     public void insertData(ActionEvent event) { 
         cni=search_box.getText();
-//      String maReq="Select id_pat from patient where nic_pat ='" +cni+"'";
-//       try{
-//                            Connection conn=Connexion.ConnecrDB();
-//                            PreparedStatement preparedSt=conn.prepareStatement(maReq);
-//                            ResultSet result=preparedSt.executeQuery();
-//
-//                            if(result.next())
-//                            { 
-//                             identPatient=result.getString(1);
-//                            }
-//
-//                }
-//                catch(Exception e){} 
-       
       inf_patient=name_box.getText();
       String date=dateSelector.getValue().toString();
       String time=SelectTimer.getTime().toString();
@@ -138,13 +125,6 @@ public class ManageAppointmentController implements Initializable {
              infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
          else{
-             
-             
-             
-             
-             
-             
-             
         String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire) VALUES(?,?,?,?) ";
        Connection conn;
                    try {
@@ -169,7 +149,7 @@ public class ManageAppointmentController implements Initializable {
                  
         comment_box.clear();
         dateSelector.setValue(null);
-        SelectTimer.setValue(null);
+        SelectTimer.setTime(null);
         name_box.clear();         
         search_box.clear();
                    
@@ -192,11 +172,10 @@ public class ManageAppointmentController implements Initializable {
             while (rs.next()) {
                 //get string from db,whichever way 
                 list.add(new Rdv(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ));
-            }
+                               }
 
-        } catch (Exception ex) {
-            
-        }
+            } 
+         catch (Exception ex) { }
    
       id_col.setCellValueFactory(new PropertyValueFactory<Rdv,Integer>("ID"));
       pat_inf_col.setCellValueFactory(new PropertyValueFactory<Rdv,String>("infP"));
@@ -212,7 +191,7 @@ public class ManageAppointmentController implements Initializable {
  /**************************************************************************************************************/
   @FXML
     private void TableMouseClick(MouseEvent event) {
-        
+       
         int myIndex =tab.getSelectionModel().getSelectedIndex();
    String id=tab.getItems().get(myIndex).getID();
    String sqls="Select * from rdv where id_rdv ='" +id+"'";
@@ -227,27 +206,36 @@ public class ManageAppointmentController implements Initializable {
                    
                    name_box.setText( result.getString("info_P"));
                   
-                   search_box.setText(cni);
+                  // search_box.setText(cni);
                    /*
                    *recupérer la date et la afficher
-                   *
                    */
-                  
+                   
+                  String maReq="SELECT nic_pat from patient,rdv where info_P=concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) AND id_rdv='" +id+"'";
+                try{       
+                             Connection conn1=Connexion.ConnecrDB();
+                            PreparedStatement preparedSt2=conn1.prepareStatement(maReq);
+                            ResultSet result2=preparedSt2.executeQuery();
+
+                            if(result2.next())
+                            { 
+                              search_box.setText( result2.getString(1));
+                            }
+
+                }
+                catch(Exception e){}
                
                }
                    
-   }
-   catch(Exception e){
-      
-       
-   }
+        }
+   catch(Exception e){}
     }
     /*************************************************************************************************************/
     @FXML
     private void UpdateDataR(ActionEvent event) {
           int myIndex =tab.getSelectionModel().getSelectedIndex();
          String id=tab.getItems().get(myIndex).getID();
-      
+       
 String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentaire = ?  where id_rdv ='" +id+"' ";
          //
           Connection conn=Connexion.ConnecrDB();
@@ -265,9 +253,9 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                   loadData();
         comment_box.clear();
         dateSelector.setValue(null);
-        SelectTimer.setTime(null);
+      SelectTimer.setTime(null);
         name_box.clear();
-       
+       search_box.clear();
                    
                    
          }
@@ -417,6 +405,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
         dateSelector.setValue(null);
         SelectTimer.setTime(null);
         name_box.clear();
+        search_box.clear();
         
     }    
     
