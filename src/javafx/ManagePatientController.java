@@ -84,6 +84,19 @@ public class ManagePatientController implements Initializable {
     ObservableList<Pat> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Pat> tab;
+  /*********************************************************************************************************/
+    public int ageP(){
+        int year=0;
+        String date=age_box.getText();
+        char c=date.charAt(4);
+          String mano = date.substring(0,4); 
+         year = Integer.parseInt(mano);
+        char ch=currentDay().charAt(4);
+        String yearC=currentDay().substring(0,4); 
+         int currYear=Integer.parseInt(yearC);
+        return currYear-year;
+    }
+    
  /*************************************************************************************************************/
    @FXML
            public static String currentDay()
@@ -160,7 +173,7 @@ public class ManagePatientController implements Initializable {
                }
                else
                {
-                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,dateN_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat) VALUES(?,?,?,?,?,?,?,?,?)";
+                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,dateN_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat,age) VALUES(?,?,?,?,?,?,?,?,?,?)";
                  
                    try {
                   conn=Connexion.ConnecrDB();
@@ -175,7 +188,7 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(7, phoneNumber);
                   preparedSt.setString(8,sitFam);
                   preparedSt.setString(9,currentDay());
-                  
+                   preparedSt.setString(10,ageP()+"");
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
                   

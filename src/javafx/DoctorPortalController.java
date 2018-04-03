@@ -55,7 +55,7 @@ public class DoctorPortalController implements Initializable {
          try {
              Connection con=Connexion.ConnecrDB();
          
-            ResultSet rs = con.createStatement().executeQuery("SELECT info_P FROM rdv where date_rdv='" +ManagePatientController.currentDay()+"' ");//
+            ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(id_pat,' '),info_P) FROM rdv where date_rdv='" +ManagePatientController.currentDay()+"' ");//
             while (rs.next()) {
                 //get string from db,whichever way 
                 list2.add(new String(rs.getString(1)));
@@ -65,6 +65,19 @@ public class DoctorPortalController implements Initializable {
             System.err.println("Error"+ex);
         }
    }
+  /***************************************************************************************************************/
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
  /****************************************************************************************************************/
      public int age_patient()
      {
