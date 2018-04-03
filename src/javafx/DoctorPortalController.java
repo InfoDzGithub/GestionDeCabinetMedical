@@ -7,6 +7,7 @@ package javafx;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +44,18 @@ public class DoctorPortalController implements Initializable {
     private JFXButton search_B;
      ObservableList<String> list2 = FXCollections.observableArrayList();
      private Connexion db;
+    @FXML
+    private JFXTextArea treatmentN_box;
+    @FXML
+    private JFXTextArea diagN_box;
+    @FXML
+    private JFXTextField age_box;
+    @FXML
+    private JFXTextArea treatmentE_box;
+    @FXML
+    private JFXTextArea diagE_box;
+    @FXML
+    private JFXTextField situation_box;
  /*************************************************************************************************************/
       @FXML
     private void combobox_MouseClicke(MouseEvent event) {
@@ -66,18 +79,65 @@ public class DoctorPortalController implements Initializable {
         }
    }
   /***************************************************************************************************************/
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+   @FXML
+    private void insertData(ActionEvent event) {
+        
+         String id =search_box.getText();
+      String medicament =treatmentN_box.getText();
+       String diag =diagN_box.getText();
+     String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
+    
+         if(id.isEmpty()|| patient_inf.isEmpty() || medicament.isEmpty()|| diag.isEmpty())
+         
+         {
+             ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
+         }
+         else{
+        String sql="INSERT INTO traitement (id_pat,nom_medc) VALUES(?,?)";
+        String sql2="INSERT INTO diagnostic (id_pat,nom_diag) VALUES(?,?)";
+       Connection conn;
+                   try {
+                  conn=Connexion.ConnecrDB();
+                  PreparedStatement preparedSt=conn.prepareStatement(sql);
+                   preparedSt.setString(1,id);
+                  preparedSt.setString(2, medicament);
+                  preparedSt.execute();
+                  PreparedStatement preparedSt2=conn.prepareStatement(sql2);
+                  preparedSt2.setString(1,id);
+                  preparedSt2.setString(2, diag);
+                  preparedSt2.execute();
+                  ManageAppointmentController.infoBox("Medical file Added Successfully", null, "Success");
+              /*    search_box.clear();
+                  treatmentN_box.clear();
+                  diagN_box.clear();*/
+              
+                    } 
+                   catch (Exception e)
+                        {
+                        //infoBox2("You should select a row", null, "Failed");     
+                        }     
+    }}
+    /************************************************************************************************************/
+    @FXML
+    private void searchePatInfo(ActionEvent event) {
+        String id =search_box.getText();
+   String sqls="Select age, situation_fam ,nom_medc,nom_diag from patient,traitement,diagnostic where patient.id_pat= traitement.id_pat and diagnostic.id_pat = patient.id_pat and patient.id_pat='" +id+"'";
+                                                                                              
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery();      
+               while(result.next())
+               { 
+                   age_box.setText(result.getString("age"));
+                   situation_box.setText(result.getString("situation_fam"));
+                   treatmentE_box.setText(result.getString("nom_medc"));
+                   diagE_box.setText(result.getString("nom_diag"));
+               }     
+               }
+   catch(Exception e){}
+    }
+   
  /****************************************************************************************************************/
      public int age_patient()
      {
@@ -119,6 +179,8 @@ public class DoctorPortalController implements Initializable {
      
     }  
 
+    
+    
   /***************************************************************************************************************/
        
     
