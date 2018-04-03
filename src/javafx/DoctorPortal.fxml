@@ -36,7 +36,7 @@
             <Image url="@images/doc.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="450.0" layoutY="440.0" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Print" textFill="WHITE">
+      <JFXButton layoutX="450.0" layoutY="440.0" onAction="#print" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Print" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>

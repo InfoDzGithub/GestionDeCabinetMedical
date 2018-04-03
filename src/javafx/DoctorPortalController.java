@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -56,6 +57,7 @@ public class DoctorPortalController implements Initializable {
     private JFXTextArea diagE_box;
     @FXML
     private JFXTextField situation_box;
+    public static String  idPatient=" ";
  /*************************************************************************************************************/
       @FXML
     private void combobox_MouseClicke(MouseEvent event) {
@@ -117,7 +119,7 @@ public class DoctorPortalController implements Initializable {
                         //infoBox2("You should select a row", null, "Failed");     
                         }     
     }}
-    /************************************************************************************************************/
+ /************************************************************************************************************/
     @FXML
     private void searchePatInfo(ActionEvent event) {
         String id =search_box.getText();
@@ -178,6 +180,20 @@ public class DoctorPortalController implements Initializable {
     // ManageAppointmentController. infoBox(age_patient()+"", null, "Success");
      
     }  
+
+    @FXML
+    private void print(ActionEvent event) throws IOException {
+        idPatient=search_box.getText();
+          Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescrition.fxml"));
+           Scene ab = new Scene(loginAdmin);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(ab);
+            window.show(); 
+    }
+    
+    
+     
+    
 
     
     
