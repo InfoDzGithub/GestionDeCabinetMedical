@@ -75,7 +75,7 @@ public class ManageAppointmentController implements Initializable {
     private TableColumn<Rdv, String> comment_col;
     @FXML
     private Label label_box;
-    String inf_patient=" ", cni="";
+    String inf_patient=" ", cni="",idpatient="";
   
     /***************************************************************************************************************/
   
@@ -125,7 +125,26 @@ public class ManageAppointmentController implements Initializable {
              infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
          else{
-        String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire) VALUES(?,?,?,?) ";
+             
+             String req="Select id_pat from patient where nic_pat ='" +cni+"'";
+                try{
+                            Connection conn=Connexion.ConnecrDB();
+                            PreparedStatement preparedSt=conn.prepareStatement(req);
+                            ResultSet result=preparedSt.executeQuery();
+
+                            if(result.next())
+                            { 
+                               
+                               idpatient=result.getString(1);
+                              
+
+                                
+                            }
+
+                }
+                catch(Exception e){} 
+             
+        String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire,id_pat) VALUES(?,?,?,?,?) ";
        Connection conn;
                    try {
                   conn=Connexion.ConnecrDB();
@@ -135,6 +154,8 @@ public class ManageAppointmentController implements Initializable {
                   preparedSt.setString(2, time);
                   preparedSt.setString(3, inf_patient);
                   preparedSt.setString(4, text);
+                  preparedSt.setString(5, idpatient);
+                   
                    
                   
                   preparedSt.execute();
@@ -171,7 +192,7 @@ public class ManageAppointmentController implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM rdv where date_rdv>='"+ManagePatientController.currentDay()+"'");
             while (rs.next()) {
                 //get string from db,whichever way 
-                list.add(new Rdv(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ));
+                list.add(new Rdv(rs.getString(1),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) ));
                                }
 
             } 
