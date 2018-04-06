@@ -57,7 +57,10 @@ public class DoctorPortalController implements Initializable {
     private JFXTextArea diagE_box;
     @FXML
     private JFXTextField situation_box;
-    public static String  idPatient=" ";
+ 
+     public static String  id=" ";
+    @FXML
+    private JFXButton p_id;
  /*************************************************************************************************************/
       @FXML
     private void combobox_MouseClicke(MouseEvent event) {
@@ -84,17 +87,24 @@ public class DoctorPortalController implements Initializable {
    @FXML
     private void insertData(ActionEvent event) {
         
-         String id =search_box.getText();
+         id =search_box.getText();
+      
       String medicament =treatmentN_box.getText();
        String diag =diagN_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
     
-         if(id.isEmpty()|| patient_inf.isEmpty() || medicament.isEmpty()|| diag.isEmpty())
+         if(medicament.isEmpty())
          
          {
-             ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
+           
+             p_id.setDisable(true);
          }
-         else{
+       else 
+         
+         {
+           
+             p_id.setDisable(false);
+         }
         String sql="INSERT INTO traitement (id_pat,nom_medc) VALUES(?,?)";
         String sql2="INSERT INTO diagnostic (id_pat,nom_diag) VALUES(?,?)";
        Connection conn;
@@ -109,22 +119,30 @@ public class DoctorPortalController implements Initializable {
                   preparedSt2.setString(2, diag);
                   preparedSt2.execute();
                   ManageAppointmentController.infoBox("Medical file Added Successfully", null, "Success");
-              /*    search_box.clear();
+                  p_id.setDisable(false);
+                  search_box.clear();
                   treatmentN_box.clear();
-                  diagN_box.clear();*/
+                  diagN_box.clear();
               
                     } 
                    catch (Exception e)
                         {
                         //infoBox2("You should select a row", null, "Failed");     
                         }     
-    }}
+    }
  /************************************************************************************************************/
     @FXML
-    private void searchePatInfo(ActionEvent event) {
-        String id =search_box.getText();
-   String sqls="Select age, situation_fam ,nom_medc,nom_diag from patient,traitement,diagnostic where patient.id_pat= traitement.id_pat and diagnostic.id_pat = patient.id_pat and patient.id_pat='" +id+"'";
-                                                                                              
+    private  void searchePatInfo(ActionEvent event) {
+       id=search_box.getText();
+        String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
+        if(id.isEmpty()|| patient_inf.isEmpty())
+         
+         {
+             ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
+         }
+        else{
+   String sqls="Select age, situation_fam from patient where id_pat='" +id+"'"; 
+                                                                                         
    try{
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(sqls);
@@ -133,36 +151,31 @@ public class DoctorPortalController implements Initializable {
                { 
                    age_box.setText(result.getString("age"));
                    situation_box.setText(result.getString("situation_fam"));
-                   treatmentE_box.setText(result.getString("nom_medc"));
-                   diagE_box.setText(result.getString("nom_diag"));
+                  
                }     
                }
    catch(Exception e){}
-    }
+   
+   
+    String sqls2=" Select nom_medc,nom_diag from patient,traitement,diagnostic where patient.id_pat= traitement.id_pat and diagnostic.id_pat = patient.id_pat and patient.id_pat='" +id+"'";    
+                                                                                          
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt2=conn.prepareStatement(sqls2);
+               ResultSet result2=preparedSt2.executeQuery();      
+               while(result2.next())
+               { 
+                  
+                   treatmentE_box.setText(result2.getString("nom_medc"));
+                   diagE_box.setText(result2.getString("nom_diag"));
+               }     
+               }
+   catch(Exception e){}
+    
+    
+    }}
    
  /****************************************************************************************************************/
-     public int age_patient()
-     {
-        String id= search_box.getText();
-         int age=0;String date_naiss="";
-         String req="Select dateN_pat from patient where id_pat='" +id+"' ";
-          try{
-                            Connection conn=Connexion.ConnecrDB();
-                            PreparedStatement preparedSt=conn.prepareStatement(req);
-                            ResultSet result=preparedSt.executeQuery();
-
-                            if(result.next())    date_naiss=result.getString(1);
-                             
-             }
-          catch(Exception e){}  
-        
-          char c=date_naiss.charAt(4);
-          String mano = date_naiss.substring(0,4); 
-        int year = Integer.parseInt(mano); 
-         return age=2018-year;
-     }
-     
- /***************************************************************************************************************/
     @FXML
     public void log_out(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginDoc.fxml"));
@@ -177,13 +190,13 @@ public class DoctorPortalController implements Initializable {
         loadData2();
      combobox.setItems(list2);
      db = new Connexion();
-    // ManageAppointmentController. infoBox(age_patient()+"", null, "Success");
+   p_id.setDisable(true);
      
     }  
 
     @FXML
     private void print(ActionEvent event) throws IOException {
-        idPatient=search_box.getText();
+      //  idPatient=search_box.getText();
           Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescrition.fxml"));
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

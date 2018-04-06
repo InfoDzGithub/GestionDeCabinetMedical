@@ -423,7 +423,7 @@ public class ManageDoctorsController implements Initializable {
    
     public static void infoBox(String infoMsg,String headerText,String title)         
        {
-           Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+           Alert alert=new Alert(Alert.AlertType.INFORMATION);
            alert.setContentText(infoMsg);
            alert.setTitle(title);
            alert.setHeaderText(headerText);

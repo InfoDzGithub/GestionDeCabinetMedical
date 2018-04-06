@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -168,11 +167,7 @@ public class ManageAppointmentController implements Initializable {
                   
                    loadData();
                  
-        comment_box.clear();
-        dateSelector.setValue(null);
-        SelectTimer.setTime(null);
-        name_box.clear();         
-        search_box.clear();
+                  CancelData(event);
                    
                     } 
                    catch (Exception e)
@@ -226,11 +221,8 @@ public class ManageAppointmentController implements Initializable {
                    comment_box.setText(result.getString("commentaire"));
                    
                    name_box.setText( result.getString("info_P"));
-                  
-                  // search_box.setText(cni);
-                   /*
-                   *recupérer la date et la afficher
-                   */
+                 
+                // SelectTimer;
                    
                   String maReq="SELECT nic_pat from patient,rdv where info_P=concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) AND id_rdv='" +id+"'";
                 try{       
@@ -272,11 +264,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                    infoBox("RDV Modify Successfully", null, "Success");
                  
                   loadData();
-        comment_box.clear();
-        dateSelector.setValue(null);
-      SelectTimer.setTime(null);
-        name_box.clear();
-       search_box.clear();
+                CancelData(event);
                    
                    
          }
@@ -309,10 +297,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
 //                  m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                loadData();
-        comment_box.clear();
-        dateSelector.setValue(null);
-        SelectTimer.setTime(null);
-        name_box.clear();
+       CancelData(event);
                
          }
          catch(Exception e)
@@ -362,15 +347,14 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     
     //constructeur
     public Rdv(String ID,String date,String time,String infP,String comment)
-    {//
+    {
       this.ID = new SimpleStringProperty(ID);
       this.infP = new SimpleStringProperty(infP);
-      //this.date= new SimpleDateFormat("yy/mm/jj");
+
       this.time = new SimpleStringProperty(time);
       this.date = new SimpleStringProperty(date);
       this.comment= new SimpleStringProperty(comment);
-      //SimpleDateFormat d = new SimpleDateFormat ("dd/MM/yyyy" );
-      //SimpleDateFormat h = new SimpleDateFormat ("hh:mm");  
+     
             
     }
     
@@ -399,7 +383,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     
   public static void infoBox(String infoMsg,String headerText,String title)         
        {
-           Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+           Alert alert=new Alert(Alert.AlertType.INFORMATION);
            alert.setContentText(infoMsg);
            alert.setTitle(title);
            alert.setHeaderText(headerText);
@@ -423,8 +407,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
      @FXML
     private void CancelData(ActionEvent event) {
         comment_box.clear();
-        dateSelector.setValue(null);
-        SelectTimer.setTime(null);
+       
         name_box.clear();
         search_box.clear();
         

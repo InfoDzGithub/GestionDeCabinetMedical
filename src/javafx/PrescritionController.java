@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class PrescritionController implements Initializable {
-  String id=DoctorPortalController.idPatient;
+  
     @FXML
     private Text date_box;
     @FXML
@@ -39,11 +39,14 @@ public class PrescritionController implements Initializable {
     private Label trait_box;
     @FXML
     private AnchorPane panel_box;
-    
+     private Connexion db;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+           db = new Connexion();
+           String id= DoctorPortalController.id;
         
+          
         String sqls="Select age, nom_pat ,prenom_pat,nom_medc from patient, traitement where patient.id_pat= traitement.id_pat  and patient.id_pat='" +id+"'";
                                                                                               
    try{
@@ -63,7 +66,8 @@ public class PrescritionController implements Initializable {
          date_box.setText( ManagePatientController.currentDay());
     }    
 /******************************************************************************************************************/
-  @FXML
+
+         @FXML
     private void PrInt(ActionEvent event) {
         
         //Second Method
@@ -94,9 +98,10 @@ public class PrescritionController implements Initializable {
         return job.endJob();
 
     }
- @FXML
-    private void back_up(ActionEvent event) throws IOException {
-         Parent loginAdmin = FXMLLoader.load(getClass().getResource("DoctorPoral.fxml"));
+  
+    @FXML
+    private void buttonBuck(ActionEvent event) throws IOException {
+         Parent loginAdmin = FXMLLoader.load(getClass().getResource("DoctorPortal.fxml"));
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
