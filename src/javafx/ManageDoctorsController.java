@@ -242,6 +242,7 @@ public class ManageDoctorsController implements Initializable {
     @FXML
     private void UpdateData(ActionEvent event) throws SQLException {
         int myIndex =tab.getSelectionModel().getSelectedIndex();
+         if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
          String req="Update medecin set num_cni = ? , prenom_med = ? , nom_med = ? , adress_med = ? ,num_tel_med = ? , username_med = ? , password_med = ? ,sexe_med = ?  where id_med ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
@@ -281,6 +282,11 @@ public class ManageDoctorsController implements Initializable {
          {
              
          }
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
     
     }
     /**************************************************************************************************/
@@ -301,6 +307,7 @@ public class ManageDoctorsController implements Initializable {
     private void DeleteData(ActionEvent event) throws SQLException {
         
         int myIndex =tab.getSelectionModel().getSelectedIndex();
+         if(myIndex > -1){
         String id=tab.getItems().get(myIndex).getID();
         String requette="Delete from medecin where id_med ='" +id+"'";
          try{
@@ -330,7 +337,11 @@ public class ManageDoctorsController implements Initializable {
              
          }
        
-         
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
          Connection conn=Connexion.ConnecrDB();
          Statement s = conn.createStatement();
          s.execute("ALTER TABLE medecin auto_increment = 1");

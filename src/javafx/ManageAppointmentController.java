@@ -94,13 +94,8 @@ public class ManageAppointmentController implements Initializable {
                             ResultSet result=preparedSt.executeQuery();
 
                             if(result.next())
-                            { 
-                               
-                                name_box.setText(result.getString(1));
-                              
-
-                                
-                            }
+                             name_box.setText(result.getString(1));
+                         
 
                 }
                 catch(Exception e){}  
@@ -131,16 +126,9 @@ public class ManageAppointmentController implements Initializable {
                             PreparedStatement preparedSt=conn.prepareStatement(req);
                             ResultSet result=preparedSt.executeQuery();
 
-                            if(result.next())
-                            { 
-                               
-                               idpatient=result.getString(1);
-                              
-
-                                
-                            }
-
-                }
+                            if(result.next())  idpatient=result.getString(1);
+                            
+                    }
                 catch(Exception e){} 
              
         String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire,id_pat) VALUES(?,?,?,?,?) ";
@@ -222,8 +210,6 @@ public class ManageAppointmentController implements Initializable {
                    
                    name_box.setText( result.getString("info_P"));
                  
-                // SelectTimer;
-                   
                   String maReq="SELECT nic_pat from patient,rdv where info_P=concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) AND id_rdv='" +id+"'";
                 try{       
                              Connection conn1=Connexion.ConnecrDB();
@@ -247,10 +233,10 @@ public class ManageAppointmentController implements Initializable {
     @FXML
     private void UpdateDataR(ActionEvent event) {
           int myIndex =tab.getSelectionModel().getSelectedIndex();
+           if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
        
 String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentaire = ?  where id_rdv ='" +id+"' ";
-         //
           Connection conn=Connexion.ConnecrDB();
          try{
           PreparedStatement preparedSt=conn.prepareStatement(req);
@@ -272,6 +258,11 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          {
              
          }
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
     
     }
 
@@ -281,6 +272,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
         
         
        int myIndex=tab.getSelectionModel().getSelectedIndex();
+        if(myIndex > -1){
         String id=tab.getItems().get(myIndex).getID();
         
 
@@ -291,10 +283,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                preparedSt.execute();
                infoBox("RDV Deletted Successfully", null, "Success");
                
- //                  Statement m = conn.createStatement();
-//                  m.execute("set @autoid :=0");
-//                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
-//                  m.execute("ALTER TABLE rdv  auto_increment = 1");
+ 
                   
                loadData();
        CancelData(event);
@@ -304,10 +293,12 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          {
              
          }
-//         Connection conn=Connexion.ConnecrDB();
-//         Statement s = conn.createStatement();
-//         s.execute("ALTER TABLE rdv auto_increment = 1");
-        
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
+       
     }
  /*****************************************************************************************************************/
      @FXML

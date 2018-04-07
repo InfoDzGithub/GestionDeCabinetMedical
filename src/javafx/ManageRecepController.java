@@ -219,6 +219,7 @@ public class ManageRecepController implements Initializable {
     private void DeleteDataR(ActionEvent event) throws SQLException {
         
         int myIndex =tab.getSelectionModel().getSelectedIndex();
+        if(myIndex > -1){
         String id=tab.getItems().get(myIndex).getID();
         String requette="Delete from receptioniste where id_recep ='" +id+"'";
          try{
@@ -247,6 +248,11 @@ public class ManageRecepController implements Initializable {
          {
              
          }
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
         
          Connection conn=Connexion.ConnecrDB();
          Statement s = conn.createStatement();
@@ -260,6 +266,7 @@ public class ManageRecepController implements Initializable {
     private void TableMouseClick(MouseEvent event) {
        
    int myIndex =tab.getSelectionModel().getSelectedIndex();
+  
    String id=tab.getItems().get(myIndex).getID();
    String sqls="Select * from receptioniste where id_recep ='" +id+"'";
    try{
@@ -287,11 +294,13 @@ public class ManageRecepController implements Initializable {
    catch(Exception e){
        
    }
+  
     }
 /**************************************************************************************************************/
     @FXML
     private void UpdateRData(ActionEvent event) {
           int myIndex =tab.getSelectionModel().getSelectedIndex();
+ if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
          String req="Update receptioniste set num_cni = ? , prenom_recep = ? , nom_recep = ? , adresse_recep = ? ,num_tel_recep = ? , username_recep = ? , password_recep = ? ,sexe_recep = ?  where id_recep ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
@@ -331,6 +340,11 @@ public class ManageRecepController implements Initializable {
          {
              
          }
+          }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
     }
 /******************************************************************************************************************/
 public class Receptioniste {

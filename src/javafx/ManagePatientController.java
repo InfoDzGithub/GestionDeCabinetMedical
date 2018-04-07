@@ -296,6 +296,7 @@ public class ManagePatientController implements Initializable {
      @FXML
     private void UpdateData(ActionEvent event)  {
         int myIndex =tab.getSelectionModel().getSelectedIndex();
+         if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
          String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , dateN_pat = ? , situation_fam = ? ,sexe_pat = ?  where id_pat ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
@@ -342,6 +343,11 @@ public class ManagePatientController implements Initializable {
          {
              
          }
+         }
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
     
     } 
   /***********************************************************************************************************/
@@ -350,6 +356,7 @@ public class ManagePatientController implements Initializable {
         
         
        int myIndex=tab.getSelectionModel().getSelectedIndex();
+ if(myIndex > -1){
         String id=tab.getItems().get(myIndex).getID();
         
 //       if(myIndex == -1)
@@ -385,6 +392,11 @@ public class ManagePatientController implements Initializable {
          {
              
          }
+}
+   else
+   {
+       infoBox2("You should select a row first", null, "Failed");
+   }
 //         Connection conn=Connexion.ConnecrDB();
 //         Statement s = conn.createStatement();
 //         s.execute("ALTER TABLE patient auto_increment = 1");

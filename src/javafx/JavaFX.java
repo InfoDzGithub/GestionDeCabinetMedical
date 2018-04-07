@@ -5,6 +5,8 @@
  */
 package javafx;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +22,8 @@ public class JavaFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+//         Image icone = Toolkit.getDefaultToolkit().getImage("C:\Users\User\Desktop\businessIcon.png");
+//         JavaFX.setIconImage(icone);
         Parent root = FXMLLoader.load(getClass().getResource("Accueil.fxml"));
         
         stage.initStyle(StageStyle.UNDECORATED);
@@ -33,6 +37,7 @@ public class JavaFX extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
         launch(args);
     }
     
