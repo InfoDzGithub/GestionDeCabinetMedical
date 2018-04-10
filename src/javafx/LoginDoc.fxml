@@ -38,19 +38,19 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <JFXButton layoutX="176.0" layoutY="282.0" onAction="#doctorPortal" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #64B5F6;" text=" Login" textFill="WHITE">
+            <JFXButton layoutX="176.0" layoutY="282.0" onAction="#doctorPortal" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #64B5F6;" text=" Login" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Serif Bold Italic" size="15.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
-      <JFXButton layoutY="5.0" onAction="#changeScreen8">
+      <JFXButton ellipsisString="" onAction="#changeScreen8" prefHeight="39.0" prefWidth="45.0">
          <graphic>
             <FontAwesomeIconView fill="#64b5f6" glyphName="REPLY" size="25" />
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="710.0" maxWidth="30.0" minWidth="30.0" onAction="#exitApplication" prefWidth="30.0">
+      <JFXButton layoutX="710.0" maxWidth="39.0" minWidth="30.0" onAction="#exitApplication" prefHeight="39.0" prefWidth="39.0">
          <graphic>
             <FontAwesomeIconView fill="#64b5f6" glyphName="TIMES" size="30" strokeLineCap="ROUND" strokeType="INSIDE" />
          </graphic>

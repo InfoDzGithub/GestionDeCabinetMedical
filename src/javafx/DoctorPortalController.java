@@ -192,23 +192,17 @@ public class DoctorPortalController implements Initializable {
      db = new Connexion();
    p_id.setDisable(true);
      
-    }  
+    } 
 
     @FXML
-    private void print(ActionEvent event) throws IOException {
-      //  idPatient=search_box.getText();
-          Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescrition.fxml"));
+    private void redirection(ActionEvent event) throws IOException {
+        Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescription.fxml"));
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
-            window.show(); 
+            window.show();
     }
-    
-    
-     
-    
-
-    
+   
     
   /***************************************************************************************************************/
        

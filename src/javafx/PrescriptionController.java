@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class PrescritionController implements Initializable {
+public class PrescriptionController implements Initializable {
   
     @FXML
     private Text date_box;
@@ -77,7 +78,10 @@ public class PrescritionController implements Initializable {
             System.out.println("error");
         }
     }
-
+@FXML
+public void exitApplication(ActionEvent event) {
+   Platform.exit();
+}
    
                                           
 /****************************************************************************************************************/

@@ -13,151 +13,154 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="850.0" minHeight="600.0" minWidth="850.0" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ManagePatientController">
-   <children>
-         <Label layoutX="81.0" layoutY="30.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Patient" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="35.0" />
-         </font>
-      </Label>
-      <Label layoutX="20.0" layoutY="165.0" prefHeight="21.0" prefWidth="96.0" text="First name" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-    <JFXButton layoutX="712.0" layoutY="103.0" onAction="#insertData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Add" textFill="#fffbfb">
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-         <effect>
-            <Reflection />
-         </effect>
-      </JFXButton>
-      <JFXButton layoutX="712.0" layoutY="502.0" onAction="#DeleteData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Delete" textFill="#f8f6f6">
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-         <effect>
-            <Reflection />
-         </effect>
-      </JFXButton>
-       <JFXButton layoutX="712.0" layoutY="403.0" onAction="#UpdateData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Update" textFill="#fffbfb">
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-         <effect>
-            <Reflection />
-         </effect>
-      </JFXButton>
-       <ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/pat.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="200.0" layoutY="125.0" prefHeight="19.0" prefWidth="96.0" text="CNI_patient" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="300.0" layoutY="120.0" maxWidth="175.0" minWidth="144.0" prefHeight="31.0" prefWidth="175.0" />
-      <Label layoutX="350.0" layoutY="165.0" prefHeight="19.0" prefWidth="104.0" text="Family name" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="125.0" layoutY="160.0" prefHeight="30.0" prefWidth="150.0" />
-      <JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="470.0" layoutY="160.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label layoutX="20.0" layoutY="195.0" prefHeight="21.0" prefWidth="96.0" text="Birth day" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="350.0" layoutY="195.0" prefHeight="21.0" prefWidth="133.0" text="Phone_Number" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="age_box" focusColor="#64b5f6" layoutX="116.0" layoutY="190.0" maxWidth="208.0" minWidth="208.0" prefHeight="30.0" prefWidth="208.0" />
-      <JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="483.0" layoutY="190.0" maxWidth="160.0" minWidth="160.0" prefHeight="30.0" prefWidth="160.0" />
-      <Label layoutX="20.0" layoutY="225.0" prefHeight="17.0" prefWidth="68.0" text="Address" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="address_box" focusColor="#64b5f6" layoutX="98.0" layoutY="220.0" maxWidth="500.0" minWidth="291.0" prefHeight="30.0" prefWidth="500.0" />
-      <Label layoutX="20.0" layoutY="255.0" prefHeight="17.0" prefWidth="68.0" text="Gender" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="302.0" layoutY="255.0" prefHeight="19.0" prefWidth="133.0" text="Family situation" textFill="#64b5f6">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Label>
-     <JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
-         </graphic>
-         <font>
-            <Font name="Bell MT" size="12.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="765.0" layoutY="35.0" onAction="#Sign_Out" text="Logout" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="30" />
-         </graphic>
-          <font>
-            <Font name="Bell MT" size="12.0" />
-         </font>
-      </JFXButton>
-      <TableView fx:id="tab" layoutX="23.0" layoutY="350.0" onMouseClicked="#TableMouseClick" prefHeight="236.0" prefWidth="688.0">
-        <columns>
-            <TableColumn fx:id="id_col" prefWidth="32.0" text="ID" />
-          <TableColumn fx:id="cni_col" prefWidth="72.0" text="Cni_patient" />
-          <TableColumn fx:id="firstName_col" prefWidth="70.0" text="First name" />
-            <TableColumn fx:id="familyName_col" prefWidth="87.0" text="Family name" />
-            <TableColumn fx:id="age_col" prefWidth="65.0" text="Bith day" />
-            <TableColumn fx:id="gender_col" prefWidth="49.0" text="Gender" />
-            <TableColumn fx:id="situationF_col" prefWidth="99.0" text="Family situation" />
-            <TableColumn fx:id="phoneNumber_col" prefWidth="101.0" text="Phone_Number" />
-            <TableColumn fx:id="address_col" prefWidth="112.0" text="Address" />
-        </columns>
-      </TableView>
-      <JFXRadioButton fx:id="rdb_male" layoutX="98.0" layoutY="256.0" text="Male">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="GroupS" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="rdb_female" layoutX="190.0" layoutY="256.0" text="Female" toggleGroup="$GroupS">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="rdb_married" layoutX="554.0" layoutY="256.0" text="Married">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="GroupS1" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="rdb_signal" layoutX="454.0" layoutY="256.0" text="Signal" toggleGroup="$GroupS1">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </JFXRadioButton>
-      <JFXButton layoutX="709.0" layoutY="300.0" onAction="#CancelData" prefHeight="25.0" prefWidth="113.0" style="-fx-background-color: #64B5F6;" text="Cancel" textFill="#fffbfb">
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-         <effect>
-            <Reflection />
-         </effect>
-      </JFXButton>
-   </children>
+<children>
+<Label layoutX="81.0" layoutY="30.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Patient" textFill="WHITE">
+<font>
+<Font name="System Italic" size="35.0" />
+</font>
+</Label>
+<Label layoutX="10.0" layoutY="159.0" prefHeight="21.0" prefWidth="113.0" text="First Name :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXButton layoutX="736.0" layoutY="88.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="  Add" textFill="#fffbfb">
+<font>
+<Font name="Serif Bold" size="18.0" />
+</font>
+<effect>
+<Reflection />
+</effect>
+</JFXButton>
+<JFXButton layoutX="736.0" layoutY="525.0" onAction="#DeleteData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="  Delete" textFill="#f8f6f6">
+<font>
+<Font name="Serif Bold" size="19.0" />
+</font>
+<effect>
+<Reflection />
+</effect>
+</JFXButton>
+<JFXButton layoutX="736.0" layoutY="444.0" onAction="#UpdateData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="  Update" textFill="#fffbfb">
+<font>
+<Font name="Serif Bold" size="18.0" />
+</font>
+<effect>
+<Reflection />
+</effect>
+</JFXButton>
+<ImageView fitHeight="110.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/pat.png" />
+</image>
+</ImageView>
+<Label layoutX="210.0" layoutY="106.0" prefHeight="21.0" prefWidth="126.0" text="Patient's CNI :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="336.0" layoutY="102.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="144.0" prefHeight="30.0" prefWidth="200.0" />
+<Label layoutX="420.0" layoutY="159.0" prefHeight="21.0" prefWidth="126.0" text="Family Name :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="112.0" layoutY="155.0" maxHeight="30.0" maxWidth="222.0" minHeight="30.0" minWidth="212.0" prefHeight="30.0" prefWidth="220.0" />
+<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="548.0" layoutY="155.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<Label layoutX="10.0" layoutY="195.0" prefHeight="21.0" prefWidth="133.0" text="Date Of Birth :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<Label layoutX="420.0" layoutY="195.0" prefHeight="21.0" prefWidth="141.0" text="Phone_Number :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXTextField fx:id="age_box" focusColor="#64b5f6" layoutX="133.0" layoutY="190.0" maxWidth="212.0" minWidth="200.0" prefHeight="31.0" prefWidth="212.0" />
+<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="561.0" layoutY="191.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="192.0" prefHeight="30.0" prefWidth="192.0" />
+<Label layoutX="10.0" layoutY="235.0" prefHeight="21.0" prefWidth="89.0" text="Address :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXTextField fx:id="address_box" focusColor="#64b5f6" layoutX="98.0" layoutY="230.0" maxHeight="30.0" maxWidth="666.0" minHeight="30.0" minWidth="291.0" prefHeight="30.0" prefWidth="666.0" />
+<Label layoutX="10.0" layoutY="273.0" prefHeight="21.0" prefWidth="85.0" text="Gender :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<Label layoutX="420.0" layoutY="273.0" prefHeight="21.0" prefWidth="150.0" text="Family Situation :" textFill="#64b5f6">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Label>
+<JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
+<graphic>
+<FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
+</graphic>
+<font>
+<Font name="Serif Bold Italic" size="13.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="765.0" layoutY="35.0" onAction="#Sign_Out" text="Logout" textFill="WHITE">
+<graphic>
+<FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="30" />
+</graphic>
+<font>
+<Font name="Serif Bold Italic" size="13.0" />
+</font>
+</JFXButton>
+<TableView fx:id="tab" layoutX="10.0" layoutY="315.0" onMouseClicked="#TableMouseClick" prefHeight="285.0" prefWidth="713.0">
+<columns>
+<TableColumn fx:id="id_col" prefWidth="32.0" text="ID" />
+<TableColumn fx:id="cni_col" prefWidth="61.0" text="N° CNI" />
+<TableColumn fx:id="firstName_col" prefWidth="72.0" text="First_name" />
+<TableColumn fx:id="familyName_col" prefWidth="87.0" text="Family_name" />
+<TableColumn fx:id="age_col" prefWidth="81.0" text="DOB" />
+<TableColumn fx:id="gender_col" prefWidth="56.0" text="Gender" />
+<TableColumn fx:id="situationF_col" prefWidth="97.0" text="Family_situation" />
+<TableColumn fx:id="phoneNumber_col" prefWidth="98.0" text="Phone_Number" />
+<TableColumn fx:id="address_col" prefWidth="128.0" text="Address" />
+</columns>
+</TableView>
+<JFXRadioButton fx:id="rdb_male" layoutX="98.0" layoutY="274.0" text="Male" selectedColor="#64b5f6">
+<font>
+<Font size="14.0" />
+</font>
+<toggleGroup>
+<ToggleGroup fx:id="GroupS" />
+</toggleGroup>
+</JFXRadioButton>
+<JFXRadioButton fx:id="rdb_female" layoutX="190.0" layoutY="274.0" text="Female" toggleGroup="$GroupS" selectedColor="#64b5f6">
+<font>
+<Font size="14.0" />
+</font>
+</JFXRadioButton>
+<JFXRadioButton fx:id="rdb_married" layoutX="670.0" layoutY="274.0" text="Married" selectedColor="#64b5f6">
+<font>
+<Font size="14.0" />
+</font>
+<toggleGroup>
+<ToggleGroup fx:id="GroupS1" />
+</toggleGroup>
+</JFXRadioButton>
+<JFXRadioButton fx:id="rdb_signal" layoutX="570.0" layoutY="274.0" text="Single" toggleGroup="$GroupS1" selectedColor="#64b5f6">
+<font>
+<Font size="14.0" />
+</font>
+</JFXRadioButton>
+<JFXButton layoutX="736.0" layoutY="359.0" onAction="#CancelData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text=" Cancel" textFill="#fffbfb">
+<font>
+<Font name="Serif Bold" size="19.0" />
+</font>
+<effect>
+<Reflection />
+</effect>
+</JFXButton>
+<FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="749.0" layoutY="116.0" size="18" />
+<FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
+<FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
+<FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
+</children>
 </AnchorPane>

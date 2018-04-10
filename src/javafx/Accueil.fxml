@@ -8,57 +8,70 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.AccueilController">
-   <children>
-        <ImageView fitHeight="500.0" fitWidth="750.0" layoutY="1.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/top.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutY="50.0" maxHeight="50.0" maxWidth="750.0" minHeight="50.0" minWidth="750.0" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #64B5F6;" text="                Medical Office Management" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="35.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="RIGHT" graphicTextGap="8.0" layoutX="-1.0" layoutY="131.0" prefHeight="40.0" prefWidth="143.0" style="-fx-background-color: white;" text="          Login  as" textAlignment="CENTER" textFill="#64b5f6">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="220.0" layoutY="353.0" onAction="#changeScreen" style="-fx-background-color: white;" text="Admin" textFill="#64b5f6">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="326.0" layoutY="353.0" onAction="#changeScreen2" style="-fx-background-color: white;" text="Receptionist" textFill="#64b5f6">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="469.0" layoutY="353.0" onAction="#changeScreen3" style="-fx-background-color: white;" text="Doctor" textFill="#64b5f6">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </JFXButton>
-      <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="202.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/admi.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="327.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/secreterial.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="451.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/doc.png" />
-         </image>
-      </ImageView>
-     <JFXButton layoutX="710.0" maxWidth="30.0" minWidth="30.0" onAction="#exitApplication" prefWidth="30.0">
-         <graphic>
-            <FontAwesomeIconView fill="#64b5f6" glyphName="TIMES" size="35" strokeLineCap="ROUND" strokeType="INSIDE" />
-         </graphic>
-      </JFXButton>
-   </children>
+
+<AnchorPane id="AnchorPane" maxHeight="500.0" maxWidth="750.0" minHeight="500.0" minWidth="750.0" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.AccueilController">
+<children>
+<ImageView fitHeight="500.0" fitWidth="750.0" layoutY="1.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/top.jpg" />
+</image>
+</ImageView>
+<Label layoutY="50.0" maxHeight="50.0" maxWidth="750.0" minHeight="50.0" minWidth="750.0" prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #64B5F6;" text="                Medical Office Management" textFill="WHITE">
+<font>
+<Font name="System Italic" size="35.0" />
+</font>
+</Label>
+<Label contentDisplay="RIGHT" ellipsisString="" graphicTextGap="8.0" layoutX="-1.0" layoutY="131.0" prefHeight="40.0" prefWidth="143.0" style="-fx-background-color: white;" text="          Login as" textAlignment="CENTER" textFill="#64b5f6">
+<font>
+<Font name="System Italic" size="22.0" />
+</font>
+</Label>
+<JFXButton layoutX="220.0" layoutY="350.0" onAction="#changeScreen" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: white;" text="Admin" textFill="#64b5f6">
+<font>
+<Font name="System Bold Italic" size="14.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="326.0" layoutY="350.0" onAction="#changeScreen2" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: white;" text="Receptionist" textFill="#64b5f6">
+<font>
+<Font name="System Bold Italic" size="14.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="470.0" layoutY="350.0" onAction="#changeScreen3" prefHeight="30.0" prefWidth="76.0" style="-fx-background-color: white;" text="Doctor" textFill="#64b5f6">
+<font>
+<Font name="System Bold Italic" size="14.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="710.0" maxWidth="30.0" minWidth="30.0" onAction="#exitApplication" prefWidth="30.0">
+<graphic>
+<FontAwesomeIconView fill="#64b5f6" glyphName="TIMES" size="35" strokeLineCap="ROUND" strokeType="INSIDE" />
+</graphic>
+</JFXButton>
+<JFXButton ellipsisString="" layoutX="450.0" layoutY="230.0" onAction="#changeScreen3" prefHeight="110.0" prefWidth="120.0">
+<graphic>
+<ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/doc.png" />
+</image>
+</ImageView>
+</graphic>
+</JFXButton>
+<JFXButton ellipsisString="" layoutX="200.0" layoutY="230.0" onAction="#changeScreen" prefHeight="110.0" prefWidth="120.0">
+<graphic>
+<ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/admi.png" />
+</image>
+</ImageView>
+</graphic>
+</JFXButton>
+<JFXButton ellipsisString="" layoutX="325.0" layoutY="230.0" onAction="#changeScreen2" prefHeight="110.0" prefWidth="120.0">
+<graphic>
+<ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/secreterial.png" />
+</image>
+</ImageView>
+</graphic>
+</JFXButton>
+</children>
 </AnchorPane>

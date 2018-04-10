@@ -17,137 +17,141 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="850.0" minHeight="600.0" minWidth="850.0" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ManageDoctorsController">
-     <children>
-   
-         <Label layoutX="83.0" layoutY="24.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Doctors" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="35.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="firstName_box" focusColor="#2196f3" layoutX="127.0" layoutY="145.0" maxWidth="187.0" minWidth="178.0" prefHeight="31.0" prefWidth="187.0" />
-      <JFXTextField fx:id="cni_box" focusColor="#2196f3" layoutX="119.0" layoutY="107.0" maxWidth="178.0" minWidth="178.0" prefHeight="31.0" prefWidth="178.0" />
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's CNI">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font></Text>
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font></Text>
-      <JFXTextField fx:id="familyName_box" focusColor="#2196f3" layoutX="583.0" layoutY="148.0" maxWidth="178.0" minWidth="162.0" prefHeight="31.0" prefWidth="178.0" />
-      <Text fill="#64b5f6" layoutX="450.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="address_box" focusColor="#2196f3" layoutX="92.0" layoutY="188.0" maxWidth="584.0" minWidth="531.0" prefHeight="31.0" prefWidth="584.0" />
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/med.png" />
-         </image>
-      </ImageView>
-      <JFXTextField fx:id="phoneNumber_box" focusColor="#2196f3" layoutX="165.0" layoutY="229.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone_Number">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#64b5f6" layoutX="450.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="userName_box" focusColor="#2196f3" layoutX="127.0" layoutY="268.0" maxWidth="214.0" minWidth="178.0" prefHeight="31.0" prefWidth="214.0" />
-      <Text fill="#64b5f6" layoutX="10.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="password_box" focusColor="#2196f3" layoutX="546.0" layoutY="268.0" maxWidth="227.0" minWidth="178.0" prefHeight="31.0" prefWidth="227.0" />
-      <Text fill="#64b5f6" layoutX="450.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-         <font>
-            <Font name="Arial Italic" size="18.0" />
-         </font>
-      </Text>
-      <JFXButton layoutX="738.0" layoutY="493.0" onAction="#DeleteData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Delete" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="738.0" layoutY="404.0" onAction="#UpdateData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Update" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <GlyphsStack layoutX="435.0" layoutY="90.0" />
-      <JFXButton layoutX="736.0" layoutY="85.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <TableView fx:id="tab" layoutX="10.0" layoutY="330.0" onMouseClicked="#TableMouseClick" prefHeight="270.0" prefWidth="720.0">
-        <columns>
-            <TableColumn fx:id="id_col" prefWidth="34.0" text="ID" />
-            <TableColumn fx:id="cni_col" prefWidth="68.0" text="Num_CNI" />
-          <TableColumn fx:id="firstName_col" prefWidth="78.0" text="first_name" />
-            <TableColumn fx:id="familyName_col" prefWidth="81.0" text="family_name" />
-            <TableColumn fx:id="gender_col" prefWidth="78.0" text="Gender" />
-            <TableColumn fx:id="phoneNumber_col" prefWidth="104.0" text="Phone_Number" />
-            <TableColumn fx:id="address_col" prefWidth="114.0" text="Address" />
-            <TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="86.0" text="User_Name" />
-            <TableColumn fx:id="password_col" prefWidth="76.0" text="Password" />
-        </columns>
-      </TableView>
-      <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" text="" />
-         </graphic>
-         <font>
-            <Font name="Bell MT" size="12.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="765.0" layoutY="29.0" onAction="#Sign_Out" text="Logout" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="30" />
-         </graphic>
-          <font>
-            <Font name="Bell MT" size="12.0" />
-         </font>
-      </JFXButton>
-      <JFXRadioButton fx:id="rdb_male" layoutX="550.0" layoutY="235.0" text="Male">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="myGroup" />
-         </toggleGroup>
-      </JFXRadioButton>
-      <JFXRadioButton fx:id="rdb_female" layoutX="634.0" layoutY="235.0" text="Female" toggleGroup="$myGroup">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </JFXRadioButton>
-      <JFXButton layoutX="736.0" layoutY="330.0" onAction="#CancelData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="Cancel" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      </children>
+<children>
+
+<Label layoutX="83.0" layoutY="24.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Doctors" textFill="WHITE">
+<font>
+<Font name="System Italic" size="35.0" />
+</font>
+</Label>
+<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="120.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="325.0" layoutY="85.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<Text fill="#64b5f6" layoutX="210.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's CNI :" wrappingWidth="114.4521484375">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font></Text>
+<Text fill="#64b5f6" layoutX="10.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font></Text>
+<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="540.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<Text fill="#64b5f6" layoutX="420.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<JFXTextField fx:id="address_box" focusColor="#64b5f6" layoutX="90.0" layoutY="182.0" maxHeight="30.0" maxWidth="645.0" minHeight="30.0" minWidth="531.0" prefHeight="30.0" prefWidth="645.0" />
+<Text fill="#64b5f6" layoutX="10.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<ImageView fitHeight="100.0" fitWidth="100.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@images/med.png" />
+</image>
+</ImageView>
+<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="160.0" layoutY="224.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<Text fill="#64b5f6" layoutX="10.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone_Number :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<Text fill="#64b5f6" layoutX="420.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<JFXTextField fx:id="userName_box" focusColor="#64b5f6" layoutX="120.0" layoutY="273.0" maxHeight="30.0" maxWidth="240.0" minHeight="31.0" minWidth="240.0" prefHeight="30.0" prefWidth="240.0" />
+<Text fill="#64b5f6" layoutX="10.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<JFXTextField fx:id="password_box" focusColor="#64b5f6" layoutX="521.0" layoutY="273.0" maxHeight="30.0" maxWidth="222.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="222.0" />
+<Text fill="#64b5f6" layoutX="420.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :">
+<font>
+<Font name="Arial Italic" size="18.0" />
+</font>
+</Text>
+<JFXButton layoutX="736.0" layoutY="525.0" onAction="#DeleteData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text=" Delete" textFill="WHITE">
+<effect>
+<Reflection />
+</effect>
+<font>
+<Font name="Serif Bold" size="19.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="736.0" layoutY="444.0" onAction="#UpdateData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="   Update" textFill="WHITE">
+<effect>
+<Reflection />
+</effect>
+<font>
+<Font name="Serif Bold" size="18.0" />
+</font>
+</JFXButton>
+<GlyphsStack layoutX="435.0" layoutY="90.0" />
+<JFXButton layoutX="736.0" layoutY="85.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="  Add" textAlignment="CENTER" textFill="WHITE">
+<effect>
+<Reflection />
+</effect>
+<font>
+<Font name="Serif Bold" size="18.0" />
+</font>
+</JFXButton>
+<TableView fx:id="tab" layoutX="10.0" layoutY="315.0" onMouseClicked="#TableMouseClick" prefHeight="285.0" prefWidth="713.0">
+<columns>
+<TableColumn fx:id="id_col" prefWidth="34.0" text="ID" />
+<TableColumn fx:id="cni_col" prefWidth="68.0" text="N° CNI" />
+<TableColumn fx:id="firstName_col" prefWidth="78.0" text="First_name" />
+<TableColumn fx:id="familyName_col" prefWidth="81.0" text="Family_name" />
+<TableColumn fx:id="gender_col" prefWidth="68.0" text="Gender" />
+<TableColumn fx:id="phoneNumber_col" prefWidth="114.0" text="Phone_Number" />
+<TableColumn fx:id="address_col" prefWidth="114.0" text="Address" />
+<TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="86.0" text="User_Name" />
+<TableColumn fx:id="password_col" prefWidth="76.0" text="Password" />
+</columns>
+</TableView>
+<JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">
+<graphic>
+<FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" text="" />
+</graphic>
+<font>
+<Font name="Serif Bold Italic" size="12.0" />
+</font>
+</JFXButton>
+<JFXButton layoutX="765.0" layoutY="29.0" onAction="#Sign_Out" text="Logout" textFill="WHITE">
+<graphic>
+<FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="30" />
+</graphic>
+<font>
+<Font name="Serif Bold Italic" size="12.0" />
+</font>
+</JFXButton>
+<JFXRadioButton fx:id="rdb_male" layoutX="520.0" layoutY="234.0" text="Male" selectedColor="#64b5f6">
+<font>
+<Font name="Arial" size="14.0" />
+</font>
+<toggleGroup>
+<ToggleGroup fx:id="myGroup" />
+</toggleGroup>
+</JFXRadioButton>
+<JFXRadioButton fx:id="rdb_female" layoutX="630.0" layoutY="234.0" text="Female" toggleGroup="$myGroup" selectedColor="#64b5f6">
+<font>
+<Font name="Arial" size="14.0" />
+</font>
+</JFXRadioButton>
+<JFXButton layoutX="736.0" layoutY="359.0" onAction="#CancelData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="   Cancel" textFill="WHITE">
+<effect>
+<Reflection />
+</effect>
+<font>
+<Font name="Serif Bold" size="18.0" />
+</font>
+</JFXButton>
+<FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="749.0" layoutY="113.0" size="18" />
+<FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
+<FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
+<FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
+</children>
 </AnchorPane>
