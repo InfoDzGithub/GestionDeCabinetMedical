@@ -13,6 +13,9 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -49,7 +52,7 @@ public class ManageAppointmentController implements Initializable {
 
     @FXML
     private JFXDatePicker dateSelector;
-    @FXML
+     @FXML
     private JFXDatePicker SelectTimer;
     @FXML
     private JFXTextArea comment_box;
@@ -87,6 +90,7 @@ public class ManageAppointmentController implements Initializable {
           label_box.setText(" Please Fill Out The CNI Patient");   
         }
       else{
+        
       String req="Select concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) from patient where nic_pat ='" +cni+"'";
                 try{
                             Connection conn=Connexion.ConnecrDB();
@@ -101,25 +105,49 @@ public class ManageAppointmentController implements Initializable {
                 catch(Exception e){}  
         
     }}
+    /**************************************************************************************************/
+     @FXML
+    public boolean workingHoursMorning(LocalTime heure)
+    {
+        LocalTime timeBegin =LocalTime.of(9, 30);
+        LocalTime timeEnd =LocalTime.of(12, 0);
+        if (heure.isBefore(timeEnd) && heure.isAfter(timeBegin))
+        {
+            return true;
+        }
+        
+        else return false;
+    }
+   
+     @FXML
+    public boolean workingHoursAfterNoon(LocalTime heure)
+    {
+        LocalTime timeBegin =LocalTime.of(14, 0);
+        LocalTime timeEnd =LocalTime.of(17, 0);
+        if (heure.isBefore(timeEnd) && heure.isAfter(timeBegin))
+        {
+            return true;
+        }
+        
+        else return false;
+    }
    
  /*************************************************************************************************************/ 
     @FXML
     public void insertData(ActionEvent event) { 
         cni=search_box.getText();
       inf_patient=name_box.getText();
+      String text =comment_box.getText();
       String date=dateSelector.getValue().toString();
-      String time=SelectTimer.getTime().toString();
-     // String commT =comment_box.getText().replaceAll("\n", System.getProperty("line.separator"));
-     String text =comment_box.getText();
-     
-      
-         if(date.isEmpty() || time.isEmpty() || text.isEmpty())
+     // String time=SelectTimer.getTime().toString();
+      LocalTime time=SelectTimer.getTime();
+   
+         if(date.isEmpty() || text.isEmpty() || !workingHoursAfterNoon(time)|| !workingHoursMorning(time))
          
          {
-             infoBox2("Please Fill Out The Form ", null, "Form Error!");  
+             infoBox2("Please Fill Out The Form With Time respecting", null, "Form Error!");  
          }
-         else{
-             
+         else{ 
              String req="Select id_pat from patient where nic_pat ='" +cni+"'";
                 try{
                             Connection conn=Connexion.ConnecrDB();
@@ -130,7 +158,7 @@ public class ManageAppointmentController implements Initializable {
                             
                     }
                 catch(Exception e){} 
-             
+                
         String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire,id_pat) VALUES(?,?,?,?,?) ";
        Connection conn;
                    try {
@@ -138,7 +166,7 @@ public class ManageAppointmentController implements Initializable {
                   PreparedStatement preparedSt=conn.prepareStatement(sql);
                  
                   preparedSt.setString(1,date);
-                  preparedSt.setString(2, time);
+                  preparedSt.setString(2, time+"");
                   preparedSt.setString(3, inf_patient);
                   preparedSt.setString(4, text);
                   preparedSt.setString(5, idpatient);
@@ -154,17 +182,15 @@ public class ManageAppointmentController implements Initializable {
 //                  m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                    loadData();
+                   
                  
                   CancelData(event);
                    
                     } 
-                   catch (Exception e)
-                        {
-                        //infoBox2("You should select a row", null, "Failed");     
-                        } 
+                   catch (Exception e){} 
                    
    }}
- 
+    
  /**************************************************************************************************************/
     
      public void loadData(){
@@ -250,6 +276,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                    infoBox("RDV Modify Successfully", null, "Success");
                  
                   loadData();
+                  
                 CancelData(event);
                    
                    
