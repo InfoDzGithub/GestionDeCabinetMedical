@@ -12,20 +12,18 @@
 <children>
 <AnchorPane fx:id="panel_box" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: white;">
 <children>
-<Text layoutX="8.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DR ." wrappingWidth="28.13671875" />
-<Text layoutX="51.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPECIALITY" wrappingWidth="134.13671875" />
-<Text layoutX="14.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57,bd.Chaoui Boudghene" wrappingWidth="134.13672149181366" />
-<Text layoutX="51.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TLEMCEN" />
-<Text layoutX="8.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: 043 26 45 59   /" />
+<Text layoutX="8.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DR ." wrappingWidth="28.13671875" />
+<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57,bd.Chaoui Boudghene" wrappingWidth="180.13672149181366" />
+<Text layoutX="34.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13000, TLEMCEN" />
+<Text layoutX="319.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: 043 26 45 59 " />
 <Text layoutX="290.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlemcen, On" />
-<Text layoutX="36.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FamilyName &amp; FirstName" wrappingWidth="160.13671875" />
-<Text layoutX="142.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile: 06 68 50 86 93" wrappingWidth="134.13672149181366" />
+<Text layoutX="8.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile:" wrappingWidth="55.140614974079654" />
 <Text fx:id="date_box" layoutX="361.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="107.57812857627869" />
 <Text layoutX="299.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :" />
 <Text layoutX="299.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name   :" />
 <Text layoutX="299.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" />
 <Separator layoutY="558.0" prefWidth="450.0" />
-<Text layoutX="8.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail :  doctor@gmail.com" />
+<Text layoutX="137.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@gmail.com" />
 <Text layoutX="122.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRESCRIPTION">
 <font>
 <Font name="Calibri Bold Italic" size="36.0" />
@@ -40,6 +38,16 @@
 <Font name="Serif Regular" size="18.0" />
 </font>
 </Label>
+            <Text fx:id="firstNmed_box" layoutX="39.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="46.14061918167863" />
+            <Label layoutX="4.0" layoutY="56.0" text="E-mail:" />
+            <Text fx:id="familyNmed_box" layoutX="94.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="55.14061918167863" />
+            <Text fx:id="eMail_box" layoutX="41.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="89.49023451795802" />
+            <Label layoutX="1.0" layoutY="34.0" prefHeight="17.0" prefWidth="169.0" text="DERMATOLOGIST" textAlignment="RIGHT">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Text fx:id="phoneN_box" layoutX="52.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="142.5781301409006" />
 </children>
 </AnchorPane>
 <JFXButton ellipsisString="" layoutX="377.0" maxHeight="25.0" maxWidth="35.0" minHeight="25.0" minWidth="35.0" onAction="#PrInt" prefHeight="25.0" prefWidth="35.0">

@@ -35,6 +35,7 @@ public class LoginDocController implements Initializable {
     private JFXTextField username_box;
     @FXML
     private JFXPasswordField password_box;
+    public static String user;
     
      Connection conn=null;
     ResultSet resultat=null;
@@ -54,7 +55,7 @@ public void exitApplication(ActionEvent event) {
 /*********************************************************************************************************************/    
    @FXML
     public void doctorPortal (ActionEvent event) throws IOException {
-         String user= username_box.getText().toString();
+          user= username_box.getText().toString();
         String pass= password_box.getText().toString();
          
        if(user.isEmpty() || pass.isEmpty())  

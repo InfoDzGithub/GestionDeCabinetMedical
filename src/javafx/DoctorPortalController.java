@@ -61,6 +61,7 @@ public class DoctorPortalController implements Initializable {
      public static String  id=" ";
     @FXML
     private JFXButton p_id;
+    private String medicament;
  /*************************************************************************************************************/
       @FXML
     private void combobox_MouseClicke(MouseEvent event) {
@@ -85,15 +86,15 @@ public class DoctorPortalController implements Initializable {
    }
   /***************************************************************************************************************/
    @FXML
-    private void insertData(ActionEvent event) {
-        
+    private void insertData(ActionEvent event) throws IOException {
+       
          id =search_box.getText();
       
-      String medicament =treatmentN_box.getText();
+       medicament =treatmentN_box.getText();
        String diag =diagN_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
-    
-         if(medicament.isEmpty())
+    /*
+      if(medicament.isEmpty())
          
          {
            
@@ -105,6 +106,10 @@ public class DoctorPortalController implements Initializable {
            
              p_id.setDisable(false);
          }
+     
+     */
+     
+        
         String sql="INSERT INTO traitement (id_pat,nom_medc) VALUES(?,?)";
         String sql2="INSERT INTO diagnostic (id_pat,nom_diag) VALUES(?,?)";
        Connection conn;
@@ -119,7 +124,7 @@ public class DoctorPortalController implements Initializable {
                   preparedSt2.setString(2, diag);
                   preparedSt2.execute();
                   ManageAppointmentController.infoBox("Medical file Added Successfully", null, "Success");
-                  p_id.setDisable(false);
+                  //p_id.setDisable(false);
                   search_box.clear();
                   treatmentN_box.clear();
                   diagN_box.clear();
@@ -128,7 +133,8 @@ public class DoctorPortalController implements Initializable {
                    catch (Exception e)
                         {
                         //infoBox2("You should select a row", null, "Failed");     
-                        }     
+                        } 
+                   redirection(event);
     }
  /************************************************************************************************************/
     @FXML
@@ -190,12 +196,12 @@ public class DoctorPortalController implements Initializable {
         loadData2();
      combobox.setItems(list2);
      db = new Connexion();
-   p_id.setDisable(true);
-     
+    
     } 
 
     @FXML
     private void redirection(ActionEvent event) throws IOException {
+       
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescription.fxml"));
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

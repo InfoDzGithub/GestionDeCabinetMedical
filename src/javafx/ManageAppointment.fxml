@@ -27,11 +27,6 @@
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<Label layoutX="420.0" layoutY="216.0" prefHeight="21.0" prefWidth="180.0" text="Appointment Time :" textFill="#64b5f6">
-<font>
-<Font name="Arial Italic" size="18.0" />
-</font>
-</Label>
 <Label layoutX="10.0" layoutY="263.0" prefHeight="19.0" prefWidth="96.0" text="Comment :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
@@ -55,7 +50,7 @@
 <Reflection />
 </effect>
 </JFXButton>
-<JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="579.0" layoutY="210.0" prefHeight="30.0" prefWidth="200.0" showTime="true" />
+<JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="595.0" layoutY="210.0" prefHeight="31.0" prefWidth="118.0" showTime="true" />
 <JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
 <graphic>
 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
@@ -132,5 +127,10 @@
 <FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
 <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
+      <Label layoutX="413.0" layoutY="216.0" prefHeight="21.0" prefWidth="199.0" text="Time Of Appointment :" textFill="#64b5f6">
+         <font>
+            <Font name="Arial Italic" size="18.0" />
+         </font>
+      </Label>
 </children>
 </AnchorPane>

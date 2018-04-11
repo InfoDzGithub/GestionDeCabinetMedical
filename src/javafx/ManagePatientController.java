@@ -88,10 +88,10 @@ public class ManagePatientController implements Initializable {
     public int ageP(){
         int year=0;
         String date=age_box.getText();
-        char c=date.charAt(4);
+        //char c =date.charAt(4);
           String mano = date.substring(0,4); 
          year = Integer.parseInt(mano);
-        char ch=currentDay().charAt(4);
+        //char ch=currentDay().charAt(4);
         String yearC=currentDay().substring(0,4); 
          int currYear=Integer.parseInt(yearC);
         return currYear-year;

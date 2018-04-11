@@ -41,19 +41,48 @@ public class PrescriptionController implements Initializable {
     @FXML
     private AnchorPane panel_box;
      private Connexion db;
+    private Text FirstName_box;
+    @FXML
+    private Text eMail_box;
+    @FXML
+    private Text firstNmed_box;
+    @FXML
+    private Text familyNmed_box;
+    @FXML
+    private Text phoneN_box;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
            db = new Connexion();
            String id= DoctorPortalController.id;
+           String usernameMed=LoginDocController.user;
+           
+           
+        String req="Select nom_med,prenom_med,num_tel_med ,username_med from medecin where username_med='"+usernameMed+"'";
+        try{
+             Connection conn1=Connexion.ConnecrDB();
+               PreparedStatement preparedSt1=conn1.prepareStatement(req);
+               ResultSet result2=preparedSt1.executeQuery();
+                while(result2.next())
+               {
+                  firstNmed_box.setText(result2.getString("prenom_med"));
+                  familyNmed_box.setText(result2.getString("nom_med"));
+                 eMail_box.setText(result2.getString("username_med"));
+                  phoneN_box.setText(result2.getString("num_tel_med"));
+               
+        }}
+         catch(Exception e){}
         
+     
           
         String sqls="Select age, nom_pat ,prenom_pat,nom_medc from patient, traitement where patient.id_pat= traitement.id_pat  and patient.id_pat='" +id+"'";
                                                                                               
    try{
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(sqls);
-               ResultSet result=preparedSt.executeQuery();      
+               ResultSet result=preparedSt.executeQuery(); 
+               
+               
                while(result.next())
                { 
                    age_box.setText(result.getString("age"));

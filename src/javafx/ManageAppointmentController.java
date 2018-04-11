@@ -78,6 +78,8 @@ public class ManageAppointmentController implements Initializable {
     @FXML
     private Label label_box;
     String inf_patient=" ", cni="",idpatient="";
+    @FXML
+    private static   LocalTime  timeNxt=LocalTime.of(9, 31);
   
     /***************************************************************************************************************/
   
@@ -142,7 +144,7 @@ public class ManageAppointmentController implements Initializable {
      // String time=SelectTimer.getTime().toString();
       LocalTime time=SelectTimer.getTime();
    
-         if(date.isEmpty() || text.isEmpty() || !workingHoursAfterNoon(time)|| !workingHoursMorning(time))
+         if(date.isEmpty() || text.isEmpty() || (!workingHoursAfterNoon(time) && !workingHoursMorning(time)))
          
          {
              infoBox2("Please Fill Out The Form With Time respecting", null, "Form Error!");  
@@ -182,10 +184,18 @@ public class ManageAppointmentController implements Initializable {
 //                  m.execute("ALTER TABLE rdv  auto_increment = 1");
                   
                    loadData();
+                    timeNxt=time.plusMinutes(30);
                    
-                 
+                   if(timeNxt.isAfter(LocalTime.of(17, 0)) )//workingHoursAfterNoon(time) && !workingHoursMorning(time)
+                    SelectTimer.setTime(LocalTime.of(9, 30));
+                   //incrementer le jour
+                   else if(timeNxt.isAfter(LocalTime.of(12, 0))&&timeNxt.isBefore(LocalTime.of(14, 0)))
+                       SelectTimer.setTime(LocalTime.of(14, 0));
+                   else
+                      SelectTimer.setTime(timeNxt); 
+                       
                   CancelData(event);
-                   
+                  // insertData(event);
                     } 
                    catch (Exception e){} 
                    
@@ -349,11 +359,11 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      
-     // Par défaut la date resoit la date du RDV
+    SelectTimer.setTime(timeNxt);
+   
       loadData();
      db = new Connexion();
-        
-    
+   
  }
 
  /******************************************************************************************************************/   

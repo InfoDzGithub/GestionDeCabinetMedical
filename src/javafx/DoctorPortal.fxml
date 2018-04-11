@@ -35,15 +35,7 @@
             <Image url="@images/doc.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="p_id" layoutX="450.0" layoutY="440.0" onAction="#redirection" prefHeight="43.0" prefWidth="144.0" style="-fx-background-color: #64b5f6;" text="    Prescription" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
-         <font>
-            <Font name="Bell MT Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="250.0" layoutY="440.0" onAction="#insertData" prefHeight="43.0" prefWidth="144.0" style="-fx-background-color: #64b5f6;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="p_id" layoutX="303.0" layoutY="438.0" onAction="#insertData" prefHeight="43.0" prefWidth="144.0" style="-fx-background-color: #64b5f6;" text="    Prescription" textFill="WHITE">
          <effect>
             <Reflection />
          </effect>
@@ -119,7 +111,6 @@
          <graphic>
             <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
          </graphic></JFXButton>
-      <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="280.0" layoutY="469.0" size="18" />
-      <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="458.0" layoutY="467.0" size="18" />
+      <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="312.0" layoutY="465.0" size="18" text="" />
       </children>
 </AnchorPane>
