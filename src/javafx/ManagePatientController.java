@@ -279,7 +279,7 @@ public class ManagePatientController implements Initializable {
                    {rdb_male.setSelected(true);}
                    else  if("Female".equals(result.getString("sexe_pat")))
                    {rdb_female.setSelected(true);}
-                      if("Signal".equals(result.getString("situation_fam")))
+                      if("Single".equals(result.getString("situation_fam")))
                    {rdb_signal.setSelected(true);}
                    else  if("Married".equals(result.getString("situation_fam")))
                    {rdb_married.setSelected(true);}

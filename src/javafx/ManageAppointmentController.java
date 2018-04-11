@@ -120,7 +120,7 @@ public class ManageAppointmentController implements Initializable {
         
         else return false;
     }
-   
+ /***************************************************************************************************************/  
      @FXML
     public boolean workingHoursAfterNoon(LocalTime heure)
     {
@@ -133,76 +133,113 @@ public class ManageAppointmentController implements Initializable {
         
         else return false;
     }
+  /**********************************************************************************************************/
+    @FXML
+    private boolean lastDay(LocalDate date)
+    {
+       
+    String dateString = ManagePatientController.currentDay();
+    LocalDate localDate = LocalDate.parse(dateString);
    
- /*************************************************************************************************************/ 
+    if(date.isBefore(localDate))
+        return true;
+    else return false;
+    }
+  /**************************************************************************************************************/
+    @FXML
+    private boolean confusionAppointement(LocalDate date,LocalTime time)
+    {
+     String mysql="Select date_rdv,heure_rdv from rdv where date_rdv='"+date+"'  AND heure_rdv='"+time+"'  ";
+                             try{
+                                       Connection connt=Connexion.ConnecrDB();
+                                       PreparedStatement preparedSt5=connt.prepareStatement(mysql);
+                                       ResultSet result5=preparedSt5.executeQuery();
+
+                                       if(result5.next())  return true; 
+
+                                }
+                                        catch(Exception e){}
+                             return false;
+    }
+ /************************************************************************************************************/ 
     @FXML
     public void insertData(ActionEvent event) { 
         cni=search_box.getText();
       inf_patient=name_box.getText();
       String text =comment_box.getText();
-      String date=dateSelector.getValue().toString();
-     // String time=SelectTimer.getTime().toString();
-      LocalTime time=SelectTimer.getTime();
-   
-         if(date.isEmpty() || text.isEmpty() || (!workingHoursAfterNoon(time) && !workingHoursMorning(time)))
+     
+    LocalTime time=SelectTimer.getTime();
+    LocalDate date=dateSelector.getValue();
+      
+         //
          
+         if( text.isEmpty())         
          {
-             infoBox2("Please Fill Out The Form With Time respecting", null, "Form Error!");  
+             infoBox2("Please Fill Out The Form", null, "Form Error!");  
          }
-         else{ 
-             String req="Select id_pat from patient where nic_pat ='" +cni+"'";
-                try{
-                            Connection conn=Connexion.ConnecrDB();
-                            PreparedStatement preparedSt=conn.prepareStatement(req);
-                            ResultSet result=preparedSt.executeQuery();
+         else{
+                   if(lastDay(date))     infoBox2("This date is in the past", null, "Form Error!");  
+                    
+                    else{
+                        if(!workingHoursAfterNoon(time) && !workingHoursMorning(time))  infoBox2("Our medical office open from 9:30 to 12:00 and from 14:00 to 15:00", null, "Please respect the time");  
+                          
+                            else{
+                                if(confusionAppointement(date,time)) infoBox2("Select a nother Appointement", null, "Form Error!");
+                                else{
+                                String req="Select id_pat from patient where nic_pat ='" +cni+"'    ";
+                                       
+                                       try{
+                                       Connection conn=Connexion.ConnecrDB();
+                                       PreparedStatement preparedSt=conn.prepareStatement(req);
+                                       ResultSet result=preparedSt.executeQuery();
 
-                            if(result.next())  idpatient=result.getString(1);
-                            
-                    }
-                catch(Exception e){} 
-                
-        String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire,id_pat) VALUES(?,?,?,?,?) ";
-       Connection conn;
-                   try {
-                  conn=Connexion.ConnecrDB();
-                  PreparedStatement preparedSt=conn.prepareStatement(sql);
-                 
-                  preparedSt.setString(1,date);
-                  preparedSt.setString(2, time+"");
-                  preparedSt.setString(3, inf_patient);
-                  preparedSt.setString(4, text);
-                  preparedSt.setString(5, idpatient);
-                   
-                   
-                  
-                  preparedSt.execute();
-                  infoBox("RDV Added Successfully", null, "Success");
-//                  
-//                  Statement m = conn.createStatement();
-//                  m.execute("set @autoid :=0");
-//                  m.execute("UPDATE  rdv  set id_rdv = @autoid := (@autoid+1)");
-//                  m.execute("ALTER TABLE rdv  auto_increment = 1");
-                  
-                   loadData();
-                    timeNxt=time.plusMinutes(30);
-                   
-                   if(timeNxt.isAfter(LocalTime.of(17, 0)) )//workingHoursAfterNoon(time) && !workingHoursMorning(time)
-                    SelectTimer.setTime(LocalTime.of(9, 30));
-                   //incrementer le jour
-                   else if(timeNxt.isAfter(LocalTime.of(12, 0))&&timeNxt.isBefore(LocalTime.of(14, 0)))
-                       SelectTimer.setTime(LocalTime.of(14, 0));
-                   else
-                      SelectTimer.setTime(timeNxt); 
-                       
-                  CancelData(event);
-                  // insertData(event);
-                    } 
-                   catch (Exception e){} 
-                   
-   }}
-    
- /**************************************************************************************************************/
-    
+                                       if(result.next())  idpatient=result.getString(1);
+
+                                           }
+                                        catch(Exception e){} 
+
+                                        String sql="INSERT INTO rdv (date_rdv,heure_rdv,info_P,commentaire,id_pat) VALUES(?,?,?,?,?) ";
+                                        Connection conn;
+                                        try {
+                                       conn=Connexion.ConnecrDB();
+                                       PreparedStatement preparedSt=conn.prepareStatement(sql);
+
+                                       preparedSt.setString(1,date+"");
+                                       preparedSt.setString(2, time+"");
+                                       preparedSt.setString(3, inf_patient);
+                                       preparedSt.setString(4, text);
+                                       preparedSt.setString(5, idpatient);
+
+
+
+                                       preparedSt.execute();
+                                       infoBox("RDV Added Successfully", null, "Success");
+
+                                        loadData();
+                                    timeNxt=time.plusMinutes(30);
+
+                                   if(timeNxt.isAfter(LocalTime.of(17, 0)) )//workingHoursAfterNoon(time) && !workingHoursMorning(time)
+                                    SelectTimer.setTime(LocalTime.of(9, 30));
+                                   //incrementer le jour
+                                   else if(timeNxt.isAfter(LocalTime.of(12, 0))&&timeNxt.isBefore(LocalTime.of(14, 0)))
+                                       SelectTimer.setTime(LocalTime.of(14, 0));
+                                   else
+                                      SelectTimer.setTime(timeNxt); 
+
+                                  CancelData(event);
+                                  // insertData(event);
+                                               } 
+                                         catch (Exception e){}    
+
+
+                                     }
+
+                            }
+
+                        }    
+            }
+    }
+    /*******************************************************************************************************************/
      public void loadData(){
        list.clear();
          try {
