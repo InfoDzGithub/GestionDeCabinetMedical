@@ -82,7 +82,23 @@ public class ManageAppointmentController implements Initializable {
     private static   LocalTime  timeNxt=LocalTime.of(9, 31);
   
     /***************************************************************************************************************/
-  
+   @FXML
+   private boolean searchExistPatient(String cni)
+   {
+    String req="Select nic_pat from patient where nic_pat ='" +cni+"'";
+                try{
+                            Connection conn=Connexion.ConnecrDB();
+                            PreparedStatement preparedSt=conn.prepareStatement(req);
+                            ResultSet result=preparedSt.executeQuery();
+
+                            if(result.next())
+                             return true;
+                   }
+                catch(Exception e){}
+                return  false;
+               
+   }
+    /***************************************************************************************************************/
     @FXML
     private void search_Patient(ActionEvent event) {
         
@@ -91,8 +107,13 @@ public class ManageAppointmentController implements Initializable {
         {
           label_box.setText(" Please Fill Out The CNI Patient");   
         }
+      else if(!searchExistPatient(cni))
+      {
+        label_box.setText("There is not a patient who has this CNI");  
+         
+      }
       else{
-        
+        label_box.setText(" ");
       String req="Select concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) from patient where nic_pat ='" +cni+"'";
                 try{
                             Connection conn=Connexion.ConnecrDB();

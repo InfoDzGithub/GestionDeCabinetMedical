@@ -88,6 +88,11 @@
 </font>
 </Label>
 <JFXTextField fx:id="name_box" editable="false" focusColor="#64b5f6" layoutX="229.0" layoutY="12.0" maxHeight="30.0" maxWidth="391.0" minHeight="30.0" minWidth="84.0" prefHeight="30.0" prefWidth="391.0" unFocusColor="BLACK" />
+      <Label fx:id="label_box" layoutX="219.0" layoutY="11.0" prefHeight="25.0" prefWidth="310.0" textFill="#dd4848">
+      <font>
+      <Font name="System Bold" size="12.0" />
+      </font>
+      </Label>
 </children>
 </AnchorPane>
 <JFXButton layoutX="332.0" layoutY="102.0" textFill="WHITE" />
@@ -108,21 +113,16 @@
 <Reflection />
 </effect>
 </JFXButton>
-<Label layoutX="174.0" layoutY="106.0" prefHeight="21.0" prefWidth="140.0" text="Search Patient :" textFill="#64b5f6">
+<Label layoutX="174.0" layoutY="106.0" prefHeight="21.0" prefWidth="140.0" text="CNI Patient :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="298.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="30.0" minWidth="78.0" prefHeight="30.0" prefWidth="192.0" />
-<Label fx:id="label_box" layoutX="490.0" layoutY="114.0" prefHeight="25.0" prefWidth="219.0" textFill="#dd4848">
-<font>
-<Font name="System Bold" size="12.0" />
-</font>
-</Label>
-<JFXButton layoutX="451.0" layoutY="87.0" onAction="#search_Patient" prefHeight="39.0" prefWidth="44.0" text="i" textFill="#fffcfc">
-<graphic>
-<FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
-</graphic></JFXButton>
+<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="274.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="25.0" minWidth="78.0" prefHeight="25.0" prefWidth="170.0" />
+<JFXButton ellipsisString="" layoutX="440.0" layoutY="87.0" onAction="#search_Patient" prefHeight="39.0" prefWidth="52.0" textFill="#fffcfc">
+         <graphic>
+      <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
+         </graphic></JFXButton>
 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="748.0" layoutY="120.0" size="18" />
 <FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
 <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
