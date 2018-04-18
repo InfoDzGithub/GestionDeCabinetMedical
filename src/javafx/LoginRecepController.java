@@ -74,7 +74,7 @@ public void exitApplication(ActionEvent event) {
 
                        if(resultat.next())
                        {
-                            infoBox("Login Succuful", null, "Succes"); 
+                            infoBox("Login Successful", null, "Success"); 
                          Parent home_page_parent2 = FXMLLoader.load(getClass().getResource("RecepPortal.fxml"));
                           Scene home_page_scene2 = new Scene(home_page_parent2);
                           Stage app_stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();

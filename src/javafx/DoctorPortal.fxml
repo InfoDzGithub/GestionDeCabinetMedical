@@ -6,7 +6,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,9 +35,6 @@
          </image>
       </ImageView>
       <JFXButton fx:id="p_id" layoutX="303.0" layoutY="438.0" onAction="#insertData" prefHeight="43.0" prefWidth="144.0" style="-fx-background-color: #64b5f6;" text="    Prescription" textFill="WHITE">
-         <effect>
-            <Reflection />
-         </effect>
          <font>
             <Font name="Serif Bold" size="18.0" />
          </font>

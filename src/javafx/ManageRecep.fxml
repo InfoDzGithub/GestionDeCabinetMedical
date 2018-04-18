@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -74,26 +73,17 @@
 </font>
 </Text>
 <JFXButton layoutX="736.0" layoutY="525.0" onAction="#DeleteDataR" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text=" Delete" textFill="WHITE">
-<effect>
-<Reflection />
-</effect>
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
 </JFXButton>
 <JFXButton layoutX="736.0" layoutY="444.0" onAction="#UpdateRData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="   Update" textFill="WHITE">
-<effect>
-<Reflection />
-</effect>
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
 </JFXButton>
 
 <JFXButton layoutX="736.0" layoutY="85.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text=" Add" textFill="WHITE">
-<effect>
-<Reflection />
-</effect>
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
@@ -128,9 +118,6 @@
 </font>
 </JFXButton>
 <JFXButton layoutX="736.0" layoutY="359.0" onAction="#cancel" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64b5f6;" text="  Cancel" textFill="WHITE">
-<effect>
-<Reflection />
-</effect>
 <font>
 <Font name="Serif Bold" size="19.0" />
 </font>
@@ -154,4 +141,3 @@
 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
 </children>
 </AnchorPane>
-

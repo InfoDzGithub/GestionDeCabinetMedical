@@ -155,7 +155,7 @@ public class ManageRecepController implements Initializable {
                   preparedSt.setString(7, user);
                   preparedSt.setString(8, pass);
                   preparedSt.execute();
-                  infoBox("Receptionist Add Successfully", null, "Succes");
+                  infoBox("Receptionist Added Successfully", null, "Success");
                   
                   Statement m = conn.createStatement();
                   m.execute("set @autoid :=0");
@@ -226,7 +226,7 @@ public class ManageRecepController implements Initializable {
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(requette);
                preparedSt.execute();
-               infoBox("Receptioniste Deletted Successfully", null, "Success");
+               infoBox("Receptionist Deleted Successfully", null, "Success");
                
                Statement m = conn.createStatement();
                   m.execute("set @autoid :=0");
@@ -251,7 +251,7 @@ public class ManageRecepController implements Initializable {
          }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
         
          Connection conn=Connexion.ConnecrDB();
@@ -323,7 +323,7 @@ public class ManageRecepController implements Initializable {
                   preparedSt.setString(8, rdb_female.getText().toString());
                 
                   preparedSt.execute();
-                   infoBox("Receptioniste Modify Successfully", null, "Success");
+                   infoBox("Receptionist Modified Successfully", null, "Success");
                  
                   loadData();
                   cni_box.clear();
@@ -343,7 +343,7 @@ public class ManageRecepController implements Initializable {
           }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
     }
 /******************************************************************************************************************/

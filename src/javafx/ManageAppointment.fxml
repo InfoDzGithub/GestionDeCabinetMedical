@@ -8,13 +8,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="850.0" minHeight="600.0" minWidth="850.0" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ManageAppointmentController">
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="850.0" minHeight="600.0" minWidth="850.0" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.ManageAppointmentController">
 <children>
 
 <Label layoutX="81.0" layoutY="30.0" maxHeight="50.0" maxWidth="770.0" minHeight="50.0" minWidth="770.0" prefHeight="50.0" prefWidth="770.0" style="-fx-background-color: #64B5F6;" text="    Manage Appointment" textFill="WHITE">
@@ -22,7 +21,7 @@
 <Font name="System Italic" size="35.0" />
 </font>
 </Label>
-<Label layoutX="10.0" layoutY="216.0" prefHeight="21.0" prefWidth="199.0" text="Date Of Appointment :" textFill="#64b5f6">
+<Label layoutX="10.0" layoutY="208.0" prefHeight="21.0" prefWidth="199.0" text="Date Of Appointment :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
@@ -32,25 +31,19 @@
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXDatePicker fx:id="dateSelector" defaultColor="#64b5f6" layoutX="194.0" layoutY="211.0" maxHeight="30.0" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
+<JFXDatePicker fx:id="dateSelector" defaultColor="#64b5f6" layoutX="194.0" layoutY="203.0" maxHeight="30.0" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0" showWeekNumbers="true" />
 <JFXTextArea fx:id="comment_box" focusColor="#64b5f6" layoutX="110.0" layoutY="253.0" maxWidth="228.0" minWidth="135.0" prefHeight="41.0" prefWidth="228.0" style="-fx-background-color: #EEEEEE;" wrapText="true" />
 <JFXButton layoutX="736.0" layoutY="90.0" onAction="#insertData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text=" Add" textFill="WHITE">
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
-<effect>
-<Reflection />
-</effect>
 </JFXButton>
 <JFXButton layoutX="736.0" layoutY="525.0" onAction="#DeleteData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="Delete" textFill="WHITE">
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
-<effect>
-<Reflection />
-</effect>
 </JFXButton>
-<JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="595.0" layoutY="210.0" prefHeight="31.0" prefWidth="118.0" showTime="true" />
+<JFXDatePicker fx:id="SelectTimer" defaultColor="#64b5f6" layoutX="579.0" layoutY="202.0" prefHeight="30.0" prefWidth="200.0" showTime="true" />
 <JFXButton layoutX="690.0" layoutY="35.0" onAction="#Home" text="Home" textFill="WHITE">
 <graphic>
 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
@@ -76,26 +69,17 @@
 <font>
 <Font name="Serif Bold" size="18.0" />
 </font>
-<effect>
-<Reflection />
-</effect>
 </JFXButton>
 <AnchorPane disable="true" layoutX="10.0" layoutY="139.0" prefHeight="50.0" prefWidth="687.0" style="-fx-background-color: white;">
 <children>
-<Label layoutY="12.0" prefHeight="26.0" prefWidth="228.0" text="Patient's Informations :" textFill="#028cf5" underline="true">
+<Label layoutX="5.0" layoutY="12.0" prefHeight="26.0" prefWidth="228.0" text=" Patient's Informations :" textFill="#028cf5" underline="true">
 <font>
 <Font name="Arial Italic" size="20.0" />
 </font>
 </Label>
 <JFXTextField fx:id="name_box" editable="false" focusColor="#64b5f6" layoutX="229.0" layoutY="12.0" maxHeight="30.0" maxWidth="391.0" minHeight="30.0" minWidth="84.0" prefHeight="30.0" prefWidth="391.0" unFocusColor="BLACK" />
-      <Label fx:id="label_box" layoutX="219.0" layoutY="11.0" prefHeight="25.0" prefWidth="310.0" textFill="#dd4848">
-      <font>
-      <Font name="System Bold" size="12.0" />
-      </font>
-      </Label>
 </children>
 </AnchorPane>
-<JFXButton layoutX="332.0" layoutY="102.0" textFill="WHITE" />
 <TableView fx:id="tab" layoutX="10.0" layoutY="315.0" onMouseClicked="#TableMouseClick" prefHeight="285.0" prefWidth="713.0">
 <columns>
 <TableColumn fx:id="id_col" prefWidth="114.0" text="N° appointment" />
@@ -109,17 +93,14 @@
 <font>
 <Font name="Serif Bold" size="19.0" />
 </font>
-<effect>
-<Reflection />
-</effect>
 </JFXButton>
-<Label layoutX="174.0" layoutY="106.0" prefHeight="21.0" prefWidth="140.0" text="CNI Patient :" textFill="#64b5f6">
+<Label layoutX="195.0" layoutY="106.0" prefHeight="21.0" prefWidth="140.0" text="Search Patient :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="274.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="25.0" minWidth="78.0" prefHeight="25.0" prefWidth="170.0" />
-<JFXButton ellipsisString="" layoutX="440.0" layoutY="87.0" onAction="#search_Patient" prefHeight="39.0" prefWidth="52.0" textFill="#fffcfc">
+<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="331.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="25.0" minWidth="78.0" prefHeight="30.0" prefWidth="180.0" promptText="    Enter The Patient's CNI" />
+<JFXButton ellipsisString="" layoutX="472.0" layoutY="95.0" onAction="#search_Patient" prefHeight="30.0" prefWidth="40.0" textFill="WHITE">
          <graphic>
       <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
          </graphic></JFXButton>
@@ -127,10 +108,15 @@
 <FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
 <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
-      <Label layoutX="413.0" layoutY="216.0" prefHeight="21.0" prefWidth="199.0" text="Time Of Appointment :" textFill="#64b5f6">
+      <Label layoutX="420.0" layoutY="208.0" prefHeight="21.0" prefWidth="180.0" text="Appointment Time :" textFill="#64b5f6">
          <font>
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Label>
+<Label fx:id="label_box" layoutX="506.0" layoutY="114.0" prefHeight="25.0" prefWidth="228.0" textFill="#dd4848">
+<font>
+<Font name="System Bold" size="12.0" />
+</font>
+</Label>
 </children>
 </AnchorPane>

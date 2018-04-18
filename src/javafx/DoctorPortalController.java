@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import static javafx.LoginAdminController.infoBox;
 import static javafx.ManageAppointmentController.infoBox;
+import static javafx.ManagePatientController.infoBox2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,14 +88,15 @@ public class DoctorPortalController implements Initializable {
   /***************************************************************************************************************/
    @FXML
     private void insertData(ActionEvent event) throws IOException {
+        
        
          id =search_box.getText();
       
-       medicament =treatmentN_box.getText();
+      medicament =treatmentN_box.getText();
        String diag =diagN_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
-    /*
-      if(medicament.isEmpty())
+    
+     /* if(medicament.isEmpty())
          
          {
            
@@ -106,10 +108,13 @@ public class DoctorPortalController implements Initializable {
            
              p_id.setDisable(false);
          }
-     
+    
      */
      
-        
+     if (id.isEmpty())
+     {infoBox2("Enter the patient's id please!", null, "Failed");}  
+     else if (medicament.isEmpty() ){infoBox2("Fill In The Treatment Field !", null, "Failed");}  
+     else{
         String sql="INSERT INTO traitement (id_pat,nom_medc) VALUES(?,?)";
         String sql2="INSERT INTO diagnostic (id_pat,nom_diag) VALUES(?,?)";
        Connection conn;
@@ -134,7 +139,7 @@ public class DoctorPortalController implements Initializable {
                         {
                         //infoBox2("You should select a row", null, "Failed");     
                         } 
-                   redirection(event);
+                   redirection(event);}
     }
  /************************************************************************************************************/
     @FXML
@@ -196,7 +201,7 @@ public class DoctorPortalController implements Initializable {
         loadData2();
      combobox.setItems(list2);
      db = new Connexion();
-    
+   // p_id.setDisable(true);
     } 
 
     @FXML

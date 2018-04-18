@@ -85,20 +85,59 @@ public class ManagePatientController implements Initializable {
     @FXML
     private TableView<Pat> tab;
   /*********************************************************************************************************/
-    public int ageP(){
-        int year=0;
+    public String ageP(){
+        int year=0,mouth=0,daTe=0;
         String date=age_box.getText();
         //char c =date.charAt(4);
-          String mano = date.substring(0,4); 
-         year = Integer.parseInt(mano);
-        //char ch=currentDay().charAt(4);
-        String yearC=currentDay().substring(0,4); 
-         int currYear=Integer.parseInt(yearC);
-        return currYear-year;
+        
+          String yearN = date.substring(0,4); 
+          year = Integer.parseInt(yearN);
+          String yearC=currentDay().substring(0,4); // yyyy-mm-dd
+          int currYear=Integer.parseInt(yearC);
+          
+              String mouthN = date.substring(5,7); 
+              mouth= Integer.parseInt(mouthN);
+              
+              String mouthC=currentDay().substring(5,7);
+              int currMouth=Integer.parseInt(mouthC);
+             
+              String dateN = date.substring(8,10); 
+              daTe= Integer.parseInt(dateN);
+              
+          
+          if(year!=currYear) 
+          {
+              if(currMouth<5 )     return (currYear-year)+"   Year";
+              else if(currMouth>5) return (currYear-year+1)+"  Year";
+          }    
+          else if(year==currYear)
+          {
+             if(currMouth!=mouth)       return (agePMouth(mouth))+"  Mouth";
+             else if(currMouth==mouth)  return (agePDay( daTe))+"  Day";
+          }
+                
+                
+                
+         
+         return "";
     }
     
+   public int agePMouth(int mouth){
+       
+              String mouthC=currentDay().substring(5,7);
+              int currMouth=Integer.parseInt(mouthC);
+             
+        return currMouth-mouth;
+                          } 
+    public int agePDay(int daTe){
+        
+       
+            String dateC=currentDay().substring(8,10);
+             int currDate=Integer.parseInt(dateC);
+        return Math.abs(currDate-daTe);
+                          } 
+    
  /*************************************************************************************************************/
-   @FXML
            public static String currentDay()
            { Date date=new Date();
                return new SimpleDateFormat("yyyy-MM-dd").format(date);
@@ -169,7 +208,7 @@ public class ManagePatientController implements Initializable {
                
                if(result.next())
                { 
-                 infoBox("Patient already exist ", null, "Alert"); 
+                 infoBox("The patient already exists", null, "Alert"); 
                }
                else
                {
@@ -188,7 +227,7 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(7, phoneNumber);
                   preparedSt.setString(8,sitFam);
                   preparedSt.setString(9,currentDay());
-                   preparedSt.setString(10,ageP()+"");
+                   preparedSt.setString(10,ageP());
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
                   
@@ -255,6 +294,38 @@ public class ManagePatientController implements Initializable {
      tab.setItems(list);
   
 }
+    /********************************************************************************************************/
+    
+    @FXML
+    private void consultData(ActionEvent event) {
+         list.clear();
+         try {
+             Connection con=Connexion.ConnecrDB();
+           
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM patient ");
+            while (rs.next()) {
+                //get string from db,whichever way 
+                list.add(new Pat(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) ));
+            }
+
+        } catch (SQLException ex) {
+          
+        }
+   
+        id_col.setCellValueFactory(new PropertyValueFactory<Pat,Integer>("ID"));
+    cni_col.setCellValueFactory(new PropertyValueFactory<Pat,Integer>("CNI"));
+      familyName_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("nom"));
+        firstName_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("prenom"));
+         gender_col.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+          address_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("adresse"));
+      phoneNumber_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("ntel"));
+        age_col.setCellValueFactory(new PropertyValueFactory<Pat,Date>("age"));
+          situationF_col.setCellValueFactory(new PropertyValueFactory<Pat,String>("sitF"));
+     
+     tab.setItems(list);
+    }
+
+    
     /*********************************************************************************************************/
     @FXML
     private void TableMouseClick(MouseEvent event) {
@@ -321,7 +392,7 @@ public class ManagePatientController implements Initializable {
                    preparedSt.setString(8, rdb_female.getText().toString());
                 
                   preparedSt.execute();
-                   infoBox("Patient Modify Successfully", null, "Success");
+                   infoBox("Patient Modified Successfully", null, "Success");
                  
                   
                   
@@ -346,12 +417,11 @@ public class ManagePatientController implements Initializable {
          }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
     
     } 
   /***********************************************************************************************************/
-     @FXML
     private void DeleteData(ActionEvent event) throws SQLException {
         
         
@@ -368,7 +438,7 @@ public class ManagePatientController implements Initializable {
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(requette);
                preparedSt.execute();
-               infoBox("Patient Deletted Successfully", null, "Success");
+               infoBox("Patient Deleted Successfully", null, "Success");
                
 //               Statement m = conn.createStatement();
 //                  m.execute("set @autoid :=0");
@@ -395,7 +465,7 @@ public class ManagePatientController implements Initializable {
 }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
 //         Connection conn=Connexion.ConnecrDB();
 //         Statement s = conn.createStatement();
@@ -407,7 +477,7 @@ public class ManagePatientController implements Initializable {
     @FXML
     public void CancelData(ActionEvent event) throws IOException
     {
-       infoBox("Patient Canceled Successfully", null, "Success");
+       infoBox("Successfully Cancelling", null, "Success");
                   cni_box.clear();
                   age_box.clear();
                  rdb_signal.setSelected(false);
@@ -420,7 +490,6 @@ public class ManagePatientController implements Initializable {
                    rdb_female.setSelected(false);
     }
 
-    
     /************************************************************************************************************/
    public static class Pat{
     

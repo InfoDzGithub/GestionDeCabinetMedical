@@ -79,7 +79,9 @@ public class ManageAppointmentController implements Initializable {
     private Label label_box;
     String inf_patient=" ", cni="",idpatient="";
     @FXML
-    private static   LocalTime  timeNxt=LocalTime.of(9, 31);
+    private static   LocalTime  timeNxt=LocalTime.of(9, 30);
+   private   LocalTime time;
+   private   LocalDate date;
   
     /***************************************************************************************************************/
    @FXML
@@ -105,7 +107,7 @@ public class ManageAppointmentController implements Initializable {
        cni=search_box.getText();
       if(cni.isEmpty())
         {
-          label_box.setText(" Please Fill Out The CNI Patient");   
+          label_box.setText(" Please Enter The Patient's CNI");   
         }
       else if(!searchExistPatient(cni))
       {
@@ -132,8 +134,8 @@ public class ManageAppointmentController implements Initializable {
      @FXML
     public boolean workingHoursMorning(LocalTime heure)
     {
-        LocalTime timeBegin =LocalTime.of(9, 30);
-        LocalTime timeEnd =LocalTime.of(12, 0);
+        LocalTime timeBegin =LocalTime.of(9, 29);
+        LocalTime timeEnd =LocalTime.of(11, 59);
         if (heure.isBefore(timeEnd) && heure.isAfter(timeBegin))
         {
             return true;
@@ -145,8 +147,8 @@ public class ManageAppointmentController implements Initializable {
      @FXML
     public boolean workingHoursAfterNoon(LocalTime heure)
     {
-        LocalTime timeBegin =LocalTime.of(14, 0);
-        LocalTime timeEnd =LocalTime.of(17, 0);
+        LocalTime timeBegin =LocalTime.of(13, 59);
+        LocalTime timeEnd =LocalTime.of(16, 59);
         if (heure.isBefore(timeEnd) && heure.isAfter(timeBegin))
         {
             return true;
@@ -189,8 +191,8 @@ public class ManageAppointmentController implements Initializable {
       inf_patient=name_box.getText();
       String text =comment_box.getText();
      
-    LocalTime time=SelectTimer.getTime();
-    LocalDate date=dateSelector.getValue();
+    time=SelectTimer.getTime();
+    date=dateSelector.getValue();
       
          //
          
@@ -199,13 +201,13 @@ public class ManageAppointmentController implements Initializable {
              infoBox2("Please Fill Out The Form", null, "Form Error!");  
          }
          else{
-                   if(lastDay(date))     infoBox2("This date is in the past", null, "Form Error!");  
+                   if(lastDay(date))     infoBox2("This date is unavailable", null, "Form Error!");  
                     
                     else{
-                        if(!workingHoursAfterNoon(time) && !workingHoursMorning(time))  infoBox2("Our medical office open from 9:30 to 12:00 and from 14:00 to 15:00", null, "Please respect the time");  
+                        if(!workingHoursAfterNoon(time) && !workingHoursMorning(time))  infoBox2("Our medical office open from 9:30 to 12:00 and from 14:00 to 17:00", null, "Please respect the time");  
                           
                             else{
-                                if(confusionAppointement(date,time)) infoBox2("Select a nother Appointement", null, "Form Error!");
+                                if(confusionAppointement(date,time)) infoBox2("This appointment is already taken, Choose another one please!", null, "Form Error!");
                                 else{
                                 String req="Select id_pat from patient where nic_pat ='" +cni+"'    ";
                                        
@@ -234,7 +236,7 @@ public class ManageAppointmentController implements Initializable {
 
 
                                        preparedSt.execute();
-                                       infoBox("RDV Added Successfully", null, "Success");
+                                       infoBox("Appointment Added Successfully", null, "Success");
 
                                         loadData();
                                     timeNxt=time.plusMinutes(30);
@@ -303,7 +305,9 @@ public class ManageAppointmentController implements Initializable {
                    comment_box.setText(result.getString("commentaire"));
                    
                    name_box.setText( result.getString("info_P"));
-                 
+          
+                /*  dateSelector.setValue(result.getString("date_rdv"));
+                 */
                   String maReq="SELECT nic_pat from patient,rdv where info_P=concat(concat(nom_pat,' '),concat(prenom_pat,' '),dateN_pat) AND id_rdv='" +id+"'";
                 try{       
                              Connection conn1=Connexion.ConnecrDB();
@@ -324,13 +328,24 @@ public class ManageAppointmentController implements Initializable {
    catch(Exception e){}
     }
     /*************************************************************************************************************/
+  
     @FXML
     private void UpdateDataR(ActionEvent event) {
           int myIndex =tab.getSelectionModel().getSelectedIndex();
            if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
+          time=SelectTimer.getTime();
+        date=dateSelector.getValue();
+        if(lastDay(date))     infoBox2("This date is unavailable", null, "Form Error!");  
+                    
+                    else{
+                        if(!workingHoursAfterNoon(time) && !workingHoursMorning(time))  infoBox2("Our medical office open from 9:30 to 12:00 and from 14:00 to 17:00", null, "Please respect the time");  
+                          
+                            else{
+       if(confusionAppointement(date,time)) infoBox2("This appointment is already taken, Choose another one please!", null, "Form Error!");
+       else{
+           String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentaire = ?  where id_rdv ='" +id+"' ";
        
-String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentaire = ?  where id_rdv ='" +id+"' ";
           Connection conn=Connexion.ConnecrDB();
          try{
           PreparedStatement preparedSt=conn.prepareStatement(req);
@@ -341,7 +356,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                   preparedSt.setString(4, comment_box.getText().toString());
                  
                   preparedSt.execute();
-                   infoBox("RDV Modify Successfully", null, "Success");
+                   infoBox("Appointment Modified Successfully", null, "Success");
                  
                   loadData();
                   
@@ -353,10 +368,10 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          {
              
          }
-         }
+         }}}}
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
     
     }
@@ -376,7 +391,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(requette);
                preparedSt.execute();
-               infoBox("RDV Deletted Successfully", null, "Success");
+               infoBox("Appointment Deleted Successfully", null, "Success");
                
  
                   
@@ -391,7 +406,7 @@ String req="Update rdv set date_rdv = ? , heure_rdv = ? , info_P = ? , commentai
          }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
        
     }

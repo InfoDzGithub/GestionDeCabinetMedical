@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import static javafx.collections.FXCollections.concat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,9 +66,9 @@ public class PrescriptionController implements Initializable {
                ResultSet result2=preparedSt1.executeQuery();
                 while(result2.next())
                {
-                  firstNmed_box.setText(result2.getString("prenom_med"));
-                  familyNmed_box.setText(result2.getString("nom_med"));
-                 eMail_box.setText(result2.getString("username_med"));
+                  firstNmed_box.setText(result2.getString("nom_med").concat(" " .concat(result2.getString("prenom_med"))));
+                 // familyNmed_box.setText(result2.getString("nom_med"));
+                 eMail_box.setText(result2.getString("nom_med").concat("_" .concat(result2.getString("prenom_med"))).concat(" @gmail.com"));
                   phoneN_box.setText(result2.getString("num_tel_med"));
                
         }}

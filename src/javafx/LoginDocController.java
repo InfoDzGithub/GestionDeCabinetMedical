@@ -73,7 +73,7 @@ public void exitApplication(ActionEvent event) {
 
                        if(resultat.next())
                        {
-                            infoBox("Login Succuful", null, "Succes"); 
+                            infoBox("Login Successful", null, "Success"); 
                             Parent loginDoctor = FXMLLoader.load(getClass().getResource("DoctorPortal.fxml"));
                             Scene doc = new Scene(loginDoctor);
                             Stage window1;

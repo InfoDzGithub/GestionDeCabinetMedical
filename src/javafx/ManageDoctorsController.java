@@ -265,7 +265,7 @@ public class ManageDoctorsController implements Initializable {
                   preparedSt.setString(8, rdb_female.getText().toString());
                 
                   preparedSt.execute();
-                   infoBox("Doctor Modify Successfully", null, "Success");
+                   infoBox("Doctor Modified Successfully", null, "Success");
                  
                   loadData();
                   cni_box.clear();
@@ -285,7 +285,7 @@ public class ManageDoctorsController implements Initializable {
          }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
     
     }
@@ -293,7 +293,7 @@ public class ManageDoctorsController implements Initializable {
      @FXML
     public void CancelData(ActionEvent event) throws IOException
     {
-       infoBox("Doctor Canceled Successfully", null, "Success");
+       infoBox("Successfully Cancelling", null, "Success");
                   cni_box.clear();
                   userName_box.clear();
                    password_box.clear();
@@ -314,7 +314,7 @@ public class ManageDoctorsController implements Initializable {
                Connection conn=Connexion.ConnecrDB();
                PreparedStatement preparedSt=conn.prepareStatement(requette);
                preparedSt.execute();
-               infoBox("Doctor Deletted Successfully", null, "Success");
+               infoBox("Doctor Deleted Successfully", null, "Success");
                
                 Statement m = conn.createStatement();
                   m.execute("set @autoid :=0");
@@ -340,7 +340,7 @@ public class ManageDoctorsController implements Initializable {
          }
    else
    {
-       infoBox2("You should select a row first", null, "Failed");
+       infoBox2("You Should Select a Row First", null, "Failed");
    }
          Connection conn=Connexion.ConnecrDB();
          Statement s = conn.createStatement();
