@@ -91,15 +91,15 @@
 </JFXButton>
 <TableView fx:id="tab" layoutX="10.0" layoutY="315.0" onMouseClicked="#TableMouseClick" prefHeight="285.0" prefWidth="713.0">
 <columns>
-<TableColumn fx:id="id_col" prefWidth="34.0" text="ID" />
-<TableColumn fx:id="cni_col" prefWidth="68.0" text="N° CNI" />
-<TableColumn fx:id="firstName_col" prefWidth="78.0" text="First_name" />
+<TableColumn fx:id="id_col" prefWidth="26.0" text="ID" />
+<TableColumn fx:id="cni_col" prefWidth="62.0" text="N° CNI" />
+<TableColumn fx:id="firstName_col" prefWidth="75.0" text="First_name" />
 <TableColumn fx:id="familyName_col" prefWidth="81.0" text="Family_name" />
-<TableColumn fx:id="gender_col" prefWidth="68.0" text="Gender" />
-<TableColumn fx:id="phoneNumber_col" prefWidth="114.0" text="Phone_Number" />
-<TableColumn fx:id="address_col" prefWidth="114.0" text="Address" />
-<TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="78.0" text="User_Name" />
-<TableColumn fx:id="password_col" prefWidth="84.0" text="Password" />
+<TableColumn fx:id="gender_col" prefWidth="51.0" text="Gender" />
+<TableColumn fx:id="phoneNumber_col" prefWidth="98.0" text="Phone_Number" />
+<TableColumn fx:id="address_col" prefWidth="180.0" text="Address" />
+<TableColumn fx:id="userName_col" minWidth="9.0" prefWidth="74.0" text="User_Name" />
+<TableColumn fx:id="password_col" prefWidth="72.0" text="Password" />
 </columns>
 </TableView>
 <JFXButton layoutX="690.0" layoutY="29.0" onAction="#Home" text="Home" textFill="WHITE">

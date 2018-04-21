@@ -32,7 +32,7 @@ public class PrescriptionController implements Initializable {
     @FXML
     private Text date_box;
     @FXML
-    private Text age_box;
+    private  Text age_box;
     @FXML
     private Text familyName_box;
     @FXML
@@ -68,15 +68,15 @@ public class PrescriptionController implements Initializable {
                {
                   firstNmed_box.setText(result2.getString("nom_med").concat(" " .concat(result2.getString("prenom_med"))));
                  // familyNmed_box.setText(result2.getString("nom_med"));
-                 eMail_box.setText(result2.getString("nom_med").concat("_" .concat(result2.getString("prenom_med"))).concat(" @gmail.com"));
+                 eMail_box.setText(result2.getString("prenom_med").concat("_").concat(result2.getString("nom_med")).concat(" @gmail.com"));
                   phoneN_box.setText(result2.getString("num_tel_med"));
                
         }}
          catch(Exception e){}
         
      
-          
-        String sqls="Select age, nom_pat ,prenom_pat,nom_medc from patient, traitement where patient.id_pat= traitement.id_pat  and patient.id_pat='" +id+"'";
+         age_box.setText(DoctorPortalController.ageP(id));
+        String sqls="Select  nom_pat ,prenom_pat,nom_medc from patient, traitement where patient.id_pat= traitement.id_pat  and patient.id_pat='" +id+"'";
                                                                                               
    try{
                Connection conn=Connexion.ConnecrDB();
@@ -86,7 +86,7 @@ public class PrescriptionController implements Initializable {
                
                while(result.next())
                { 
-                   age_box.setText(result.getString("age"));
+                  // age_box.setText(result.getString("age"));
                    familyName_box.setText(result.getString("nom_pat"));
                    firstName_box.setText(result.getString("prenom_pat"));
                    trait_box.setText(result.getString("nom_medc"));

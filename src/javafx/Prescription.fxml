@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="650.0" maxWidth="450.0" minHeight="625.0" minWidth="450.0" prefHeight="625.0" prefWidth="450.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.PrescriptionController">
+<AnchorPane maxHeight="650.0" maxWidth="450.0" minHeight="625.0" minWidth="450.0" prefHeight="625.0" prefWidth="500.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.PrescriptionController">
 <children>
 <AnchorPane fx:id="panel_box" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: white;">
 <children>
-<Text fill="#0184ff" layoutX="8.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DR ." wrappingWidth="28.13671875">
+<Text fill="#0184ff" layoutX="5.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DR ." wrappingWidth="28.13671875">
                <font>
                   <Font size="14.0" />
                </font></Text>
@@ -23,7 +23,7 @@
 <Text fill="#0184ff" layoutX="34.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13000, TLEMCEN" />
 <Text fill="#0184ff" layoutX="325.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: 043 26 45 59 " />
 <Text fill="#0184ff" layoutX="285.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlemcen, On" />
-<Text fill="#0184ff" layoutX="8.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile :" wrappingWidth="55.140614974079654" />
+<Text fill="#0184ff" layoutX="5.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile :" wrappingWidth="44.00000791111961" />
 <Text fx:id="date_box" layoutX="361.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="89.49023451795802" />
 <Text fill="#0184ff" layoutX="294.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :" />
 <Text fill="#0184ff" layoutX="294.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name   :" />
@@ -37,7 +37,7 @@
 <Text fx:id="age_box" layoutX="329.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="69.53906644764356" />
 <Text fx:id="familyName_box" layoutX="372.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="83.14062070846558" />
 <Text fx:id="firstName_box" layoutX="368.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="82.0" />
-<Label fx:id="trait_box" contentDisplay="TOP" ellipsisString="" layoutX="19.0" layoutY="164.0" lineSpacing="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="260.0" prefWidth="350.0" wrapText="true">
+<Label fx:id="trait_box" contentDisplay="TOP" ellipsisString="" layoutX="16.0" layoutY="189.0" lineSpacing="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="334.0" prefWidth="350.0" wrapText="true">
 <font>
 <Font size="18.0" />
 </font>
@@ -45,18 +45,18 @@
                   <Insets />
                </opaqueInsets>
 </Label>
-            <Text fx:id="firstNmed_box" fill="#0184ff" layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="142.57813234929927">
+            <Text fx:id="firstNmed_box" fill="#0184ff" layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.13672716799192">
                <font>
                   <Font size="14.0" />
                </font></Text>
-            <Label ellipsisString="" layoutX="8.0" layoutY="56.0" text="E-mail :" textFill="#0184ff" />
-            <Text fx:id="eMail_box" fill="#0184ff" layoutX="49.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="165.0" />
-            <Label layoutX="8.0" layoutY="34.0" prefHeight="20.0" prefWidth="111.0" text="DERMATOLOGIST" textAlignment="RIGHT" textFill="#0184ff" wrapText="true">
+            <Label ellipsisString="" layoutX="5.0" layoutY="77.0" prefHeight="17.0" prefWidth="44.0" text="E-mail :" textFill="#0184ff" />
+            <Text fx:id="eMail_box" fill="#0184ff" layoutX="52.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="165.0" />
+            <Label layoutX="5.0" layoutY="33.0" prefHeight="20.0" prefWidth="111.0" text="DERMATOLOGIST" textAlignment="RIGHT" textFill="#0184ff" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Text fx:id="phoneN_box" fill="#0184ff" layoutX="53.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="142.5781301409006" />
+            <Text fx:id="phoneN_box" fill="#0184ff" layoutX="52.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="142.5781301409006" />
             <ImageView fitHeight="110.0" fitWidth="100.0" layoutX="175.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/medical.png" />

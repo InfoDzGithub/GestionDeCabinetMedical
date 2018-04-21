@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import static javafx.LoginAdminController.infoBox;
 import static javafx.ManageAppointmentController.infoBox;
+import static javafx.ManagePatientController.currentDay;
 import static javafx.ManagePatientController.infoBox2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,7 +52,7 @@ public class DoctorPortalController implements Initializable {
     @FXML
     private JFXTextArea diagN_box;
     @FXML
-    private JFXTextField age_box;
+    private  JFXTextField age_box;
     @FXML
     private JFXTextArea treatmentE_box;
     @FXML
@@ -63,6 +64,79 @@ public class DoctorPortalController implements Initializable {
     @FXML
     private JFXButton p_id;
     private String medicament;
+     public static String date ="",yearN="",mouthN="",dateN="";
+     String variable="";
+    
+    /**********************************************************************************************************/
+    public static String ageP(String idd){
+        
+        
+        
+        
+        String req="Select dateN_pat from patient where id_pat='"+idd+"'";
+        try{
+             Connection conn1=Connexion.ConnecrDB();
+               PreparedStatement preparedSt1=conn1.prepareStatement(req);
+               ResultSet result2=preparedSt1.executeQuery();
+                if(result2.next())
+               {
+                 date=result2.getString("dateN_pat");
+                        
+               
+              }
+          }
+         catch(Exception e){}
+        
+      
+        //char c =date.charAt(4);
+        int year=0,mouth=0,daTe=0;
+           yearN = date.substring(0,4); 
+          year = Integer.parseInt(yearN);
+          String yearC=currentDay().substring(0,4); // yyyy-mm-dd
+          int currYear=Integer.parseInt(yearC);
+          
+               mouthN = date.substring(5,7); 
+              mouth= Integer.parseInt(mouthN);
+              
+              String mouthC=currentDay().substring(5,7);
+              int currMouth=Integer.parseInt(mouthC);
+             
+               dateN = date.substring(8,10); 
+              daTe= Integer.parseInt(dateN);
+              
+          
+          if(year!=currYear) 
+          {
+//              if(currMouth<5 )     return (currYear-year)+"   Year";
+//              else if(currMouth>5) return (currYear-year-1)+"  Year";
+              return (currYear-year)+"   Years";
+          }    
+          else if(year==currYear)
+          {
+             if(currMouth!=mouth)       return (agePMouth(mouth))+"  Mouths";
+             else if(currMouth==mouth)  return (agePDay( daTe))+"  Days";
+          }
+                
+                
+                
+         
+         return "";
+    }
+    
+   public static int agePMouth(int mouth){
+       
+              String mouthC=currentDay().substring(5,7);
+              int currMouth=Integer.parseInt(mouthC);
+             
+        return currMouth-mouth;
+                          } 
+    public static int agePDay(int daTe){
+        
+       
+            String dateC=currentDay().substring(8,10);
+             int currDate=Integer.parseInt(dateC);
+        return Math.abs(currDate-daTe);
+                          } 
  /*************************************************************************************************************/
       @FXML
     private void combobox_MouseClicke(MouseEvent event) {
@@ -77,13 +151,37 @@ public class DoctorPortalController implements Initializable {
          
             ResultSet rs = con.createStatement().executeQuery("SELECT concat(concat(id_pat,' '),info_P) FROM rdv where date_rdv='" +ManagePatientController.currentDay()+"' ");//
             while (rs.next()) {
-                //get string from db,whichever way 
+                
                 list2.add(new String(rs.getString(1)));
+                
             }
+            
 
         } catch (Exception ex) {
             System.err.println("Error"+ex);
         }
+   }
+     
+    /****************************************************************************************************************/
+      public void test(){
+       
+    
+   String sqls="SELECT concat(concat(id_pat,' '),info_P) FROM rdv where id_pat='" +id+"' ";
+                                                                                              
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery(); 
+               
+               
+               while(result.next())
+               { 
+                 variable=result.getString(1);
+                   
+               }
+               
+               }
+   catch(Exception e){}
    }
   /***************************************************************************************************************/
    @FXML
@@ -96,21 +194,6 @@ public class DoctorPortalController implements Initializable {
        String diag =diagN_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
     
-     /* if(medicament.isEmpty())
-         
-         {
-           
-             p_id.setDisable(true);
-         }
-       else 
-         
-         {
-           
-             p_id.setDisable(false);
-         }
-    
-     */
-     
      if (id.isEmpty())
      {infoBox2("Enter the patient's id please!", null, "Failed");}  
      else if (medicament.isEmpty() ){infoBox2("Fill In The Treatment Field !", null, "Failed");}  
@@ -151,8 +234,12 @@ public class DoctorPortalController implements Initializable {
          {
              ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
+     
         else{
-   String sqls="Select age, situation_fam from patient where id_pat='" +id+"'"; 
+              test();
+             if(variable.equals(patient_inf)) 
+             { age_box.setText(ageP(id));
+   String sqls="Select situation_fam from patient where id_pat='" +id+"'"; 
                                                                                          
    try{
                Connection conn=Connexion.ConnecrDB();
@@ -160,7 +247,7 @@ public class DoctorPortalController implements Initializable {
                ResultSet result=preparedSt.executeQuery();      
                while(result.next())
                { 
-                   age_box.setText(result.getString("age"));
+                  
                    situation_box.setText(result.getString("situation_fam"));
                   
                }     
@@ -184,7 +271,11 @@ public class DoctorPortalController implements Initializable {
    catch(Exception e){}
     
     
-    }}
+           
+             }
+             else ManageAppointmentController.infoBox2("Enter the correct number ", null, "Form Error!"); 
+                 }}
+
    
  /****************************************************************************************************************/
     @FXML

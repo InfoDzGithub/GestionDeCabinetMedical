@@ -39,7 +39,7 @@
             <Font name="Serif Bold" size="18.0" />
          </font>
       </JFXButton>
-      <AnchorPane disable="true" layoutX="14.0" layoutY="181.0" prefHeight="238.0" prefWidth="356.0" style="-fx-background-color: #EEEEEE;">
+      <AnchorPane disable="true" layoutX="4.0" layoutY="181.0" prefHeight="238.0" prefWidth="366.0" style="-fx-background-color: #EEEEEE;">
          <children>
             <JFXTextField fx:id="age_box" editable="false" focusColor="#64b5f6" layoutX="72.0" layoutY="7.0" maxWidth="283.0" minWidth="178.0" prefHeight="31.0" prefWidth="283.0" unFocusColor="BLACK">
                <font>
@@ -67,23 +67,28 @@
                   <Font name="Arial" size="22.0" />
                </font>
             </Text>
-            <Text fill="#64b5f6" layoutX="4.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Treatment :" wrappingWidth="144.00000125169754">
+            <Text fill="#64b5f6" layoutX="3.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Treatment :" wrappingWidth="137.00000569224358">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
             </Text>
-            <Text fill="#64b5f6" layoutX="4.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Diagnostics :" wrappingWidth="144.00000263378024">
+            <Text fill="#64b5f6" layoutX="9.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Diagnostics :" wrappingWidth="144.00000263378024">
                <font>
                   <Font name="Arial" size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#64b5f6" layoutX="3.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    (Previous)" wrappingWidth="137.00000569224358">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#64b5f6" layoutX="13.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    (Previous)" wrappingWidth="137.00000569224358">
+               <font>
+                  <Font name="Arial" size="16.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <Text fill="#64b5f6" layoutX="407.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Treatment :" wrappingWidth="117.99998581409454">
-         <font>
-            <Font name="Arial" size="23.0" />
-         </font>
-      </Text>
       <JFXTextArea fx:id="treatmentN_box" focusColor="#64b5f6" layoutX="534.0" layoutY="170.0" maxWidth="273.0" minWidth="178.0" prefHeight="100.0" prefWidth="209.0" />
       <JFXButton layoutX="636.0" layoutY="37.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" onAction="#log_out" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: white;" text="Logout" textFill="#64b5f6">
          <font>
@@ -91,12 +96,7 @@
          </font>
       </JFXButton>
       <JFXTextArea fx:id="diagN_box" focusColor="#64b5f6" layoutX="534.0" layoutY="304.0" maxWidth="273.0" minWidth="178.0" prefHeight="100.0" prefWidth="209.0" />
-      <Text fill="#64b5f6" layoutX="403.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diagnostics :" wrappingWidth="137.00000569224358">
-         <font>
-            <Font name="Arial" size="23.0" />
-         </font>
-      </Text>
-      <JFXComboBox fx:id="combobox" layoutX="377.0" layoutY="102.0" onMouseClicked="#combobox_MouseClicke" prefHeight="25.0" prefWidth="227.0" promptText="                Select The Patient" />
+      <JFXComboBox fx:id="combobox" layoutX="377.0" layoutY="102.0" onMouseClicked="#combobox_MouseClicke" prefHeight="25.0" prefWidth="238.0" promptText="                Select The Patient" />
       <JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="138.0" layoutY="141.0" maxWidth="137.0" minHeight="30.0" minWidth="90.0" prefHeight="30.0" prefWidth="137.0" />
       <Text fill="#64b5f6" layoutX="13.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's ID :" wrappingWidth="137.99998581409454">
          <font>
@@ -108,5 +108,25 @@
             <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
          </graphic></JFXButton>
       <FontAwesomeIconView fill="WHITE" glyphName="FILE" layoutX="312.0" layoutY="465.0" size="18" text="" />
+      <Text fill="#64b5f6" layoutX="395.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Diagnostics :" wrappingWidth="144.00000263378024">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#64b5f6" layoutX="405.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Treatment :" wrappingWidth="124.00000569224358">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#64b5f6" layoutX="411.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    (Current)" wrappingWidth="93.00000569224358">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="#64b5f6" layoutX="401.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    (Current)" wrappingWidth="112.00000569224358">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
       </children>
 </AnchorPane>

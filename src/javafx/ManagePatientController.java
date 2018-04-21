@@ -55,7 +55,7 @@ public class ManagePatientController implements Initializable {
     @FXML
     private JFXRadioButton rdb_married;
      @FXML
-    private JFXTextField age_box; 
+    private  JFXTextField age_box; 
     @FXML
      private ToggleGroup GroupS1;
     @FXML
@@ -84,60 +84,9 @@ public class ManagePatientController implements Initializable {
     ObservableList<Pat> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Pat> tab;
+    
+   
   /*********************************************************************************************************/
-    public String ageP(){
-        int year=0,mouth=0,daTe=0;
-        String date=age_box.getText();
-        //char c =date.charAt(4);
-        
-          String yearN = date.substring(0,4); 
-          year = Integer.parseInt(yearN);
-          String yearC=currentDay().substring(0,4); // yyyy-mm-dd
-          int currYear=Integer.parseInt(yearC);
-          
-              String mouthN = date.substring(5,7); 
-              mouth= Integer.parseInt(mouthN);
-              
-              String mouthC=currentDay().substring(5,7);
-              int currMouth=Integer.parseInt(mouthC);
-             
-              String dateN = date.substring(8,10); 
-              daTe= Integer.parseInt(dateN);
-              
-          
-          if(year!=currYear) 
-          {
-              if(currMouth<5 )     return (currYear-year)+"   Year";
-              else if(currMouth>5) return (currYear-year+1)+"  Year";
-          }    
-          else if(year==currYear)
-          {
-             if(currMouth!=mouth)       return (agePMouth(mouth))+"  Mouth";
-             else if(currMouth==mouth)  return (agePDay( daTe))+"  Day";
-          }
-                
-                
-                
-         
-         return "";
-    }
-    
-   public int agePMouth(int mouth){
-       
-              String mouthC=currentDay().substring(5,7);
-              int currMouth=Integer.parseInt(mouthC);
-             
-        return currMouth-mouth;
-                          } 
-    public int agePDay(int daTe){
-        
-       
-            String dateC=currentDay().substring(8,10);
-             int currDate=Integer.parseInt(dateC);
-        return Math.abs(currDate-daTe);
-                          } 
-    
- /*************************************************************************************************************/
            public static String currentDay()
            { Date date=new Date();
                return new SimpleDateFormat("yyyy-MM-dd").format(date);
@@ -212,7 +161,7 @@ public class ManagePatientController implements Initializable {
                }
                else
                {
-                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,dateN_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat,age) VALUES(?,?,?,?,?,?,?,?,?,?)";
+                String sql="INSERT INTO patient(nic_pat,nom_pat,prenom_pat,sexe_pat,dateN_pat,adresse_pat,num_tel_pat,situation_fam,crdt_Pat) VALUES(?,?,?,?,?,?,?,?,?)";
                  
                    try {
                   conn=Connexion.ConnecrDB();
@@ -227,7 +176,7 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(7, phoneNumber);
                   preparedSt.setString(8,sitFam);
                   preparedSt.setString(9,currentDay());
-                   preparedSt.setString(10,ageP());
+                  // preparedSt.setString(10,ageP());
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
                   
@@ -369,7 +318,7 @@ public class ManagePatientController implements Initializable {
         int myIndex =tab.getSelectionModel().getSelectedIndex();
          if(myIndex > -1){
          String id=tab.getItems().get(myIndex).getID();
-         String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , dateN_pat = ? , situation_fam = ? ,sexe_pat = ?  where id_pat ='" +id+"'";
+         String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , dateN_pat = ? , situation_fam = ? ,sexe_pat = ? where id_pat ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
          try{
           PreparedStatement preparedSt=conn.prepareStatement(req);
@@ -380,6 +329,7 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(4,address_box.getText().toString());
                   preparedSt.setString(5, phoneNumber_box.getText().toString());
                   preparedSt.setString(6, age_box.getText().toString());
+                  
                  
                   if(rdb_signal.isSelected())
                    preparedSt.setString(7, rdb_signal.getText().toString());
@@ -390,7 +340,7 @@ public class ManagePatientController implements Initializable {
                    preparedSt.setString(8, rdb_male.getText().toString());
                    else if(rdb_female.isSelected())
                    preparedSt.setString(8, rdb_female.getText().toString());
-                
+                   //preparedSt.setString(9, ageP());
                   preparedSt.execute();
                    infoBox("Patient Modified Successfully", null, "Success");
                  
