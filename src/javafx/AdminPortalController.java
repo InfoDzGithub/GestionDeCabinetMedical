@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package javafx;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,12 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author User
- */
+
 public class AdminPortalController implements Initializable {
+ /******************************************************************************************************************/
 @FXML
     public void changeScreen5(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("ManageDoctors.fxml"));
@@ -30,6 +26,7 @@ public class AdminPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+ /*******************************************************************************************************************/
 @FXML
     public void changeScreen6(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("ManageRecep.fxml"));
@@ -37,6 +34,7 @@ public class AdminPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+ /*******************************************************************************************************************/
     @FXML
     public void changeScreen7(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginAdmin.fxml"));
@@ -44,13 +42,11 @@ public class AdminPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+  /*******************************************************************************************************************/
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
     
 }

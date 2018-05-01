@@ -68,7 +68,7 @@ public class PrescriptionController implements Initializable {
                {
                   firstNmed_box.setText(result2.getString("nom_med").concat(" " .concat(result2.getString("prenom_med"))));
                  // familyNmed_box.setText(result2.getString("nom_med"));
-                 eMail_box.setText(result2.getString("prenom_med").concat("_").concat(result2.getString("nom_med")).concat(" @gmail.com"));
+                 eMail_box.setText(result2.getString("prenom_med").concat("_").concat(result2.getString("nom_med")).concat("@gmail.com"));
                   phoneN_box.setText(result2.getString("num_tel_med"));
                
         }}

@@ -23,6 +23,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -104,6 +106,50 @@ public void exitApplication(ActionEvent event) {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); }
+    /**************************************************************************************************/
+    @FXML
+    private void onKeyPressed(KeyEvent event) throws IOException {
+   
+        if (event.getCode() == KeyCode.ENTER) {String user= username_box.getText().toString();
+        String pass= password_box.getText().toString();
+         
+       if(user.isEmpty() || pass.isEmpty())  
+     {
+      infoBox2("Please enter your username or your password", null, "Form Error!");   
+         
+     }
+         else{
+        String sql="SELECT * FROM receptioniste WHERE username_recep= " + "'" + user + "'" 
+            + " AND password_recep= " + "'" + pass + "'";
+              
+     
+                   try {
+                     resultat=conn.prepareStatement(sql).executeQuery();
+
+                       if(resultat.next())
+                       {
+                            infoBox("Login Successful", null, "Success"); 
+                         Parent home_page_parent2 = FXMLLoader.load(getClass().getResource("RecepPortal.fxml"));
+                          Scene home_page_scene2 = new Scene(home_page_parent2);
+                          Stage app_stage2 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                          app_stage2.setScene(home_page_scene2);
+                          app_stage2.show();
+
+                       }
+                       else
+                       {
+                        infoBox2("Correct your username or your password", null, "Failed");
+                        username_box.clear();
+                        password_box.clear();
+                         
+                       }
+                        } 
+                   catch (Exception e)
+                        {   
+                            
+                        }   
+        
+         } } }
 
  /*************************************************************************************************/
     @Override

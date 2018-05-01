@@ -99,7 +99,7 @@
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="331.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="25.0" minWidth="78.0" prefHeight="30.0" prefWidth="180.0" promptText="    Enter The Patient's CNI" />
+<JFXTextField fx:id="search_box" focusColor="#64b5f6" layoutX="331.0" layoutY="99.0" maxHeight="30.0" maxWidth="199.0" minHeight="25.0" minWidth="78.0" onKeyReleased="#onkeypressed" prefHeight="30.0" prefWidth="180.0" promptText="    Enter The Patient's CNI" />
 <JFXButton ellipsisString="" layoutX="472.0" layoutY="95.0" onAction="#search_Patient" prefHeight="30.0" prefWidth="40.0" textFill="WHITE">
          <graphic>
       <FontAwesomeIconView fill="#64b5f6" glyphName="SEARCH" size="18" text="" />
@@ -113,10 +113,11 @@
             <Font name="Arial Italic" size="18.0" />
          </font>
       </Label>
-<Label fx:id="label_box" layoutX="506.0" layoutY="114.0" prefHeight="25.0" prefWidth="228.0" textFill="#dd4848">
+<Label fx:id="label_box" layoutX="506.0" layoutY="114.0" prefHeight="25.0" prefWidth="228.0" textFill="RED">
 <font>
 <Font name="System Bold" size="12.0" />
 </font>
 </Label>
+      <Label fx:id="labelTime" ellipsisString="" layoutX="613.0" layoutY="234.0" prefHeight="17.0" prefWidth="110.0" textFill="#da0f0f" />
 </children>
 </AnchorPane>

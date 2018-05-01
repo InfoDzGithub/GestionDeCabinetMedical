@@ -30,7 +30,7 @@
 <Font name="Serif Bold" size="18.0" />
 </font>
 </JFXButton>
-<JFXButton layoutX="736.0" layoutY="525.0" onAction="#consultData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="  Consult" textFill="WHITE">
+<JFXButton layoutX="736.0" layoutY="525.0" onAction="#consultData" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #64B5F6;" text="   See All" textFill="WHITE">
 <font>
 <Font name="Serif Bold" size="19.0" />
 </font>
@@ -50,26 +50,26 @@
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="336.0" layoutY="102.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="144.0" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="336.0" layoutY="100.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="144.0" onKeyReleased="#OnKeyPressed1" prefHeight="30.0" prefWidth="200.0" />
 <Label layoutX="420.0" layoutY="159.0" prefHeight="21.0" prefWidth="126.0" text="Family Name :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="112.0" layoutY="155.0" maxHeight="30.0" maxWidth="222.0" minHeight="30.0" minWidth="212.0" prefHeight="30.0" prefWidth="220.0" />
-<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="548.0" layoutY="155.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
-<Label layoutX="10.0" layoutY="195.0" prefHeight="21.0" prefWidth="133.0" text="Date Of Birth :" textFill="#64b5f6">
+<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="112.0" layoutY="150.0" maxHeight="30.0" maxWidth="222.0" minHeight="30.0" minWidth="212.0" onKeyPressed="#error" prefHeight="30.0" prefWidth="220.0" />
+<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="548.0" layoutY="150.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyReleased="#error2" prefHeight="30.0" prefWidth="200.0" />
+<Label layoutX="10.0" layoutY="200.0" prefHeight="21.0" prefWidth="133.0" text="Date Of Birth :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<Label layoutX="420.0" layoutY="195.0" prefHeight="21.0" prefWidth="141.0" text="Phone_Number :" textFill="#64b5f6">
+<Label layoutX="420.0" layoutY="200.0" prefHeight="21.0" prefWidth="141.0" text="Phone_Number :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font>
 </Label>
-<JFXTextField fx:id="age_box" focusColor="#64b5f6" layoutX="133.0" layoutY="190.0" maxWidth="212.0" minWidth="200.0" prefHeight="31.0" prefWidth="212.0" promptText="                 yyyy-MM-dd" />
-<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="561.0" layoutY="191.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="192.0" prefHeight="30.0" prefWidth="192.0" />
+<JFXTextField fx:id="age_box" focusColor="#64b5f6" layoutX="133.0" layoutY="195.0" maxWidth="212.0" minWidth="200.0" prefHeight="31.0" prefWidth="212.0" promptText="                 yyyy-MM-dd" />
+<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="561.0" layoutY="195.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="192.0" onKeyPressed="#OnKeyPressed" prefHeight="30.0" prefWidth="192.0" />
 <Label layoutX="10.0" layoutY="235.0" prefHeight="21.0" prefWidth="89.0" text="Address :" textFill="#64b5f6">
 <font>
 <Font name="Arial Italic" size="18.0" />
@@ -149,6 +149,10 @@
 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="749.0" layoutY="116.0" size="18" />
 <FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
 <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
-<FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
+<FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="740.0" layoutY="553.0" size="18" wrappingWidth="15.428566604852676" />
+      <Label fx:id="errortel" layoutX="605.0" layoutY="225.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
+      <Label fx:id="errortel1" layoutX="378.0" layoutY="129.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
+      <Label fx:id="nameError1" layoutX="595.0" layoutY="180.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
+      <Label fx:id="nameError" layoutX="170.0" layoutY="180.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
 </children>
 </AnchorPane>

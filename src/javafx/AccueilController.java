@@ -19,25 +19,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- *
- * @author User
- */
+
 public class AccueilController implements Initializable {
     
     @FXML
     private Label label;
     
-    /**
-     *
-     * @param event
-     */
-    
+ /********************************************************************************************************************/   
 @FXML
 public void exitApplication(ActionEvent event) {
    Platform.exit();
 }
-    
+/**********************************************************************************************************************/    
     @FXML
   
     public void changeScreen(ActionEvent event) throws IOException {
@@ -45,7 +38,8 @@ public void exitApplication(ActionEvent event) {
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
-            window.show(); }    
+            window.show(); } 
+ /*********************************************************************************************************************/
     @FXML
     
      public void changeScreen2(ActionEvent event) throws IOException {
@@ -53,7 +47,8 @@ public void exitApplication(ActionEvent event) {
            Scene ab = new Scene(loginAdmin);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
-            window.show(); } 
+            window.show(); }
+ /**********************************************************************************************************************/
      @FXML
      
      public void changeScreen3(ActionEvent event) throws IOException {
@@ -63,11 +58,11 @@ public void exitApplication(ActionEvent event) {
             window.setScene(ab);
             window.show(); }  
      
-     
+ /**********************************************************************************************************************/    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+/***********************************************************************************************************************/   
 }

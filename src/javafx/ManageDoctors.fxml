@@ -23,8 +23,8 @@
 <Font name="System Italic" size="35.0" />
 </font>
 </Label>
-<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="120.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
-<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="325.0" layoutY="85.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="firstName_box" focusColor="#64b5f6" layoutX="120.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyPressed="#error" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="cni_box" focusColor="#64b5f6" layoutX="325.0" layoutY="85.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyPressed="#OnKeyPressed1" prefHeight="30.0" prefWidth="200.0" />
 <Text fill="#64b5f6" layoutX="210.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor's CNI :" wrappingWidth="114.4521484375">
 <font>
 <Font name="Arial Italic" size="18.0" />
@@ -33,7 +33,7 @@
 <font>
 <Font name="Arial Italic" size="18.0" />
 </font></Text>
-<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="540.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="familyName_box" focusColor="#64b5f6" layoutX="540.0" layoutY="134.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyPressed="#error2" prefHeight="30.0" prefWidth="200.0" />
 <Text fill="#64b5f6" layoutX="420.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :">
 <font>
 <Font name="Arial Italic" size="18.0" />
@@ -50,7 +50,7 @@
 <Image url="@images/med.png" />
 </image>
 </ImageView>
-<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="160.0" layoutY="224.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" />
+<JFXTextField fx:id="phoneNumber_box" focusColor="#64b5f6" layoutX="160.0" layoutY="224.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyPressed="#OnKeyPressed" prefHeight="30.0" prefWidth="200.0" />
 <Text fill="#64b5f6" layoutX="10.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone_Number :">
 <font>
 <Font name="Arial Italic" size="18.0" />
@@ -140,5 +140,9 @@
 <FontAwesomeIconView fill="WHITE" glyphName="UNDO" layoutX="740.0" layoutY="386.0" size="18" wrappingWidth="15.428571701049805" />
 <FontAwesomeIconView fill="WHITE" glyphName="EDIT" layoutX="740.0" layoutY="472.0" size="18" wrappingWidth="14.14285483956337" />
 <FontAwesomeIconView fill="WHITE" glyphName="TRASH" layoutX="740.0" layoutY="553.0" size="20" wrappingWidth="15.428566604852676" />
+      <Label fx:id="errortel" layoutX="212.0" layoutY="254.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
+      <Label fx:id="errortel1" layoutX="370.0" layoutY="115.0" prefHeight="17.0" prefWidth="106.0" textFill="RED" />
+      <Label fx:id="nameError" layoutX="175.0" layoutY="164.0" prefWidth="106.0" textFill="RED" wrapText="true" />
+      <Label fx:id="nameError1" layoutX="585.0" layoutY="164.0" prefWidth="106.0" textFill="RED" wrapText="true" />
 </children>
 </AnchorPane>

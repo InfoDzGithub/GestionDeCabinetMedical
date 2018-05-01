@@ -21,13 +21,13 @@
                </font></Text>
 <Text fill="#0184ff" layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="57,bd.Chaoui Boudghene" wrappingWidth="180.13672149181366" />
 <Text fill="#0184ff" layoutX="34.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13000, TLEMCEN" />
-<Text fill="#0184ff" layoutX="325.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: 043 26 45 59 " />
+<Text fill="#0184ff" layoutX="325.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone : 043 26 45 69 " />
 <Text fill="#0184ff" layoutX="285.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlemcen, On" />
 <Text fill="#0184ff" layoutX="5.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile :" wrappingWidth="44.00000791111961" />
 <Text fx:id="date_box" layoutX="361.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="89.49023451795802" />
-<Text fill="#0184ff" layoutX="294.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :" />
-<Text fill="#0184ff" layoutX="294.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name   :" />
-<Text fill="#0184ff" layoutX="294.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" />
+<Text fill="#0184ff" layoutX="285.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family Name :" />
+<Text fill="#0184ff" layoutX="285.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name   :" />
+<Text fill="#0184ff" layoutX="285.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" />
 <Separator layoutY="545.0" prefHeight="16.0" prefWidth="450.0" />
 <Text fill="#1090da" layoutX="122.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRESCRIPTION">
 <font>
@@ -35,8 +35,8 @@
 </font>
 </Text>
 <Text fx:id="age_box" layoutX="329.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="69.53906644764356" />
-<Text fx:id="familyName_box" layoutX="372.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="83.14062070846558" />
-<Text fx:id="firstName_box" layoutX="368.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="82.0" />
+<Text fx:id="familyName_box" layoutX="361.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="83.14062070846558" />
+<Text fx:id="firstName_box" layoutX="361.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="82.0" />
 <Label fx:id="trait_box" contentDisplay="TOP" ellipsisString="" layoutX="16.0" layoutY="189.0" lineSpacing="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="334.0" prefWidth="350.0" wrapText="true">
 <font>
 <Font size="18.0" />

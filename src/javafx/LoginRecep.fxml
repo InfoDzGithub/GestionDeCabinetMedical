@@ -25,7 +25,7 @@
 <AnchorPane layoutX="229.0" layoutY="117.0" opacity="0.8" prefHeight="356.0" prefWidth="292.0" style="-fx-background-color: #F5F5F5;">
 <children>
 <JFXTextField fx:id="username_box" focusColor="#64b5f6" layoutX="75.0" layoutY="113.0" maxHeight="300.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" promptText="User_name" />
-<JFXPasswordField fx:id="password_box" focusColor="#64b5f6" layoutX="70.0" layoutY="193.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" />
+<JFXPasswordField fx:id="password_box" focusColor="#64b5f6" layoutX="70.0" layoutY="193.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" onKeyPressed="#onKeyPressed" prefHeight="30.0" prefWidth="200.0" promptText="Password" />
 <FontAwesomeIconView glyphName="LOCK" layoutX="35.0" layoutY="225.0" size="50" />
 <FontAwesomeIconView glyphName="USER" layoutX="32.0" layoutY="145.0" size="50" />
 <JFXButton layoutX="176.0" layoutY="282.0" onAction="#changeScreen6" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #64B5F6;" text="Login" textFill="WHITE">

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javafx;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -13,8 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +19,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -40,6 +41,8 @@ public class LoginDocController implements Initializable {
      Connection conn=null;
     ResultSet resultat=null;
     PreparedStatement preparedSt=null;
+      private double xOffset = 0;
+    private double yOffset = 0;
    /**************************************************************************************************************/  
      public LoginDocController(){
        
@@ -105,6 +108,53 @@ public void exitApplication(ActionEvent event) {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); }
+ /**************************************************************************************************/
+    @FXML
+    private void onKeyPressed(KeyEvent event) throws IOException {
+   
+        if (event.getCode() == KeyCode.ENTER) {
+        user= username_box.getText().toString();
+        String pass= password_box.getText().toString();
+         
+       if(user.isEmpty() || pass.isEmpty())  
+     {
+      infoBox2("Please enter your username or your password", null, "Form Error!");   
+         
+     }
+         else{
+        String sql="SELECT * FROM medecin WHERE username_med= " + "'" + user + "'" 
+            + " AND password_med= " + "'" + pass + "'";
+              
+     
+                   try {
+                     resultat=conn.prepareStatement(sql).executeQuery();
+
+                       if(resultat.next())
+                       {
+                            infoBox("Login Successful", null, "Success"); 
+                            Parent loginDoctor = FXMLLoader.load(getClass().getResource("DoctorPortal.fxml"));
+                            Scene doc = new Scene(loginDoctor);
+                            Stage window1;
+                            window1 = (Stage)((Node)event.getSource()).getScene().getWindow();
+                            window1.setScene(doc);
+                            window1.show();
+
+                       }
+                       else
+                       {
+                        infoBox2("Correct your username or your password", null, "Failed");
+                        username_box.clear();
+                        password_box.clear();
+                         
+                       }
+                        } 
+                   catch (Exception e)
+                        {   
+                            
+                        }   
+        
+         }
+        }      }
     
  /******************************************************************************************************************/  
     @Override
@@ -133,5 +183,7 @@ public void exitApplication(ActionEvent event) {
        }    
 
 
-
+  
+    
+   
 }

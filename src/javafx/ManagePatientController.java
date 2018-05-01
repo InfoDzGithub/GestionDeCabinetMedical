@@ -3,13 +3,11 @@ package javafx;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
-import static java.lang.System.exit;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -24,10 +22,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -91,6 +92,14 @@ public class ManagePatientController implements Initializable {
            { Date date=new Date();
                return new SimpleDateFormat("yyyy-MM-dd").format(date);
            }
+    @FXML
+    private Label errortel;
+    @FXML
+    private Label errortel1;
+    @FXML
+    private Label nameError1;
+    @FXML
+    private Label nameError;
     
     /**********************************************************************************************************/
      @FXML
@@ -138,13 +147,16 @@ public class ManagePatientController implements Initializable {
         else if(rdb_married.isSelected())
             sitFam=rdb_married.getText();
         
-        
+        KeyEvent event1 = null;
         
       if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
        || gender.isEmpty()||sitFam.isEmpty()  || phoneNumber.isEmpty()|| age.isEmpty() )  
      {
       infoBox2("Please Fill Out The Form ", null, "Form Error!");   
-      
+     }
+      else if(!OnKeyPressed(event1)||!OnKeyPressed1(event1)||!handle(event))
+        {
+      infoBox2("Please, Correct The Form ", null, "Form Error!");   
          
      }
       else{  
@@ -176,28 +188,12 @@ public class ManagePatientController implements Initializable {
                   preparedSt.setString(7, phoneNumber);
                   preparedSt.setString(8,sitFam);
                   preparedSt.setString(9,currentDay());
-                  // preparedSt.setString(10,ageP());
                   preparedSt.execute();
                   infoBox("Patient Added Successfully", null, "Success");
-                  
-//                  Statement m = conn.createStatement();
-//                  m.execute("set @autoid :=0");
-//                  m.execute("UPDATE  patient  set id_pat = @autoid := (@autoid+1)");
-//                  m.execute("ALTER TABLE patient  auto_increment = 1");
-                  
-                  loadData();
                  
-                  cni_box.clear();
-                  age_box.clear();
-                 rdb_signal.setSelected(false);
-                 rdb_married.setSelected(false);
-                   firstName_box.clear();
-                   familyName_box.clear();
-                   address_box.clear();
-                   phoneNumber_box.clear();
-                   rdb_male.setSelected(false);
-                   rdb_female.setSelected(false);
-                   
+                  loadData();
+                  CancelData(event);
+      
                     } 
                    catch (Exception e)
                         {
@@ -253,7 +249,7 @@ public class ManagePatientController implements Initializable {
            
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM patient ");
             while (rs.next()) {
-                //get string from db,whichever way 
+                
                 list.add(new Pat(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9) ));
             }
 
@@ -315,9 +311,39 @@ public class ManagePatientController implements Initializable {
   /**********************************************************************************************************/ 
      @FXML
     private void UpdateData(ActionEvent event)  {
+        String firstName= firstName_box.getText();
+        String familyName= familyName_box.getText();
+        String address= address_box.getText();
+        String phoneNumber= phoneNumber_box.getText();
+        String cni= cni_box.getText();
+        String age=age_box.getText();
+        String gender="";
+         
+        if(rdb_male.isSelected())
+            gender=rdb_male.getText();
+        else if(rdb_female.isSelected())
+            gender=rdb_female.getText();
+       String sitFam="";
+         
+        if(rdb_signal.isSelected())
+            sitFam=rdb_signal.getText();
+        else if(rdb_married.isSelected())
+            sitFam=rdb_married.getText();
+         KeyEvent event1 = null;
+
         int myIndex =tab.getSelectionModel().getSelectedIndex();
          if(myIndex > -1){
-         String id=tab.getItems().get(myIndex).getID();
+               if(cni.isEmpty()|| firstName.isEmpty()|| familyName.isEmpty()|| address.isEmpty()
+       || gender.isEmpty()||sitFam.isEmpty()  || phoneNumber.isEmpty()|| age.isEmpty() )  
+     {
+      infoBox2("Please Fill Out The Form ", null, "Form Error!");     
+     }
+               else if(!OnKeyPressed(event1)||!OnKeyPressed1(event1)|| !handle(event))
+        {
+      infoBox2("Correct The Form ", null, "Form Error!");   
+         
+     }
+               else{ String id=tab.getItems().get(myIndex).getID();
          String req="Update patient set nic_pat = ? , prenom_pat = ? , nom_pat = ? , adresse_pat = ? ,num_tel_pat = ? , dateN_pat = ? , situation_fam = ? ,sexe_pat = ? where id_pat ='" +id+"'";
           Connection conn=Connexion.ConnecrDB();
          try{
@@ -340,7 +366,7 @@ public class ManagePatientController implements Initializable {
                    preparedSt.setString(8, rdb_male.getText().toString());
                    else if(rdb_female.isSelected())
                    preparedSt.setString(8, rdb_female.getText().toString());
-                   //preparedSt.setString(9, ageP());
+                  
                   preparedSt.execute();
                    infoBox("Patient Modified Successfully", null, "Success");
                  
@@ -348,23 +374,13 @@ public class ManagePatientController implements Initializable {
                   
                   
                   loadData();
-                 cni_box.clear();
-                  age_box.clear();
-                 rdb_signal.setSelected(false);
-                 rdb_married.setSelected(false);
-                   firstName_box.clear();
-                   familyName_box.clear();
-                   address_box.clear();
-                   phoneNumber_box.clear();
-                   rdb_male.setSelected(false);
-                   rdb_female.setSelected(false);
-                   
+                 CancelData(event);
          }
          catch(Exception e)
          {
              
          }
-         }
+         }}
    else
    {
        infoBox2("You Should Select a Row First", null, "Failed");
@@ -396,17 +412,7 @@ public class ManagePatientController implements Initializable {
 //                  m.execute("ALTER TABLE patient  auto_increment = 1");
                   
                loadData();
-              cni_box.clear();
-                  age_box.clear();
-                 rdb_signal.setSelected(false);
-                 rdb_married.setSelected(false);
-                   firstName_box.clear();
-                   familyName_box.clear();
-                   address_box.clear();
-                   phoneNumber_box.clear();
-                   rdb_male.setSelected(false);
-                   rdb_female.setSelected(false);
-               
+              CancelData(event);
          }
          catch(Exception e)
          {
@@ -416,18 +422,14 @@ public class ManagePatientController implements Initializable {
    else
    {
        infoBox2("You Should Select a Row First", null, "Failed");
-   }
-//         Connection conn=Connexion.ConnecrDB();
-//         Statement s = conn.createStatement();
-//         s.execute("ALTER TABLE patient auto_increment = 1");
-        
+   }        
     }
     
  /************************************************************************************************************/
     @FXML
     public void CancelData(ActionEvent event) throws IOException
     {
-       infoBox("Successfully Cancelling", null, "Success");
+       
                   cni_box.clear();
                   age_box.clear();
                  rdb_signal.setSelected(false);
@@ -440,6 +442,71 @@ public class ManagePatientController implements Initializable {
                    rdb_female.setSelected(false);
     }
 
+    @FXML
+    private boolean OnKeyPressed(KeyEvent event) {
+         try
+       {int i=Integer.parseInt(phoneNumber_box.getText()) ;
+         errortel.setText(""); return true;}
+        
+         catch(NumberFormatException e)
+         {
+             errortel.setText("Invalid Number");return false;
+         }
+    }
+
+    @FXML
+    private boolean OnKeyPressed1(KeyEvent event) {
+        try
+       {int i=Integer.parseInt(cni_box.getText()) ;
+         errortel1.setText("");return true;}
+        
+         catch(NumberFormatException e)
+         {
+             errortel1.setText("Invalid CNI");return false;
+         }
+    }
+/***********************************************************************************/
+     @FXML
+    private void error(KeyEvent keyEvent) {
+        if (!keyEvent.isConsumed()){KeyCode code = keyEvent.getCode();
+    switch (code) {
+        case TAB: nameError.setText(" ");break;
+        case BACK_SPACE:nameError.setText(" ");break;
+        case SPACE:nameError.setText(" ");
+            break;
+        default:
+            if (!code.isLetterKey()) {
+                keyEvent.consume();
+                nameError.setText("Invalid form");
+            } 
+    }
+        }
+    }
+ /************************************************************************************/
+
+    @FXML
+    private void error2(KeyEvent keyEvent) {
+             KeyCode code = keyEvent.getCode();
+    switch (code) {
+        case TAB: nameError1.setText(" ");break;
+        case BACK_SPACE:nameError1.setText(" ");break;
+        case SPACE:nameError1.setText(" ");
+            break;
+        default:
+            if (!code.isLetterKey()) {
+                keyEvent.consume();
+                nameError1.setText("Invalid form");
+            } 
+    }
+    
+    }
+   /*************************************************************************************************************/
+     @FXML
+    public boolean handle(ActionEvent event) {
+            if(firstName_box.getText().matches("[aA-zZ ]+$") || familyName_box.getText().matches("[aA-zZ ]+$")) 
+             return true;
+                else return false;
+           }
     /************************************************************************************************************/
    public static class Pat{
     

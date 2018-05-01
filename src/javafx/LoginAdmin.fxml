@@ -42,7 +42,7 @@
 </font>
 </Label>
 <JFXTextField fx:id="username_box" focusColor="#64b5f6" layoutX="75.0" layoutY="113.0" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" promptText="User_name" />
-<JFXPasswordField fx:id="password_box" focusColor="#64b5f6" layoutX="70.0" layoutY="193.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" />
+<JFXPasswordField fx:id="password_box" focusColor="#64b5f6" layoutX="70.0" layoutY="193.0" onKeyPressed="#onKeyPressed" prefHeight="30.0" prefWidth="200.0" promptText="Password" />
 </children>
 </AnchorPane>
 

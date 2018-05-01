@@ -32,6 +32,8 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import static javax.swing.UIManager.getString;
@@ -67,13 +69,10 @@ public class DoctorPortalController implements Initializable {
      public static String date ="",yearN="",mouthN="",dateN="";
      String variable="";
     
-    /**********************************************************************************************************/
+/**********************************************************************************************************/
     public static String ageP(String idd){
         
-        
-        
-        
-        String req="Select dateN_pat from patient where id_pat='"+idd+"'";
+       String req="Select dateN_pat from patient where id_pat='"+idd+"'";
         try{
              Connection conn1=Connexion.ConnecrDB();
                PreparedStatement preparedSt1=conn1.prepareStatement(req);
@@ -87,12 +86,10 @@ public class DoctorPortalController implements Initializable {
           }
          catch(Exception e){}
         
-      
-        //char c =date.charAt(4);
-        int year=0,mouth=0,daTe=0;
+        int year=0,mouth=0,daTe=0;// 2000/10/11
            yearN = date.substring(0,4); 
           year = Integer.parseInt(yearN);
-          String yearC=currentDay().substring(0,4); // yyyy-mm-dd
+          String yearC=currentDay().substring(0,4);
           int currYear=Integer.parseInt(yearC);
           
                mouthN = date.substring(5,7); 
@@ -107,29 +104,26 @@ public class DoctorPortalController implements Initializable {
           
           if(year!=currYear) 
           {
-//              if(currMouth<5 )     return (currYear-year)+"   Year";
-//              else if(currMouth>5) return (currYear-year-1)+"  Year";
+
               return (currYear-year)+"   Years";
           }    
           else if(year==currYear)
           {
-             if(currMouth!=mouth)       return (agePMouth(mouth))+"  Mouths";
+             if(currMouth!=mouth)       return (agePMouth(mouth))+"  Months";
              else if(currMouth==mouth)  return (agePDay( daTe))+"  Days";
           }
-                
-                
-                
-         
-         return "";
+
+          return "";
     }
-    
+ /*********************************************************************************************************************/  
    public static int agePMouth(int mouth){
        
               String mouthC=currentDay().substring(5,7);
               int currMouth=Integer.parseInt(mouthC);
              
         return currMouth-mouth;
-                          } 
+                          }
+  /******************************************************************************************************************/
     public static int agePDay(int daTe){
         
        
@@ -193,10 +187,12 @@ public class DoctorPortalController implements Initializable {
       medicament =treatmentN_box.getText();
        String diag =diagN_box.getText();
      String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
+     
     
      if (id.isEmpty())
-     {infoBox2("Enter the patient's id please!", null, "Failed");}  
+     {infoBox2("Enter the patient's File Number please!", null, "Failed");}  
      else if (medicament.isEmpty() ){infoBox2("Fill In The Treatment Field !", null, "Failed");}  
+    
      else{
         String sql="INSERT INTO traitement (id_pat,nom_medc) VALUES(?,?)";
         String sql2="INSERT INTO diagnostic (id_pat,nom_diag) VALUES(?,?)";
@@ -229,15 +225,17 @@ public class DoctorPortalController implements Initializable {
     private  void searchePatInfo(ActionEvent event) {
        id=search_box.getText();
         String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
-        if(id.isEmpty()|| patient_inf.isEmpty())
+ //if(combobox== null ){infoBox2("Please Select The Patient !", null, "Failed");} 
+        if(id.isEmpty())
          
          {
              ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
          }
-     
+       
         else{
               test();
-             if(variable.equals(patient_inf)) 
+              
+                if(variable.equals(patient_inf)) 
              { age_box.setText(ageP(id));
    String sqls="Select situation_fam from patient where id_pat='" +id+"'"; 
                                                                                          
@@ -254,7 +252,8 @@ public class DoctorPortalController implements Initializable {
                }
    catch(Exception e){}
    
-   
+   treatmentE_box.clear();
+   diagE_box.clear();
     String sqls2=" Select nom_medc,nom_diag from patient,traitement,diagnostic where patient.id_pat= traitement.id_pat and diagnostic.id_pat = patient.id_pat and patient.id_pat='" +id+"'";    
                                                                                           
    try{
@@ -269,11 +268,10 @@ public class DoctorPortalController implements Initializable {
                }     
                }
    catch(Exception e){}
-    
-    
-           
-             }
-             else ManageAppointmentController.infoBox2("Enter the correct number ", null, "Form Error!"); 
+                    }
+               
+                 
+             else ManageAppointmentController.infoBox2("Enter The Correct File Number ", null, "Error!"); 
                  }}
 
    
@@ -295,7 +293,6 @@ public class DoctorPortalController implements Initializable {
    // p_id.setDisable(true);
     } 
 
-    @FXML
     private void redirection(ActionEvent event) throws IOException {
        
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("Prescription.fxml"));
@@ -304,9 +301,65 @@ public class DoctorPortalController implements Initializable {
             window.setScene(ab);
             window.show();
     }
+
+    @FXML
+    private void onkeypressed(KeyEvent event) {
+         if (event.getCode() == KeyCode.ENTER) {
+             id=search_box.getText();
+        String patient_inf=combobox.selectionModelProperty().getValue().getSelectedItem();
+
+        if(id.isEmpty())
+         
+         {
+             ManageAppointmentController.infoBox2("Please Fill Out The Form ", null, "Form Error!");  
+         }
+       
+        else{
+              test();
+              
+                if(variable.equals(patient_inf)) 
+             { age_box.setText(ageP(id));
+   String sqls="Select situation_fam from patient where id_pat='" +id+"'"; 
+                                                                                         
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt=conn.prepareStatement(sqls);
+               ResultSet result=preparedSt.executeQuery();      
+               while(result.next())
+               { 
+                  
+                   situation_box.setText(result.getString("situation_fam"));
+                  
+               }     
+               }
+   catch(Exception e){}
+   
+   treatmentE_box.clear();
+   diagE_box.clear();
+    String sqls2=" Select nom_medc,nom_diag from patient,traitement,diagnostic where patient.id_pat= traitement.id_pat and diagnostic.id_pat = patient.id_pat and patient.id_pat='" +id+"'";    
+                                                                                          
+   try{
+               Connection conn=Connexion.ConnecrDB();
+               PreparedStatement preparedSt2=conn.prepareStatement(sqls2);
+               ResultSet result2=preparedSt2.executeQuery();      
+               while(result2.next())
+               { 
+                  
+                   treatmentE_box.setText(result2.getString("nom_medc"));
+                   diagE_box.setText(result2.getString("nom_diag"));
+               }     
+               }
+   catch(Exception e){}
+                    }
+              
+             else ManageAppointmentController.infoBox2("Enter The Correct File Number ", null, "Error!"); 
+                 }}
+         }
+
+    
    
     
   /***************************************************************************************************************/
-       
+    }   
     
-}
+
