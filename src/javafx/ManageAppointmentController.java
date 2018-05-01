@@ -407,7 +407,7 @@ public class ManageAppointmentController implements Initializable {
 //
                                 if(!daterecuperer.equals(date.toString())  || !temps.equals(time.toString()))
                                 {
-                                    if(confusionAppointement(date,time))  infoBox2("This appointment is already taken, Choose another one please! "+text+date+time, null, "Form Error! "+txtrecuperer+daterecuperer+timerecuperer);
+                                    if(confusionAppointement(date,time))  infoBox2("This appointment is already taken, Choose another one please! ", null, "Form Error! ");
                                     else update( id) ; 
                                 }
                                 
