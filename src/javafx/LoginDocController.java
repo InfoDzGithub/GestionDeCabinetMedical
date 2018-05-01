@@ -48,9 +48,7 @@ public class LoginDocController implements Initializable {
        
        conn=Connexion.ConnecrDB();
        }  
-   
-    
-  /*****************************************************************************************************************/  
+/*****************************************************************************************************************/  
     @FXML
 public void exitApplication(ActionEvent event) {
    Platform.exit();
@@ -181,7 +179,7 @@ public void exitApplication(ActionEvent event) {
            alert.showAndWait();
            
        }    
-
+/***********************************************************************************************************************/
 
   
     

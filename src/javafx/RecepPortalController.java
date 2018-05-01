@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package javafx;
 
+package javafx;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +18,7 @@ import javafx.stage.Stage;
  * @author User
  */
 public class RecepPortalController implements Initializable {
+  /*****************************************************************************************************************/
     @FXML
     public void changeScreen1(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginRecep.fxml"));
@@ -30,6 +26,7 @@ public class RecepPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+ /********************************************************************************************************************/
     @FXML
     public void changeScreen2(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("ManageAppointment.fxml"));
@@ -37,6 +34,7 @@ public class RecepPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+/**********************************************************************************************************************/
     @FXML
     public void changeScreen3(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("ManagePatient.fxml"));
@@ -44,6 +42,7 @@ public class RecepPortalController implements Initializable {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(ab);
             window.show(); } 
+ /*********************************************************************************************************************/
 
     /**
      * Initializes the controller class.

@@ -1,5 +1,5 @@
 
- /***************************************************ManageAppointement********************************************************************/
+ 
 package javafx;
 
 import com.jfoenix.controls.JFXDatePicker;
@@ -248,7 +248,7 @@ public class ManageAppointmentController implements Initializable {
                                       SelectTimer.setTime(timeNxt); 
 
                                   CancelData(event);
-                                  // insertData(event);
+                                  
                                                } 
                                          catch (Exception e){}    
 
@@ -566,9 +566,7 @@ public class ManageAppointmentController implements Initializable {
            alert.showAndWait();
            
        }    
-    
-    
- /******************************************************************************************************************/  
+/******************************************************************************************************************/  
        
      @FXML
     private void CancelData(ActionEvent event) {

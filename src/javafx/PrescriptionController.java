@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package javafx;
 
+package javafx;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -101,7 +96,7 @@ public class PrescriptionController implements Initializable {
          @FXML
     private void PrInt(ActionEvent event) {
         
-        //Second Method
+        
         if (doPrint(panel_box)) {
             System.out.println("Print");
         } else {
@@ -132,7 +127,7 @@ public void exitApplication(ActionEvent event) {
         return job.endJob();
 
     }
-  
+ /***************************************************************************************************************/ 
     @FXML
     private void buttonBuck(ActionEvent event) throws IOException {
          Parent loginAdmin = FXMLLoader.load(getClass().getResource("DoctorPortal.fxml"));

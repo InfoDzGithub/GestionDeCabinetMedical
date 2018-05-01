@@ -1,7 +1,5 @@
 
 package javafx;
-
-
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.javafx.tk.Toolkit;
@@ -105,7 +103,7 @@ public class ManageDoctorsController implements Initializable {
     @FXML
     private Label nameError1;
    
-  /***************************************************************************************************************/ 
+ /***************************************************************************************************************/ 
    
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,7 +112,7 @@ public class ManageDoctorsController implements Initializable {
          loadData();
 
     } 
- /****************************************************************************************************************/   
+/****************************************************************************************************************/   
    @FXML
     public void insertData(ActionEvent event) throws IOException {
         
@@ -205,8 +203,7 @@ public class ManageDoctorsController implements Initializable {
     
     
     
-  /******************************************************************************************************************/  
-    //Loat Data
+ /******************************************************************************************************************/  
     public void loadData(){
        list.clear();
          try {

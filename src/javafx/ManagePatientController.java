@@ -1,5 +1,4 @@
 package javafx;
-
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -195,10 +194,7 @@ public class ManagePatientController implements Initializable {
                   CancelData(event);
       
                     } 
-                   catch (Exception e)
-                        {
-                            
-                        }   
+                   catch (Exception e){}   
            
                }
                    
@@ -303,12 +299,9 @@ public class ManagePatientController implements Initializable {
                }
                    
    }
-   catch(Exception e){
-       
-   }
+   catch(Exception e){}
     }
-   
-  /**********************************************************************************************************/ 
+/**********************************************************************************************************/ 
      @FXML
     private void UpdateData(ActionEvent event)  {
         String firstName= firstName_box.getText();

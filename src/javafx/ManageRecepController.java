@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package javafx;
 
+package javafx;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -27,7 +22,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -99,8 +93,6 @@ public class ManageRecepController implements Initializable {
     private Label nameError;
     @FXML
     private Label nameError1;
- 
-
  /**************************************************************************************************************/   
       
     @Override
@@ -192,16 +184,10 @@ public class ManageRecepController implements Initializable {
                            cancel(event);
 
                              } 
-                        catch (Exception e)
-                             {
-
-                             }   
+                        catch (Exception e) { }   
         
          }  }
-           catch (Exception e)
-                             {
-
-                             }   
+           catch (Exception e){}   
        }}
    /**********************************************************************************************************/
 
@@ -257,10 +243,7 @@ public class ManageRecepController implements Initializable {
                cancel(event);
                
          }
-         catch(Exception e)
-         {
-             
-         }
+         catch(Exception e) {}
          }
    else
    {
@@ -304,9 +287,7 @@ public class ManageRecepController implements Initializable {
                }
                    
    }
-   catch(Exception e){
-       
-   }
+   catch(Exception e){}
   
     }
 /**************************************************************************************************************/
@@ -371,9 +352,7 @@ public class ManageRecepController implements Initializable {
                    
          }
          catch(Exception e)
-         {
-             
-         }
+         { }
           }}
    else
    {
