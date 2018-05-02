@@ -189,6 +189,7 @@ public class ManageRecepController implements Initializable {
          }  }
            catch (Exception e){}   
        }}
+    
    /**********************************************************************************************************/
 
  public void loadData() 

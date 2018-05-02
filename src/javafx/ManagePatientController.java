@@ -84,9 +84,7 @@ public class ManagePatientController implements Initializable {
     ObservableList<Pat> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Pat> tab;
-    
-   
-  /*********************************************************************************************************/
+ /*********************************************************************************************************/
            public static String currentDay()
            { Date date=new Date();
                return new SimpleDateFormat("yyyy-MM-dd").format(date);

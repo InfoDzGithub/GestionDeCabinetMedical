@@ -1,7 +1,6 @@
 
  
 package javafx;
-
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;

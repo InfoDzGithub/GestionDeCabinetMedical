@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  */
 public class RecepPortalController implements Initializable {
   /*****************************************************************************************************************/
+    
     @FXML
     public void changeScreen1(ActionEvent event) throws IOException {
         Parent loginAdmin = FXMLLoader.load(getClass().getResource("LoginRecep.fxml"));

@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 
 
-
-
 public class Connexion {
     Connection conn=null;
     public static Connection ConnecrDB()

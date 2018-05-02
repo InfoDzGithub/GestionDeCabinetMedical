@@ -118,6 +118,5 @@
 <Font name="System Bold" size="12.0" />
 </font>
 </Label>
-      <Label fx:id="labelTime" ellipsisString="" layoutX="613.0" layoutY="234.0" prefHeight="17.0" prefWidth="110.0" textFill="#da0f0f" />
 </children>
 </AnchorPane>

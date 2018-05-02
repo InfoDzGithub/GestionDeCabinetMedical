@@ -1,6 +1,5 @@
 
 package javafx;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,7 +57,7 @@ public void exitApplication(ActionEvent event) {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
 /***********************************************************************************************************************/   
 }
